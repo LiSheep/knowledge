@@ -13,4 +13,5 @@
 	<include file="struts/struts-dictionary.xml"></include>
 	<include file="struts/struts-route.xml"></include>
 	<include file="struts/struts-node.xml"></include>
+	<include file="struts/struts-comment.xml"></include>
 </struts>
