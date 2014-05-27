@@ -3,16 +3,16 @@ package com.knowledge.dictionary;
 import com.knowledge.arc.KnowledgeEntity;
 
 public class Dictionary extends KnowledgeEntity {
-	private String fieldCode;
+	private int fieldCode;
 	private String fieldName;
-	private String code;
+	private int code;
 	private String label;
 	private int orderNum;
 	
-	public String getFieldCode() {
+	public int getFieldCode() {
 		return fieldCode;
 	}
-	public void setFieldCode(String fieldCode) {
+	public void setFieldCode(int fieldCode) {
 		this.fieldCode = fieldCode;
 	}
 	public String getFieldName() {
@@ -21,10 +21,10 @@ public class Dictionary extends KnowledgeEntity {
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
 	}
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 	public String getLabel() {

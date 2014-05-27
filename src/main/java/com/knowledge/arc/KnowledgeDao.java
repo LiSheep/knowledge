@@ -9,7 +9,7 @@ public interface KnowledgeDao<T extends KnowledgeEntity> {
 	int create(T t);
 	int delete(T t);
 	/*
-	 * query Object
+	 * query one Object
 	 * @param mapper : Object rowmapper
 	 */
 	T read(T t, KnowledgeRowMapper<T> mapper);

@@ -11,7 +11,7 @@ public class DictionaryAction extends ActionSupport implements ModelDriven<Dicti
 	 * 数据字典管理相关的action
 	 */
 	private static final long serialVersionUID = 6559445300346209205L;
-	DictionaryServices dictionaryServices;
+	private DictionaryServices dictionaryServices;
 	/*
 	 * 前台的model.fieldName中的model就是与下面的model对应的
 	 */
