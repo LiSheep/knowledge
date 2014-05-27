@@ -2,7 +2,7 @@ package com.knowledge.node;
 
 import com.knowledge.arc.KnowledgeServices;
 
-public class NodeCirsnessServices implements KnowledgeServices<NodeCarsness> {
+public class NodeCarsnessServices implements KnowledgeServices<NodeCarsness> {
 
 	@Override
 	public int add(NodeCarsness t) {
