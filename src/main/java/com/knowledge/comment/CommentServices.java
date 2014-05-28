@@ -1,6 +1,9 @@
 package com.knowledge.comment;
 
 
+import java.util.List;
+import java.util.UUID;
+
 import com.knowledge.arc.KnowledgeServices;
 
 public class CommentServices  implements KnowledgeServices<Comment>  {
@@ -8,8 +11,8 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	
 	@Override
 	public int add(Comment t) {
-		// TODO Auto-generated method stub
-		return 0;
+		t.setId(UUID.randomUUID().toString());
+		return commentDao.create(t);
 	}
 
 	@Override
@@ -24,9 +27,9 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 		return 0;
 	}
 	
-	public int list(){
-		commentDao.list();
-		return 0;
+	public List<Comment> list(){
+		
+		return commentDao.list();
 	}
 	
 

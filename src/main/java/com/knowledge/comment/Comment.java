@@ -1,21 +1,37 @@
 package com.knowledge.comment;
 
+import java.util.Date;
+
 import com.knowledge.arc.KnowledgeEntity;
+import com.knowledge.user.User;
 
 public class Comment extends KnowledgeEntity {
-	private String fineKey;
 	
 	private int complexity;
 	private int importance;
 	private String comment;
-	private String suggestion;
-	private String reason;
+	private String note;
+	private Date updateTime;
+
+	private User user;
 	
-	public String getFineKey() {
-		return fineKey;
+	public User getUser() {
+		return user;
 	}
-	public void setFineKey(String fineKey) {
-		this.fineKey = fineKey;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	public int getComplexity() {
 		return complexity;
@@ -35,17 +51,4 @@ public class Comment extends KnowledgeEntity {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getSuggestion() {
-		return suggestion;
-	}
-	public void setSuggestion(String suggestion) {
-		this.suggestion = suggestion;
-	}
-	public String getReason() {
-		return reason;
-	}
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-	
 }

@@ -12,14 +12,17 @@ import org.springframework.jdbc.core.RowMapper;
 import com.knowledge.arc.KnowledgeDao;
 import com.knowledge.arc.KnowledgeRowMapper;
 import com.knowledge.dictionary.Dictionary;
+import com.knowledge.user.User;
 
 public class CommentDao implements KnowledgeDao<Comment> {
 
 	private JdbcTemplate jdbcTemplate;
 	@Override
 	public int create(Comment t) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "INSERT INTO knowledge_point_comment(id, complexity, importance, comment) "
+				+ "VALUES(?, ?, ?, ?)";
+		Object []args = {t.getId(), t.getComplexity(), t.getImportance(), t.getComment()};
+		return jdbcTemplate.update(sql, args);
 	}
 
 	@Override
@@ -35,11 +38,11 @@ public class CommentDao implements KnowledgeDao<Comment> {
 	}
 	
 	public List<Comment> list(){
-		System.out.println("exe query...");
-		return null;
+		String sql = "SELECT co.id AS id, co.complexity, co.importance,co.`comment`, co.note, co.updateTime, u.id AS userKey, u.username "
+				+ "FROM knowledge_point_comment AS co, knowledge_user AS u WHERE u.id = co.userKey AND u.delflag != 1";
+		return jdbcTemplate.query(sql, new CommentMapperList());
 	}
 	
-
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
@@ -57,7 +60,16 @@ public class CommentDao implements KnowledgeDao<Comment> {
 			model.setComplexity(rs.getInt("complexity"));
 			model.setImportance(rs.getInt("importance"));
 			model.setComment(rs.getString("comment"));
-			model.setSuggestion(rs.getString("suggestion"));
+			model.setNote(rs.getString("note"));
+			model.setUpdateTime(rs.getDate("updateTime"));
+			
+			//user
+			User user = new User();
+			user.setId(rs.getString("userKey"));
+			user.setUsername(rs.getString("username"));
+			
+			model.setUser(user);
+			
 			return model;
 		}
 	}
@@ -69,7 +81,15 @@ public class CommentDao implements KnowledgeDao<Comment> {
 			model.setComplexity(rs.getInt("complexity"));
 			model.setImportance(rs.getInt("importance"));
 			model.setComment(rs.getString("comment"));
-			model.setSuggestion(rs.getString("suggestion"));
+			model.setNote(rs.getString("note"));
+			model.setUpdateTime(rs.getDate("updateTime"));
+			
+			//user
+			User user = new User();
+			user.setId(rs.getString("userKey"));
+			user.setUsername(rs.getString("username"));
+			
+			model.setUser(user);
 			return model;
 		}
 	}

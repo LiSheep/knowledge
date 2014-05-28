@@ -6,6 +6,8 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -85,7 +87,7 @@
 									<div class="well">具体描述</div>
 								</div>
 							</div>
-							<div class="row">
+							<div class="row" style="margin-bottom: 30px;">
 								<div class="col-md-3 col-md-offset-2">
 									难度值：<span class="glyphicon glyphicon-star"></span><span
 										class="glyphicon glyphicon-star"></span><span
@@ -102,21 +104,24 @@
 								</div>
 							</div>
 							<!--    他人评论内容         -->
+							
 							<div id="comment">
-								<div class="panel panel-default" style="margin-top: 26px;">
+							<s:iterator value="entities">
+								<div class="panel panel-default" style="margin-top: 10px;">
 									<div id="commet-item" class="row">
 										<div class="panel-body">
 											<div id="avater" class="col-md-2">
-												<p>路人1：</p>
+												<p><s:property value="user.username" /></p>
 											</div>
 											<div class="col-md-10">
-												<p>blarlbarlbarblarlbarlbarblarlbarlbar...</p>
+												<p><s:property value="comment" /></p>
 											</div>
 										</div>
 									</div>
 									<div class="panel-footer">
 										<div class="row">
 											<div id="importance/difficulty" class="col-md-8">
+											<!-- 
 												难度值：<span class="glyphicon glyphicon-star"></span><span
 													class="glyphicon glyphicon-star"></span><span
 													class="glyphicon glyphicon-star"></span><span
@@ -127,6 +132,9 @@
 													class="glyphicon glyphicon-star"></span><span
 													class="glyphicon glyphicon-star-empty"></span><span
 													class="glyphicon glyphicon-star-empty"></span>
+											-->
+											难度值：<s:property value="complexity" />
+											重要性: <s:property value="importance"/>
 											</div>
 											<div id="comment-op" class="col-md-2 col-md-offset-1">
 												<span id="comment-time">19:17</span> <a href="#">回复</a>
@@ -134,99 +142,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="panel panel-default" style="margin-top: -10px;">
-									<div id="commet-item" class="row">
-										<div class="panel-body">
-											<div id="avater" class="col-md-2">
-												<p>路人2：</p>
-											</div>
-											<div class="col-md-10">
-												<p>blarlbarlbarblarlbarlbarblarlbarlbar...</p>
-											</div>
-										</div>
-									</div>
-									<div class="panel-footer">
-										<div class="row">
-											<div id="importance/difficulty" class="col-md-8">
-												难度值：<span class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star-empty"></span><span
-													class="glyphicon glyphicon-star-empty"></span> 重要性：<span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star-empty"></span><span
-													class="glyphicon glyphicon-star-empty"></span>
-											</div>
-											<div id="comment-op" class="col-md-2 col-md-offset-1">
-												<span id="comment-time">19:17</span> <a href="#">回复</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default" style="margin-top: -10px;">
-									<div id="commet-item" class="row">
-										<div class="panel-body">
-											<div id="avater" class="col-md-2">
-												<p>路人3：</p>
-											</div>
-											<div class="col-md-10">
-												<p>blarlbarlbarblarlbarlbarblarlbarlbar...</p>
-											</div>
-										</div>
-									</div>
-									<div class="panel-footer">
-										<div class="row">
-											<div id="importance/difficulty" class="col-md-8">
-												难度值：<span class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star-empty"></span><span
-													class="glyphicon glyphicon-star-empty"></span> 重要性：<span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star-empty"></span><span
-													class="glyphicon glyphicon-star-empty"></span>
-											</div>
-											<div id="comment-op" class="col-md-2 col-md-offset-1">
-												<span id="comment-time">19:17</span> <a href="#">回复</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="panel panel-default" style="margin-top: -10px;">
-									<div id="commet-item" class="row">
-										<div class="panel-body">
-											<div id="avater" class="col-md-2">
-												<p>路人4：</p>
-											</div>
-											<div class="col-md-10">
-												<p>blarlbarlbarblarlbarlbarblarlbarlbar...</p>
-											</div>
-										</div>
-									</div>
-									<div class="panel-footer">
-										<div class="row">
-											<div id="importance/difficulty" class="col-md-8">
-												难度值：<span class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star-empty"></span><span
-													class="glyphicon glyphicon-star-empty"></span> 重要性：<span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star"></span><span
-													class="glyphicon glyphicon-star-empty"></span><span
-													class="glyphicon glyphicon-star-empty"></span>
-											</div>
-											<div id="comment-op" class="col-md-2 col-md-offset-1">
-												<span id="comment-time">19:17</span> <a href="#">回复</a>
-											</div>
-										</div>
-									</div>
-								</div>
+								</s:iterator>
 							</div>
 							<div id="pager" style="margin-left: 180px;">
 								<ul class="pagination">
