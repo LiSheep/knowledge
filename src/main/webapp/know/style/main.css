@@ -1,0 +1,29 @@
+#search{
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+#side-nav{
+	border:1px solid lightgray;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	text-align: center;
+
+}
+#header{
+	margin-top: 16px;
+}
+
+#btn-define{
+	border:1px solid lightgray;
+	border-radius: 5px;
+	margin-bottom: 5px;	
+	text-align: center;
+	height: 42px;
+	width: 262px;
+	background: #428bca;
+}
+ul li {
+	text-align: center;
+	list-style-type: none;
+	list-style-position: inside;
+}

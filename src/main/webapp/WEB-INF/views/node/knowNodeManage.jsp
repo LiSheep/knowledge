@@ -11,10 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="<%=basePath%>js/jquery/jquery-2.0.3.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/bootstrap/js/bootstrap.js"></script>
-<link href="<%=basePath %>/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="<%=basePath %>/js/bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+<jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 </head>
 <body>
 	<div class="container">
