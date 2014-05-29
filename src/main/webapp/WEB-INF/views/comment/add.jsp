@@ -8,10 +8,11 @@
 %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
+<script type="text/javascript" src="<%=basePath%>know/js/simditor.js" ></script>
 <title>评论列表</title>
 </head>
 <body>
@@ -56,7 +57,7 @@
 				</ul>
 			</div>
 			<div class="col-md-7 col-md-offset-1" id="main">
-				<div class="panel panel-primary" style="height: 450px;">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">知识点体系/粗知识点</h3>
 					</div>
@@ -87,7 +88,8 @@
 						<h5>知识评论</h5>
 						<textarea class="form-control" name="comment" rows="3"></textarea>
 						<h5>学习笔记</h5>
-						<textarea class="form-control" name="note" rows="3"></textarea>
+						<textarea id="note-editor" class="form-control" name="note" rows="3"></textarea>
+						<script type="text/javascript">new_simditroy("note-editor");</script>
 						<!-- 这里是不是应该包在一个div里？ -ltc 5.29 -->
 						<div class="row" style="margin-top: 12px;">
 							<div class="col-md-2 col-md-offset-2">
