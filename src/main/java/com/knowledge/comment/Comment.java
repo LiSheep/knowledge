@@ -7,8 +7,8 @@ import com.knowledge.user.User;
 
 public class Comment extends KnowledgeEntity {
 	
-	private int complexity;
-	private int importance;
+	private int importance;	//知识点重要程度-> dictionary:fieldCode=3
+	private int complexity;	//知识点难易程度-> dictionary:fieldCode=4
 	private String comment;
 	private String note;
 	private Date updateTime;

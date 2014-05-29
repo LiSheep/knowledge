@@ -17,7 +17,6 @@
 <body>
 	<div class="container">
 		<jsp:include page="/WEB-INF/views/common/user-header.jsp"></jsp:include>
-
 		<div id="contant" style="margin-top: 26px;">
 			<div class="row">
 				<div class="col-md-3">

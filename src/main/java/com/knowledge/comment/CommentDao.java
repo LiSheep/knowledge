@@ -17,11 +17,12 @@ import com.knowledge.user.User;
 public class CommentDao implements KnowledgeDao<Comment> {
 
 	private JdbcTemplate jdbcTemplate;
+
 	@Override
 	public int create(Comment t) {
-		String sql = "INSERT INTO knowledge_point_comment(id, complexity, importance, comment) "
-				+ "VALUES(?, ?, ?, ?)";
-		Object []args = {t.getId(), t.getComplexity(), t.getImportance(), t.getComment()};
+		String sql = "INSERT INTO knowledge_point_comment(id, complexity, importance, comment, note, updateTime) "
+				+ "VALUES(?, ?, ?, ?, ?, ?)";
+		Object[] args = { t.getId(), t.getComplexity(), t.getImportance(), t.getComment(), t.getNote(), t.getUpdateTime()};
 		return jdbcTemplate.update(sql, args);
 	}
 
@@ -36,13 +37,13 @@ public class CommentDao implements KnowledgeDao<Comment> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	public List<Comment> list(){
+
+	public List<Comment> list() {
 		String sql = "SELECT co.id AS id, co.complexity, co.importance,co.`comment`, co.note, co.updateTime, u.id AS userKey, u.username "
 				+ "FROM knowledge_point_comment AS co, knowledge_user AS u WHERE u.id = co.userKey AND u.delflag != 1";
 		return jdbcTemplate.query(sql, new CommentMapperList());
 	}
-	
+
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
@@ -50,8 +51,8 @@ public class CommentDao implements KnowledgeDao<Comment> {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	
-	class CommentMapper implements ResultSetExtractor<Comment>{
+
+	class CommentMapper implements ResultSetExtractor<Comment> {
 		@Override
 		public Comment extractData(ResultSet rs) throws SQLException,
 				DataAccessException {
@@ -62,17 +63,18 @@ public class CommentDao implements KnowledgeDao<Comment> {
 			model.setComment(rs.getString("comment"));
 			model.setNote(rs.getString("note"));
 			model.setUpdateTime(rs.getDate("updateTime"));
-			
-			//user
+
+			// user
 			User user = new User();
 			user.setId(rs.getString("userKey"));
 			user.setUsername(rs.getString("username"));
-			
+
 			model.setUser(user);
-			
+
 			return model;
 		}
 	}
+
 	class CommentMapperList implements RowMapper<Comment> {
 		@Override
 		public Comment mapRow(ResultSet rs, int num) throws SQLException {
@@ -83,12 +85,12 @@ public class CommentDao implements KnowledgeDao<Comment> {
 			model.setComment(rs.getString("comment"));
 			model.setNote(rs.getString("note"));
 			model.setUpdateTime(rs.getDate("updateTime"));
-			
-			//user
+
+			// user
 			User user = new User();
 			user.setId(rs.getString("userKey"));
 			user.setUsername(rs.getString("username"));
-			
+
 			model.setUser(user);
 			return model;
 		}

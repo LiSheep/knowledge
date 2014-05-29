@@ -12,8 +12,10 @@
 	</bean>
 	<bean id="commentServices" class="com.knowledge.comment.CommentServices">
 		<property name="commentDao" ref="commentDao"></property>
+		<property name="dictionaryServices" ref="dictionaryServices"></property>
 	</bean>
 	<bean id="commentAction" class="com.knowledge.comment.CommentAction">
 		<property name="commentServices" ref="commentServices"></property>
+		<property name="dictionaryServices" ref="dictionaryServices"></property>
 	</bean>
 </beans>
