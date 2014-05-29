@@ -47,14 +47,13 @@ public class DictionaryDao implements KnowledgeDao<Dictionary>{
 		StringBuffer buffer = new StringBuffer("SELECT  id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary WHERE fieldCode = ? GROUP BY fieldCode");
 		Object[] args = {code};
 		return jdbcTemplate.query(buffer.toString(), args, new DictionaryMapper());
-		
 	}
 	
 	//query more Objects from dictionary where select by fieldCode
 	public List<Dictionary> readLabels(int fieldCode) {
-		StringBuffer buffer = new StringBuffer("SELECT  id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary WHERE fieldCode = ?");
+		StringBuffer buffer = new StringBuffer("SELECT  id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary WHERE fieldCode = ? ORDER BY code");
+		//order by code so the dictionary's last one will be the biggest one - ltc update 29.05.2014
 		Object[] args = {fieldCode};
-		
 		return jdbcTemplate.query(buffer.toString(), new DictionaryMapperList(), args);
 	}
 }
