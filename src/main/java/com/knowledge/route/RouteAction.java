@@ -25,6 +25,16 @@ public class RouteAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	private void putDictionarySession() throws NumberFormatException, ExecutionException{
+		List<Dictionary> dicType = dictionaryServices.findLabels(Integer.valueOf(getText("FieldType.fieldCode")));
+		List<Dictionary> dicImportance = dictionaryServices.findLabels(Integer.valueOf(getText("FieldImportance.fieldCode")));
+		List<Dictionary> dicComplexity = dictionaryServices.findLabels(Integer.valueOf(getText("FieldComplexity.fieldCode")));
+		
+		ActionContext.getContext().getSession().put("nodeType", dicType);
+		ActionContext.getContext().getSession().put("nodeImportance", dicImportance);
+		ActionContext.getContext().getSession().put("nodeComplexity", dicComplexity);
+	}
+	
 	/*
 	 * go to knowledge node add page
 	 * 
@@ -33,14 +43,7 @@ public class RouteAction extends ActionSupport {
 	 * dicComplexity : 知识点难以程度
 	 */
 	public String nodeAdd() throws NumberFormatException, ExecutionException {
-		List<Dictionary> dicType = dictionaryServices.findLabels(Integer.valueOf(getText("FieldType.fieldCode")));
-		List<Dictionary> dicImportance = dictionaryServices.findLabels(Integer.valueOf(getText("FieldImportance.fieldCode")));
-		List<Dictionary> dicComplexity = dictionaryServices.findLabels(Integer.valueOf(getText("FieldComplexity.fieldCode")));
-		
-		ActionContext.getContext().getSession().put("nodeType", dicType);
-		ActionContext.getContext().getSession().put("nodeImportance", dicImportance);
-		ActionContext.getContext().getSession().put("nodeComplexity", dicComplexity);
-		
+		putDictionarySession();
 		return "add";
 	}
 	

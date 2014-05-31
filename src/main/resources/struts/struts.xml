@@ -9,9 +9,11 @@
 			<result name="success">/WEB-INF/views/user/success.jsp</result>
 		</action>
 	</package>
-
+	
 	<include file="struts/struts-dictionary.xml"></include>
 	<include file="struts/struts-route.xml"></include>
 	<include file="struts/struts-node.xml"></include>
 	<include file="struts/struts-comment.xml"></include>
+	<include file="struts/struts-point.xml"></include>
+	
 </struts>

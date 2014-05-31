@@ -20,11 +20,6 @@ public class NodeServices implements KnowledgeServices<NodeCarsness> {
 		return 0;
 	}
 
-	@Override
-	public int find(NodeCarsness t) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public NodeDao getNodeDao() {
 		return nodeDao;
@@ -32,5 +27,17 @@ public class NodeServices implements KnowledgeServices<NodeCarsness> {
 
 	public void setNodeDao(NodeDao nodeDao) {
 		this.nodeDao = nodeDao;
+	}
+
+	@Override
+	public NodeCarsness findEntity(NodeCarsness t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int update(NodeCarsness t) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

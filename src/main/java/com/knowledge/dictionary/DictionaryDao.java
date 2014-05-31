@@ -12,8 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.knowledge.arc.KnowledgeDao;
 import com.knowledge.arc.KnowledgeRowMapper;
 
-public class DictionaryDao implements KnowledgeDao<Dictionary>{
-	JdbcTemplate jdbcTemplate;
+public class DictionaryDao extends KnowledgeDao<Dictionary>{
 	
 	public int create(Dictionary dictionary) {
 		String sql = "INSERT INTO knowledge_dictionary (id, fieldCode, fieldName, `code`, label) VALUES (?, ?, ?, ?, ?)";
@@ -22,7 +21,7 @@ public class DictionaryDao implements KnowledgeDao<Dictionary>{
 		return jdbcTemplate.update(sql, args);
 	}
 	
-	public int delete(Dictionary dictionary) {
+	public int deleteEntity(Dictionary dictionary) {
 		String sql = "DELETE FROM knowledge_dictionary WHERE id = ?";
 		Object[] args = {dictionary.getId()};
 		
@@ -38,49 +37,45 @@ public class DictionaryDao implements KnowledgeDao<Dictionary>{
 	}
 
 	@Override
-	public Dictionary read(Dictionary t, KnowledgeRowMapper<Dictionary> mapper) {
+	public Dictionary readEntity(Dictionary t, KnowledgeRowMapper<Dictionary> mapper) {
 		
 		return null;
 	}
 	
-	public Dictionary readFieldNameByCode(int code) {
-		StringBuffer buffer = new StringBuffer("SELECT  id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary WHERE fieldCode = ? GROUP BY fieldCode");
-		Object[] args = {code};
-		return jdbcTemplate.query(buffer.toString(), args, new DictionaryMapper());
+	public Dictionary readFieldNameByFieldCode(int fieldCode) {
+		StringBuffer buffer = new StringBuffer("SELECT  id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary WHERE fieldCode = ? AND delflag = 0 GROUP BY fieldCode");
+		Object[] args = {fieldCode};
+		return jdbcTemplate.queryForObject(buffer.toString(), args, new DictionaryMapper());
 	}
 	
 	//query more Objects from dictionary where select by fieldCode
 	public List<Dictionary> readLabels(int fieldCode) {
-		StringBuffer buffer = new StringBuffer("SELECT  id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary WHERE fieldCode = ? ORDER BY code");
+		StringBuffer buffer = new StringBuffer("SELECT  id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary WHERE fieldCode = ? AND delflag = 0 ORDER BY code");
 		//order by code so the dictionary's last one will be the biggest one - ltc update 29.05.2014
 		Object[] args = {fieldCode};
-		return jdbcTemplate.query(buffer.toString(), new DictionaryMapperList(), args);
+		return jdbcTemplate.query(buffer.toString(), new DictionaryMapper(), args);
+	}
+	
+	public Dictionary readByFieldCode_Code(int fieldCode, int code){
+		String sql = "SELECT id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary  where fieldCode = ? AND `code` = ? AND delfalg = 0";
+		Object[] args = {fieldCode, code};
+		return jdbcTemplate.queryForObject(sql, new DictionaryMapper(), args);
+	}
+
+	@Override
+	public int updateEntity(Dictionary t) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 
-//map a row to a Dictionary, and return one Dictionary Object
-class DictionaryMapper implements ResultSetExtractor<Dictionary> {
-
-	@Override
-	public Dictionary extractData(ResultSet rs) throws SQLException,
-			DataAccessException {
-		Dictionary dictionary = new Dictionary();
-		
-		dictionary.setCode(rs.getInt("code"));
-		dictionary.setFieldCode(rs.getInt("fieldCode"));
-		dictionary.setFieldName(rs.getString("fieldName"));
-		dictionary.setLabel(rs.getString("label"));
-		
-		return dictionary;
-	}	
-}
-
 //map a row to a Dictionary, and return one Dictionary List
-class DictionaryMapperList implements RowMapper<Dictionary> {
+class DictionaryMapper implements RowMapper<Dictionary> {
 	@Override
 	public Dictionary mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Dictionary dictionary = new Dictionary();
 		
+		dictionary.setId(rs.getString("id"));
 		dictionary.setCode(rs.getInt("code"));
 		dictionary.setFieldCode(rs.getInt("fieldCode"));
 		dictionary.setFieldName(rs.getString("fieldName"));

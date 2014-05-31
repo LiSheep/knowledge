@@ -7,7 +7,8 @@ package com.knowledge.arc;
 public interface KnowledgeServices<T extends KnowledgeEntity> {
 	int add(T t);
 	int remove(T t);
-	int find(T t);
+	T findEntity(T t);
+	int update(T t);
 	
 	//表示添加一条数据成功
 	static final int ADDCOUNT = 1;

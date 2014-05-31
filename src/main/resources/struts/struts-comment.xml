@@ -7,7 +7,6 @@
 		<action name="*Comment" class="commentAction" method="{1}">
 			<result name="list">/WEB-INF/views/comment/list.jsp</result>
 			<result name="add">/WEB-INF/views/comment/add.jsp</result>
-			<result name="input">/WEB-INF/views/comment/add.jsp</result>
 		</action>
 	</package>
 </struts>

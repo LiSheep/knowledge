@@ -5,8 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.knowledge.arc.KnowledgeDao;
 import com.knowledge.arc.KnowledgeRowMapper;
 
-public class NodeDao implements KnowledgeDao<NodeCarsness> {
-	private JdbcTemplate jdbcTemplate;
+public class NodeDao extends KnowledgeDao<NodeCarsness> {
 	@Override
 	public int create(NodeCarsness t) {
 		String sql = "INSERT INTO knowledge_point_carsness (id, knowName, knowType, knowOrder, knowImportance, knowComplexity, knowDescription) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -17,13 +16,13 @@ public class NodeDao implements KnowledgeDao<NodeCarsness> {
 	}
 
 	@Override
-	public int delete(NodeCarsness t) {
+	public int deleteEntity(NodeCarsness t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public NodeCarsness read(NodeCarsness t,
+	public NodeCarsness readEntity(NodeCarsness t,
 			KnowledgeRowMapper<NodeCarsness> mapper) {
 		// TODO Auto-generated method stub
 		return null;
@@ -35,5 +34,11 @@ public class NodeDao implements KnowledgeDao<NodeCarsness> {
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	@Override
+	public int updateEntity(NodeCarsness t) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

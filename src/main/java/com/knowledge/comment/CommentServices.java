@@ -16,17 +16,16 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	
 	@Override
 	public int add(Comment t) {
-		List<Dictionary> importancedict = null;
-		List<Dictionary> complexityDict = null;
+
+		int maxImportanceCode = 0, maxComplexityCode = 0;
 		try {
-			importancedict = dictionaryServices.findLabels(3);
-			complexityDict = dictionaryServices.findLabels(4);
+			maxImportanceCode = dictionaryServices.findMaxCodeByFieldCode(3);
+			maxComplexityCode = dictionaryServices.findMaxCodeByFieldCode(4);
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int maxImportanceCode = importancedict.get(importancedict.size() -1 ).getCode();
-		int maxComplexityCode = complexityDict.get(complexityDict.size() -1 ).getCode();
+		
 		if(t.getComment() == null || t.getNote() == null ||
 				t.getImportance() <= 0 || t.getImportance() > maxImportanceCode||
 				t.getComplexity() <= 0 || t.getComplexity() > maxComplexityCode){
@@ -44,7 +43,13 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	}
 
 	@Override
-	public int find(Comment t) {
+	public Comment findEntity(Comment t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public int update(Comment t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -71,4 +76,5 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
 	}
+
 }

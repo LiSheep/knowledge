@@ -11,12 +11,9 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
 import com.knowledge.arc.KnowledgeRowMapper;
-import com.knowledge.dictionary.Dictionary;
 import com.knowledge.user.User;
 
-public class CommentDao implements KnowledgeDao<Comment> {
-
-	private JdbcTemplate jdbcTemplate;
+public class CommentDao extends KnowledgeDao<Comment> {
 
 	@Override
 	public int create(Comment t) {
@@ -27,21 +24,28 @@ public class CommentDao implements KnowledgeDao<Comment> {
 	}
 
 	@Override
-	public int delete(Comment t) {
+	public int deleteEntity(Comment t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public Comment read(Comment t, KnowledgeRowMapper<Comment> mapper) {
+	public Comment readEntity(Comment t, KnowledgeRowMapper<Comment> mapper) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public int updateEntity(Comment t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
+	//TODO:还没写分页哦
 	public List<Comment> list() {
 		String sql = "SELECT co.id AS id, co.complexity, co.importance,co.`comment`, co.note, co.updateTime, u.id AS userKey, u.username "
 				+ "FROM knowledge_point_comment AS co, knowledge_user AS u WHERE u.id = co.userKey AND u.delflag != 1";
-		return jdbcTemplate.query(sql, new CommentMapperList());
+		return jdbcTemplate.query(sql, new CommentMapper());
 	}
 
 	public JdbcTemplate getJdbcTemplate() {
@@ -52,30 +56,7 @@ public class CommentDao implements KnowledgeDao<Comment> {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	class CommentMapper implements ResultSetExtractor<Comment> {
-		@Override
-		public Comment extractData(ResultSet rs) throws SQLException,
-				DataAccessException {
-			Comment model = new Comment();
-			model.setId(rs.getString("id"));
-			model.setComplexity(rs.getInt("complexity"));
-			model.setImportance(rs.getInt("importance"));
-			model.setComment(rs.getString("comment"));
-			model.setNote(rs.getString("note"));
-			model.setUpdateTime(rs.getDate("updateTime"));
-
-			// user
-			User user = new User();
-			user.setId(rs.getString("userKey"));
-			user.setUsername(rs.getString("username"));
-
-			model.setUser(user);
-
-			return model;
-		}
-	}
-
-	class CommentMapperList implements RowMapper<Comment> {
+	class CommentMapper implements RowMapper<Comment> {
 		@Override
 		public Comment mapRow(ResultSet rs, int num) throws SQLException {
 			Comment model = new Comment();

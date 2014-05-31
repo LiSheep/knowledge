@@ -17,9 +17,17 @@ public class NodeCarsnessServices implements KnowledgeServices<NodeCarsness> {
 	}
 
 	@Override
-	public int find(NodeCarsness t) {
+	public NodeCarsness findEntity(NodeCarsness t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int update(NodeCarsness t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 }
