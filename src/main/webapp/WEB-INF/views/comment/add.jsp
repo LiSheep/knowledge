@@ -6,13 +6,13 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
-<script type="text/javascript" src="<%=basePath%>know/js/simditor.js" ></script>
+<script type="text/javascript" src="<%=basePath%>know/js/simditor.js"></script>
 <title>评论列表</title>
 </head>
 <body>
@@ -75,30 +75,41 @@
 						<hr />
 						<h4>我的评论：</h4>
 						<form method="post" action="addComment.action">
-						<div class="row" style="margin-bottom: 30px;">
-							<div class="col-md-3 col-md-offset-2">
-								难度值：<s:select name="importance" list="importanceDict" 
-									 listKey="code" listValue="label" value="code" />
+							<div class="row" style="margin-bottom: 30px;">
+								<div class="col-md-3 col-md-offset-2">
+									难度值：
+									<select class="form-control" name="model.complexity">
+										<s:iterator var="type" value="#session.pointComplexity ">
+											<option value="<s:property value="#type.code" />"><s:property value="#type.label" /></option>
+										</s:iterator>
+									</select>
+								</div>
+								<div class="col-md-3">
+									重要性：
+									<select class="form-control" name="model.importance">
+										<s:iterator var="type" value="#session.pointImportance">
+											<option value="<s:property value="#type.code" />"><s:property value="#type.label" /></option>
+										</s:iterator>
+									</select>
+								</div>
 							</div>
-							<div class="col-md-3">
-								重要性：<s:select name="complexity" list="complexityDict" 
-									 listKey="code" listValue="label" value="code"   />
+							<h5>知识评论</h5>
+							<textarea class="form-control" name="comment" rows="3"></textarea>
+							<h5>学习笔记</h5>
+							<textarea id="note-editor" class="form-control" name="note"
+								rows="3"></textarea>
+							<script type="text/javascript">
+								new_simditroy("note-editor");
+							</script>
+							<!-- 这里是不是应该包在一个div里？ -ltc 5.29 -->
+							<div class="row" style="margin-top: 12px;">
+								<div class="col-md-2 col-md-offset-2">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+								<div class="col-md-2 ">
+									<button type="button" class="btn btn-primary">取消</button>
+								</div>
 							</div>
-						</div>
-						<h5>知识评论</h5>
-						<textarea class="form-control" name="comment" rows="3"></textarea>
-						<h5>学习笔记</h5>
-						<textarea id="note-editor" class="form-control" name="note" rows="3"></textarea>
-						<script type="text/javascript">new_simditroy("note-editor");</script>
-						<!-- 这里是不是应该包在一个div里？ -ltc 5.29 -->
-						<div class="row" style="margin-top: 12px;">
-							<div class="col-md-2 col-md-offset-2">
-								<button type="submit" class="btn btn-primary">提交</button>
-							</div>
-							<div class="col-md-2 ">
-								<button type="button" class="btn btn-primary">取消</button>
-							</div>
-						</div>
 						</form>
 					</div>
 				</div>
