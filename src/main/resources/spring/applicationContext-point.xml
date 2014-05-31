@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- 大知识点 -->
+	<bean id="generalPointDao" class="com.knowledge.point.GeneralPointDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	<bean id="generalPointServices" class="com.knowledge.point.GeneralPointServices">
+		<property name="generalPointDao" ref="generalPointDao"></property>
+		<property name="dictionaryServices" ref="dictionaryServices"></property>
+	</bean>
+	<bean id="generalPointAction" class="com.knowledge.point.GeneralPointAction">
+		<property name="generalPointServices" ref="generalPointServices"></property>
+		<property name="dictionaryServices" ref="dictionaryServices"></property>
+	</bean>
+	
+	<!-- 细知识点 -->
+	<bean id="detailPointDao" class="com.knowledge.point.DetailPointDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	<bean id="detailPointServices" class="com.knowledge.point.DetailPointServices">
+		<property name="detailPointDao" ref="detailPointDao"></property>
+		<property name="dictionaryServices" ref="dictionaryServices"></property>
+	</bean>
+	<bean id="detailPointAction" class="com.knowledge.point.DetailPointAction">
+		<property name="detailPointServices" ref="detailPointServices"></property>
+		<property name="dictionaryServices" ref="dictionaryServices"></property>
+	</bean>
+	
+</beans>
