@@ -92,4 +92,10 @@ public class DictionaryServices implements KnowledgeServices<Dictionary> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int delete_logic(Dictionary t, String tableName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

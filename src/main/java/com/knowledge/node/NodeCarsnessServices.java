@@ -28,6 +28,12 @@ public class NodeCarsnessServices implements KnowledgeServices<NodeCarsness> {
 		return 0;
 	}
 
+	@Override
+	public int delete_logic(NodeCarsness t, String tableName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 }

@@ -77,4 +77,10 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 		this.dictionaryServices = dictionaryServices;
 	}
 
+	@Override
+	public int delete_logic(Comment t, String tableName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

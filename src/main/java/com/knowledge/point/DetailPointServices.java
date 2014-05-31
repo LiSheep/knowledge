@@ -52,6 +52,12 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public int delete_logic(DetailPoint t, String tableName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	// get & set method
 	public DetailPointDao getDetailPointDao() {

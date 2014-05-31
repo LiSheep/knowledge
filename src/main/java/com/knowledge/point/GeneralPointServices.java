@@ -52,6 +52,12 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 		return generalPointDao.updateEntity(t);
 	}
 
+	@Override
+	public int delete_logic(GeneralPoint t, String tableName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	// get & set method
 	public GeneralPointDao getGeneralPointDao() {
 		return generalPointDao;
@@ -68,5 +74,4 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
 	}
-
 }
