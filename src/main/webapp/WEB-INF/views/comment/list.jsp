@@ -120,8 +120,8 @@
 									<div class="panel-footer">
 										<div class="row">
 											<div id="importance/difficulty" class="col-md-8">
-											难度值：<s:property value="getComplexityLabel(complexity)"/>
-											重要性: <s:property value="getImportanceLabel(importance)"/>
+											难度值：<s:property value="getLabel('complexity', complexity)"/>
+											重要性: <s:property value="getLabel('importance', importance)"/>
 											</div>
 											<div id="comment-op" class="col-md-2 col-md-offset-1">
 												<span id="comment-time">19:17</span> <a href="#">回复</a>

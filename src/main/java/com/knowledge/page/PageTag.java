@@ -11,6 +11,7 @@ import com.knowledge.arc.KnowledgeEntity;
 @SuppressWarnings("serial")
 public class PageTag<T extends KnowledgeEntity> extends TagSupport {
 	private String url;
+	private Page<T> page;
 	private PageComponent<T> component;
 	
 	public String getUrl() {
@@ -20,6 +21,14 @@ public class PageTag<T extends KnowledgeEntity> extends TagSupport {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	public Page<T> getPage() {
+		return page;
+	}
+
+	public void setPage(Page<T> page) {
+		this.page = page;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -28,7 +37,8 @@ public class PageTag<T extends KnowledgeEntity> extends TagSupport {
 			HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
 			String url = request.getContextPath() + this.url;
 			
-			component = new PageComponent<T>((Page<T>)request.getAttribute("page"));
+//			component = new PageComponent<T>((Page<T>)request.getAttribute("page"));
+			component = new PageComponent<T>(getPage());
 			component.setUrl(url);
 			
 			pageContext.getOut().print(component.getPageHTML());

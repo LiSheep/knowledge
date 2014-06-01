@@ -8,6 +8,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.knowledge.arc.KnowledgeServices;
+import com.knowledge.page.Page;
 
 public class DictionaryServices implements KnowledgeServices<Dictionary> {
 	private DictionaryDao dictionaryDao;
@@ -101,6 +102,12 @@ public class DictionaryServices implements KnowledgeServices<Dictionary> {
 
 	@Override
 	public Dictionary findEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Dictionary> list(Page<Dictionary> page) {
 		// TODO Auto-generated method stub
 		return null;
 	}

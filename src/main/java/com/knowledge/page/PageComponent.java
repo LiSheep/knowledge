@@ -4,9 +4,9 @@ import com.knowledge.arc.KnowledgeEntity;
 
 public class PageComponent<T extends KnowledgeEntity> {
 	private Page<T> page;
-	private String pageNoName = "pageNo";
+	private String pageNoName = "page.pageNum";
 	private String pageName = "Page";
-	private String totalCountName = "totalCount";
+	private String totalCountName = "page.totalCount";
 	private String url;
 	
 	public PageComponent(Page<T> page) {
@@ -55,6 +55,7 @@ public class PageComponent<T extends KnowledgeEntity> {
 
 	public String getPageHTML() {
 		StringBuffer buffer = new StringBuffer("<div class=\"row\" style=\"margin-top: 5px\">");
+		buffer.append("<form id=\"pageForm\" method=\"post\">");
 		if (page.getTotalCount() <= 0) {
 			buffer.append("<div class=\"col-sm-2\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">没有数据</button></div>");
 		} else {
@@ -84,23 +85,24 @@ public class PageComponent<T extends KnowledgeEntity> {
 		}
 		buffer.append("<div class=\"col-sm-3\"><div class=\"row\"><div class=\"form-group\">");
 		buffer.append("<div class=\"col-sm-5\">");
-		buffer.append("<input type=\"text\" class=\"form-control\" id=\'gopage\' placeholder=\"0\">");
+		buffer.append("<input type=\"text\" class=\"form-control\" id=\'gopage\' />");
 		buffer.append("</div>");
 		buffer.append("<div class=\"col-sm-1\">");
 		buffer.append("<button type=\"button\" class=\"btn btn-default\"").append(" onclick=\"get").append(this.pageName).append("(document.getElementById(\'gopage\').value);\"").append(">跳转</button>");
 		buffer.append("</div>");
 		buffer.append("</div></div></div>");
-		buffer.append("<input type=\"hidden\" id=\"").append(this.totalCountName).append("\" name=\"").append(this.totalCountName).append("\" value=\"").append(page.getTotalCount()).append("\"/>");
-		buffer.append("<input type=\"hidden\" id=\"").append(this.pageNoName).append("\" name=\"").append(this.pageNoName).append("\" value=\"").append(page.getPageNum()).append("\"/>");
+		buffer.append("<input type=\"hidden\" id=\"totalCount\"").append(" name=\"").append(this.totalCountName).append("\" value=\"").append(page.getTotalCount()).append("\"/>");
+		buffer.append("<input type=\"hidden\" id=\"pageNo\"").append(" name=\"").append(this.pageNoName).append("\" value=\"").append(page.getPageNum()).append("\"/>");
+		buffer.append("</form>");
 		buffer.append("</div>");
 		buffer.append("<script type=\"text/javascript\" charset=\"utf-8\">");
 		buffer.append("function get").append(this.pageName).append("(page) {");
-		buffer.append("document.forms[0].").append(this.pageNoName).append(".value=page; ");
-		buffer.append("document.forms[0].").append(this.totalCountName).append(".value='").append(page.getTotalCount()).append("';");
-		buffer.append("document.forms[0].action='").append(this.url).append("';");
-		buffer.append("document.forms[0].submit();");
+		buffer.append("document.getElementById(\"pageForm\").pageNo").append(".value=page; ");
+//		buffer.append("document.getElementById(\"pageForm\").totalCount").append(".value=").append(page.getTotalCount()).append(";");
+		buffer.append("document.getElementById(\"pageForm\").action='").append(this.url).append("';");
+		buffer.append("document.getElementById(\"pageForm\").submit();");
 		buffer.append("}</script>");
-		
+		 	
 		return buffer.toString();
 	}
 }

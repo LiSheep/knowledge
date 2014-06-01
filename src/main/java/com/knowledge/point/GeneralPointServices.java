@@ -1,10 +1,12 @@
 package com.knowledge.point;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 import com.knowledge.arc.KnowledgeServices;
 import com.knowledge.dictionary.DictionaryServices;
+import com.knowledge.page.Page;
 
 public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 
@@ -64,6 +66,15 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 		return null;
 	}
 	
+	@Override
+	public List<GeneralPoint> list(Page<GeneralPoint> page) {
+		generalPointDao.list(page);
+		return null;
+		//TODO:不需要返回值，在框架里GetEntities直接返回page.getResult().但是，如果需要不分页的list则 不能用entities。
+		//具体请看KnowledgeAction的getEntities -ltc 01.06.2014
+	}
+
+	
 	// get & set method
 	public GeneralPointDao getGeneralPointDao() {
 		return generalPointDao;
@@ -81,5 +92,4 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 		this.dictionaryServices = dictionaryServices;
 	}
 
-	
 }

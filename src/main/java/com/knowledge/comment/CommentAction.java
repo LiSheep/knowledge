@@ -27,7 +27,7 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	
 	public String input(){
 		setSessions();
-		return "add";
+		return "input";
 	}
 	
 	public String add(){	//TODO:还需要添加防止重复提交功能
@@ -55,6 +55,7 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	
 	public List<Dictionary> getImportanceDict() {
 		//知识点重要程度-> dictionary:fieldCode=3
+		//TODO:配置文件 
 		try {
 			importanceDict = dictionaryServices.findLabels(3);
 		} catch (ExecutionException e) {
@@ -75,9 +76,17 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		return complexityDict;
 	}
 	
-	public String getImportanceLabel(int code){
+	public String getLabel(String field, int code) {
+		int fieldCode = 0;
+		// TODO:这个要改哦
+		if(field  == "importance")
+			fieldCode = 3;
+		else if(field == "complexity")
+			fieldCode = 4;
+		
 		try {
-			return dictionaryServices.findDictionary(3, code).getLabel();
+			return dictionaryServices.findDictionary(fieldCode, code)
+					.getLabel();
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,16 +94,6 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		}
 	}
 	
-	public String getComplexityLabel(int code){
-		try {
-			return dictionaryServices.findDictionary(4, code).getLabel();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "系统错误";
-		}
-	}
-
 	@Override
 	public Comment getModel() {
 		if (null == model) {

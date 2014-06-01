@@ -7,6 +7,7 @@
 			+ path + "/";
 %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="page" uri="/pagerTag"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,18 +82,22 @@
 											<th>操作</th>
 										</tr>
 									</thead>
-									<tr>
-										<s:iterator>
-											<td>1</td>
-											<td><a href="#">html</a></td>
-											<td></td>
-											<td></td>
-											<td><a href="#" onclick="deleteEntity()">编辑</a>/<a>删除</a></td>
-											<input type="hidden" name="model.id" value="123" />
-										</s:iterator>
-									</tr>
+									<s:iterator value="entities" status="L">
+										<tr>
+											<td><s:property value="#L.index+1" /></td>
+											<td><a href="#"><s:property value="pointName" /></a></td>
+											<td><s:property
+													value="getLabel('complexity', complexity)" /></td>
+											<td><s:property
+													value="getLabel('importance', importance)" /></td>
+											<td><a href="#">编辑</a>/<a href="#"
+												onclick="deleteEntity('<s:property value="id"/>')">删除</a></td>
+										</tr>
+									</s:iterator>
 								</table>
 							</form>
+							<input id="entityId" type="hidden" name="model.id" />
+							<page:page url="/adminListGPoint.action" page="${page }" />
 						</div>
 					</div>
 					<!--   panel end  -->

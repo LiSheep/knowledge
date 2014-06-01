@@ -1,6 +1,9 @@
 package com.knowledge.arc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+import com.knowledge.page.Page;
 
 /*
  * 构建dao接口,提供基本的add, delete, read方法
@@ -21,6 +24,23 @@ public abstract class KnowledgeDao<T extends KnowledgeEntity> {
 	public int deleteLogic(T t){
 		String sql = "UPDATE " + t.getTableName() + " SET delflag = 1 WHERE id = ?";
 		return jdbcTemplate.update(sql, t.getId());
+	}
+	
+	//查询记录个数
+	public int query4TotalCount(String sql) {
+		String buffer = "SELECT count(1) as count FROM (" + sql + " ) AS T1";
+		return jdbcTemplate.queryForInt(buffer);
+	}
+	
+	//分页
+	public void query4Page(String sql, RowMapper<T> mapper, Page<T> page, int num) {
+		page.setTotalCount(query4TotalCount(sql));
+		StringBuffer buffer = new StringBuffer(sql);
+		int startCursor = page.getPageNum() * page.getPageSize();
+		int endCursor = page.getPageSize();
+		
+		buffer.append(" ORDER BY ").append(page.getOrderBy()).append(" LIMIT ").append(startCursor).append(", ").append(endCursor);
+		page.setResult(jdbcTemplate.query(buffer.toString(), mapper));
 	}
 	
 	// get & set method

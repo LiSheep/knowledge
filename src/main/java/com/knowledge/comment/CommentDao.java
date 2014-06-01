@@ -56,7 +56,7 @@ public class CommentDao extends KnowledgeDao<Comment> {
 			model.setImportance(rs.getInt("importance"));
 			model.setComment(rs.getString("comment"));
 			model.setNote(rs.getString("note"));
-			model.setUpdateTime(rs.getDate("updateTime"));
+			model.setUpdateTime(rs.getTimestamp("updateTime"));
 
 			// user
 			User user = new User();

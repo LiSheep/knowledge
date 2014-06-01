@@ -1,10 +1,12 @@
 package com.knowledge.point;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 import com.knowledge.arc.KnowledgeServices;
 import com.knowledge.dictionary.DictionaryServices;
+import com.knowledge.page.Page;
 
 public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 
@@ -61,6 +63,12 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	
 	@Override
 	public DetailPoint findEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<DetailPoint> list(Page<DetailPoint> page) {
 		// TODO Auto-generated method stub
 		return null;
 	}

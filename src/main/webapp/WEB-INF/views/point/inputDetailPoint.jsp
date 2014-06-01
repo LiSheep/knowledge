@@ -57,12 +57,18 @@
 				<div class="col-md-7 col-md-offset-1" id="main">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">细知识点添加</h3>
+							<h3 class="panel-title">细知识点<s:if test="model.id == null">添加</s:if><s:elseif test="model.id != null">修改</s:elseif></h3>
 						</div>
 
 						<form method="post" action="addDPoint.action">
-							<hidden name="model.generalKey" />
+							<input type="hidden" name="model.generalKey" />
 							<div class="panel-body" id="form" style="padding: 16px;">
+								<div class="row">
+									<div class="col-md-2">所属知识点：</div>
+									<div class="col-md-6">
+										<s:property value="model.generalPoint.pointName"/>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-md-2">知识点名：</div>
 									<div class="col-md-6">

@@ -1,13 +1,13 @@
 package com.knowledge.comment;
 
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 import com.knowledge.arc.KnowledgeServices;
 import com.knowledge.dictionary.DictionaryServices;
+import com.knowledge.page.Page;
 
 public class CommentServices  implements KnowledgeServices<Comment>  {
 	CommentDao commentDao;
@@ -31,7 +31,6 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 			return 0;
 		}
 		t.setId(UUID.randomUUID().toString());
-		t.setUpdateTime(new Date());
 		return commentDao.create(t);
 	}
 	
@@ -66,6 +65,12 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 
 	@Override
 	public Comment findEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<Comment> list(Page<Comment> page) {
 		// TODO Auto-generated method stub
 		return null;
 	}

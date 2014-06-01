@@ -1,5 +1,6 @@
 package com.knowledge.comment;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import com.knowledge.arc.KnowledgeEntity;
@@ -11,7 +12,7 @@ public class Comment extends KnowledgeEntity {
 	private int complexity;	//知识点难易程度-> dictionary:fieldCode=4
 	private String comment;
 	private String note;
-	private Date updateTime;
+	private Timestamp updateTime;
 
 	private User user;
 	
@@ -27,10 +28,10 @@ public class Comment extends KnowledgeEntity {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public Date getUpdateTime() {
+	public Timestamp getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
 	public int getComplexity() {

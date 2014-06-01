@@ -1,9 +1,9 @@
 package com.knowledge.arc;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.knowledge.page.Page;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -13,15 +13,20 @@ public abstract class KnowledgeAction<T extends KnowledgeEntity> extends ActionS
 	
 	protected T model;
 	protected List<T> entities;
+	protected Page<T> page;
 	
 	@Override
 	public abstract T getModel();
 	
 	public List<T> getEntities(){
-		if(this.entities == null){
-			this.entities = new ArrayList<T>();
-		}
+		this.entities = getPage().getResult();
 		return this.entities;
 	}
-	
+
+	public Page<T> getPage() {
+		if(page == null){
+			page = new Page<T>();
+		}
+		return page;
+	}
 }

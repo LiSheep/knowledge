@@ -1,6 +1,9 @@
 package com.knowledge.node;
 
+import java.util.List;
+
 import com.knowledge.arc.KnowledgeServices;
+import com.knowledge.page.Page;
 
 public class NodeCarsnessServices implements KnowledgeServices<NodeCarsness> {
 
@@ -36,6 +39,12 @@ public class NodeCarsnessServices implements KnowledgeServices<NodeCarsness> {
 
 	@Override
 	public NodeCarsness findEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<NodeCarsness> list(Page<NodeCarsness> page) {
 		// TODO Auto-generated method stub
 		return null;
 	}

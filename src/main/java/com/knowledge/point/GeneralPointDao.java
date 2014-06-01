@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
+import com.knowledge.page.Page;
 
 public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 
@@ -32,6 +34,11 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 				t.getImportance(), t.getComplexity(), t.getId() };
 		return jdbcTemplate.update(sql, args);
 	}
+	
+	public void list(Page<GeneralPoint> page){
+		String sql = "SELECT id, pointName, pointType, orderNum, complexity, importance from knowledge_point_general";
+		this.query4Page(sql, new GeneralPointMapper(), page, 0);
+	}
 
 	// get & set method
 	public JdbcTemplate getJdbcTemplate() {
@@ -43,11 +50,12 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 	}
 
 	// row mapper
-	class CommentMapper implements ResultSetExtractor<GeneralPoint> {
+	class GeneralPointMapper implements RowMapper<GeneralPoint> {
 
 		@Override
-		public GeneralPoint extractData(ResultSet rs) throws SQLException,
-				DataAccessException {
+		public GeneralPoint mapRow(ResultSet rs, int rowNum)
+				throws SQLException {
+			
 			GeneralPoint model = new GeneralPoint();
 			model.setId(rs.getString("id"));
 			model.setPointName(rs.getString("pointName"));
@@ -57,6 +65,7 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 			model.setImportance(rs.getInt("importance"));
 			return model;
 		}
+
 
 	}
 }
