@@ -13,6 +13,12 @@ public class User extends KnowledgeEntity {
 		this.username = username;
 	}
 
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

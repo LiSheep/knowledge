@@ -39,4 +39,8 @@ public class Dictionary extends KnowledgeEntity {
 	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
 	}
+	@Override
+	public String getTableName() {
+		return "knowledge_dictionary";
+	}
 }

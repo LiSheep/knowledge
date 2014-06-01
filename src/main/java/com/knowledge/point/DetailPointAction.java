@@ -12,6 +12,7 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 
 	private static final long serialVersionUID = 8423136847466976304L;
 	private DetailPointServices detailPointServices;
+	private GeneralPointServices generalPointServices;
 	private DictionaryServices dictionaryServices;
 	
 	@Override
@@ -24,6 +25,12 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 
 	public String input(){
 		setSessions();
+		if(getModel().getGeneralKey() != null){
+			GeneralPoint generalPoint = generalPointServices.findEntityById(getModel().getGeneralKey());
+			if(generalPoint != null){
+				getModel().setGeneralPoint(generalPoint);
+			}
+		}
 		return "add";
 	}
 
@@ -69,5 +76,13 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
+	}
+
+	public GeneralPointServices getGeneralPointServices() {
+		return generalPointServices;
+	}
+
+	public void setGeneralPointServices(GeneralPointServices generalPointServices) {
+		this.generalPointServices = generalPointServices;
 	}
 }

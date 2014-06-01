@@ -8,6 +8,9 @@ public class DetailPoint extends KnowledgeEntity {
 	int importance;
 	int complexity;
 	String generalKey;
+	
+	GeneralPoint generalPoint;
+	
 	public String getPointName() {
 		return pointName;
 	}
@@ -32,5 +35,14 @@ public class DetailPoint extends KnowledgeEntity {
 	public void setGeneralKey(String generalKey) {
 		this.generalKey = generalKey;
 	}
-	
+	public GeneralPoint getGeneralPoint() {
+		return generalPoint;
+	}
+	public void setGeneralPoint(GeneralPoint generalPoint) {
+		this.generalPoint = generalPoint;
+	}
+	@Override
+	public String getTableName() {
+		return "knowledge_point_detail";
+	}
 }

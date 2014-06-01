@@ -1,6 +1,6 @@
 package com.knowledge.arc;
 
-public class KnowledgeEntity {
+public abstract class KnowledgeEntity {
 	private String id;
 
 	public String getId() {
@@ -10,4 +10,7 @@ public class KnowledgeEntity {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	public abstract String getTableName();
+	
 }

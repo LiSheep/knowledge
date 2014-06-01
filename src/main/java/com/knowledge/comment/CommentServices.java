@@ -35,6 +35,11 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 		t.setUpdateTime(new Date());
 		return commentDao.create(t);
 	}
+	
+	public List<Comment> list(){
+		
+		return commentDao.list();
+	}
 
 	@Override
 	public int remove(Comment t) {
@@ -54,11 +59,17 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 		return 0;
 	}
 	
-	public List<Comment> list(){
-		
-		return commentDao.list();
+	@Override
+	public int delete_logic(Comment t) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
+
+	@Override
+	public Comment findEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	//get & set method
 	public CommentDao getCommentDao() {
@@ -76,11 +87,4 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
 	}
-
-	@Override
-	public int delete_logic(Comment t, String tableName) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

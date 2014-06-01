@@ -8,8 +8,9 @@ public interface KnowledgeServices<T extends KnowledgeEntity> {
 	int add(T t);
 	int remove(T t);
 	T findEntity(T t);
+	T findEntityById(Object id);
 	int update(T t);
-	int delete_logic(T t, String tableName);
+	int delete_logic(T t);
 	
 	//表示添加一条数据成功
 	static final int ADDCOUNT = 1;

@@ -51,4 +51,8 @@ public class Comment extends KnowledgeEntity {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	@Override
+	public String getTableName() {
+		return "knowledge_point_comment";
+	}
 }

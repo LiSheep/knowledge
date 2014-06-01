@@ -46,4 +46,9 @@ public class NodeCarsness extends KnowledgeEntity {
 	public void setKnowDescription(String knowDescription) {
 		this.knowDescription = knowDescription;
 	}
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

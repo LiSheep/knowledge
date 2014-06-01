@@ -53,9 +53,15 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 	}
 
 	@Override
-	public int delete_logic(GeneralPoint t, String tableName) {
+	public int delete_logic(GeneralPoint t) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public GeneralPoint findEntityById(Object id) {
+		String sql = "SELECT ";
+		return null;
 	}
 	
 	// get & set method
@@ -74,4 +80,6 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
 	}
+
+	
 }

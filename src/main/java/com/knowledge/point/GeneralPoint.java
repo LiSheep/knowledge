@@ -39,4 +39,8 @@ public class GeneralPoint extends KnowledgeEntity {
 	public void setComplexity(int complexity) {
 		this.complexity = complexity;
 	}
+	@Override
+	public String getTableName() {
+		return "knowledge_point_general";
+	}
 }

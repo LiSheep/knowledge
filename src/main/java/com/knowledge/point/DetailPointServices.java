@@ -54,9 +54,15 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	}
 	
 	@Override
-	public int delete_logic(DetailPoint t, String tableName) {
+	public int delete_logic(DetailPoint t) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public DetailPoint findEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	// get & set method
@@ -75,4 +81,5 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
 	}
+
 }

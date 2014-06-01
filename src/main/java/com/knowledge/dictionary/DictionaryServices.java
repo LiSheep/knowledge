@@ -94,8 +94,14 @@ public class DictionaryServices implements KnowledgeServices<Dictionary> {
 	}
 
 	@Override
-	public int delete_logic(Dictionary t, String tableName) {
+	public int delete_logic(Dictionary t) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Dictionary findEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
