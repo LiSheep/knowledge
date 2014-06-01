@@ -3,7 +3,6 @@ package com.knowledge.point;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.knowledge.arc.KnowledgeDao;
-import com.knowledge.arc.KnowledgeRowMapper;
 
 public class DetailPointDao extends KnowledgeDao<DetailPoint> {
 	
@@ -20,13 +19,6 @@ public class DetailPointDao extends KnowledgeDao<DetailPoint> {
 		return 0;
 	}
 
-	@Override
-	public DetailPoint readEntity(DetailPoint t,
-			KnowledgeRowMapper<DetailPoint> mapper) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	@Override
 	public int updateEntity(DetailPoint t) {
 		// TODO Auto-generated method stub

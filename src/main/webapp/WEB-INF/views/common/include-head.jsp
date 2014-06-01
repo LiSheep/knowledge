@@ -7,7 +7,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %> 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
 	
 	<link rel="stylesheet" href="<%=basePath%>plguin/bootstrap/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="<%=basePath%>plguin/bootstrap/css/bootstrap.min.css" />

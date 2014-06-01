@@ -4,7 +4,6 @@ package com.knowledge.arc;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.knowledge.comment.Comment;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 

@@ -3,7 +3,6 @@ package com.knowledge.node;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.knowledge.arc.KnowledgeDao;
-import com.knowledge.arc.KnowledgeRowMapper;
 
 public class NodeDao extends KnowledgeDao<NodeCarsness> {
 	@Override
@@ -19,13 +18,6 @@ public class NodeDao extends KnowledgeDao<NodeCarsness> {
 	public int deleteEntity(NodeCarsness t) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public NodeCarsness readEntity(NodeCarsness t,
-			KnowledgeRowMapper<NodeCarsness> mapper) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public JdbcTemplate getJdbcTemplate() {

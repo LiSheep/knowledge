@@ -4,13 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
-import com.knowledge.arc.KnowledgeRowMapper;
 
 public class DictionaryDao extends KnowledgeDao<Dictionary>{
 	
@@ -34,12 +31,6 @@ public class DictionaryDao extends KnowledgeDao<Dictionary>{
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
-	}
-
-	@Override
-	public Dictionary readEntity(Dictionary t, KnowledgeRowMapper<Dictionary> mapper) {
-		
-		return null;
 	}
 	
 	public Dictionary readFieldNameByFieldCode(int fieldCode) {

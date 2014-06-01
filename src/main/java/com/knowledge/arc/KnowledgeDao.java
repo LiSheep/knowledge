@@ -17,9 +17,8 @@ public abstract class KnowledgeDao<T extends KnowledgeEntity> {
 	 * query one Object
 	 * @param mapper : Object rowmapper
 	 */
-	public abstract T readEntity(T t, KnowledgeRowMapper<T> mapper);
 	
-	public int delete_logic(T t){
+	public int deleteLogic(T t){
 		String sql = "UPDATE " + t.getTableName() + " SET delflag = 1 WHERE id = ?";
 		return jdbcTemplate.update(sql, t.getId());
 	}

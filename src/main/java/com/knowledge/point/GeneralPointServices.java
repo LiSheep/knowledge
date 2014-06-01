@@ -53,7 +53,7 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 	}
 
 	@Override
-	public int delete_logic(GeneralPoint t) {
+	public int deleteLogic(GeneralPoint t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

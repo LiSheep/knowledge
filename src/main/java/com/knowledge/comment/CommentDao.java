@@ -4,13 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
-import com.knowledge.arc.KnowledgeRowMapper;
 import com.knowledge.user.User;
 
 public class CommentDao extends KnowledgeDao<Comment> {
@@ -27,12 +24,6 @@ public class CommentDao extends KnowledgeDao<Comment> {
 	public int deleteEntity(Comment t) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public Comment readEntity(Comment t, KnowledgeRowMapper<Comment> mapper) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	@Override

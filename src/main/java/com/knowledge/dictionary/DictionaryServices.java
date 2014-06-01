@@ -94,7 +94,7 @@ public class DictionaryServices implements KnowledgeServices<Dictionary> {
 	}
 
 	@Override
-	public int delete_logic(Dictionary t) {
+	public int deleteLogic(Dictionary t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

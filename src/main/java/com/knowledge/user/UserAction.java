@@ -17,13 +17,13 @@ public class UserAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	private String name;
+	private User model;
 
-	public String getName() {
-		return name;
+	public User getModel() {
+		return model;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setModel(User model) {
+		this.model = model;
 	}
 }

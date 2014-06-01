@@ -1,16 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
+<title>Login</title>
 </head>
 <body>
-	<form action="loginUserAction.action" method="post">
-		username:<input type="text" name="name">
-		<br>
-		<input type="submit">
+	<form class="form-horizontal" role="form" action="loginUserAction.action" method="post">
+	  <div class="form-group">
+	    <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="inputUsername" placeholder="Username" name="model.username">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="inputUserpass" class="col-sm-2 control-label">Password</label>
+	    <div class="col-sm-10">
+	      <input type="password" class="form-control" id="inputUserpass" placeholder="Password" name="model.userpass">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <button type="submit" class="btn btn-default">Sign in</button>
+	    </div>
+	  </div>
 	</form>
 </body>
 </html>

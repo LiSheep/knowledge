@@ -41,7 +41,7 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 	//删除粗知识点
 	public String delete(){
 		this.entities = null;
-		generalPointServices.delete_logic(getModel());
+		generalPointServices.deleteLogic(getModel());
 		return "adminlist";
 	}
 	

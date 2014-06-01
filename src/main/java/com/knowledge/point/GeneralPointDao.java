@@ -2,15 +2,12 @@ package com.knowledge.point;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.ExecutionException;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.knowledge.arc.KnowledgeDao;
-import com.knowledge.arc.KnowledgeRowMapper;
-import com.knowledge.dictionary.DictionaryServices;
 
 public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 
@@ -26,13 +23,6 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 	public int deleteEntity(GeneralPoint t) {
 		String sql = "DELETE FROM knowledge_point_general WHERE id = ?";
 		return jdbcTemplate.update(sql, t.getId());
-	}
-
-	@Override
-	public GeneralPoint readEntity(GeneralPoint t,
-			KnowledgeRowMapper<GeneralPoint> mapper) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

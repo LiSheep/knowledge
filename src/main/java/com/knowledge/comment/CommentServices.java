@@ -7,7 +7,6 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 import com.knowledge.arc.KnowledgeServices;
-import com.knowledge.dictionary.Dictionary;
 import com.knowledge.dictionary.DictionaryServices;
 
 public class CommentServices  implements KnowledgeServices<Comment>  {
@@ -60,7 +59,7 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	}
 	
 	@Override
-	public int delete_logic(Comment t) {
+	public int deleteLogic(Comment t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

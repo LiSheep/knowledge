@@ -42,7 +42,7 @@ public class NodeServices implements KnowledgeServices<NodeCarsness> {
 	}
 
 	@Override
-	public int delete_logic(NodeCarsness t) {
+	public int deleteLogic(NodeCarsness t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
