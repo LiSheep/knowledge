@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">  
+    <property name="transactionManager" ref="transactionManager" />  
+    <property name="transactionAttributes">  
+      <props>  
+        <prop key="*">PROPAGATION_REQUIRED</prop>  
+      </props>  
+    </property>  
+  </bean>  
+    
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">  
+    <property name="beanNames">  
+      <list>  
+        <!-- 需要管理事务的bean,可以定义若干个 -->  
+        <value>userDao</value>  
+      </list>  
+    </property>  
+  </bean>
+</beans>

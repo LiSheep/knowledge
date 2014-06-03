@@ -3,16 +3,17 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="gpoint" namespace="/" extends="struts-default">
+	<package name="gpoint" namespace="/" extends="struts">
 		<action name="*GPoint" class="generalPointAction" method="{1}">
-			<result name="input">/WEB-INF/views/point/inputDetailPoint.jsp</result>
+			<result name="toinput">/WEB-INF/views/point/inputGeneralPoint.jsp</result>
 			<result name="adminlist">/WEB-INF/views/point/adminListGeneralPoint.jsp</result>
+			<result name="subinput" type="redirect">adminlistGPoint.action</result>
 		</action>
 	</package>
 	
 	<package name="dpoint" namespace="/" extends="struts-default">
 		<action name="*DPoint" class="detailPointAction" method="{1}">
-			<result name="input">/WEB-INF/views/point/inputDetailPoint.jsp</result>
+			<result name="toinput">/WEB-INF/views/point/inputDetailPoint.jsp</result>
 		</action>
 	</package>
 </struts>

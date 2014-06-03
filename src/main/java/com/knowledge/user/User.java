@@ -1,13 +1,15 @@
 package com.knowledge.user;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import com.knowledge.arc.KnowledgeEntity;
 
 public class User extends KnowledgeEntity {
 	private String username;
 	private String userpass;
-	private Date regTime;
+	private Timestamp regTime;
+	private int role;
 
 	public String getUsername() {
 		return username;
@@ -35,7 +37,15 @@ public class User extends KnowledgeEntity {
 		return regTime;
 	}
 
-	public void setRegTime(Date regTime) {
+	public void setRegTime(Timestamp regTime) {
 		this.regTime = regTime;
+	}
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
 	}
 }
