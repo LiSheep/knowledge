@@ -15,6 +15,16 @@ public abstract class KnowledgeAction<T extends KnowledgeEntity> extends ActionS
 	protected List<T> entities;
 	protected Page<T> page;
 	
+	protected String key;
+	
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
 	public List<T> getEntities(){
 		this.entities = getPage().getResult();
 		return this.entities;

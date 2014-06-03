@@ -48,7 +48,7 @@ public class DictionaryDao extends KnowledgeDao<Dictionary>{
 	}
 	
 	public Dictionary readByFieldCode_Code(int fieldCode, int code){
-		String sql = "SELECT id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary  where fieldCode = ? AND `code` = ? AND delfalg = 0";
+		String sql = "SELECT id, fieldName, fieldCode, `code`, label FROM knowledge_dictionary  where fieldCode = ? AND `code` = ? AND delflag = 0";
 		Object[] args = {fieldCode, code};
 		return jdbcTemplate.queryForObject(sql, new DictionaryMapper(), args);
 	}

@@ -1,6 +1,5 @@
 package com.knowledge.point;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -15,21 +14,28 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 	private GeneralPointServices generalPointServices;
 	private DictionaryServices dictionaryServices;
 
-	public String input() {
+	public String toinput() {
 		setSessions();
-		if (getModel().getId() != null) // 更新界面需要填入值
-			this.model = generalPointServices.findEntity(getModel());
-		return "add";
+		String keyString = getKey();
+		if ( keyString == null || !keyString.equals("")){ // 更新界面需要的值
+			this.model = generalPointServices.findEntityById(keyString);
+		}else {
+			this.model = null;
+		}
+		return "toinput";
 	}
 
 	// 提交更改，以有没有Id值判断是插入还是修改
 	public String subinput() {
-		if (getModel().getId() == null) { // 插入
+		if (getModel().getId() == null || getModel().getId().equals("")) { // 插入
+			System.out.println("add");
 			generalPointServices.add(getModel());
 		} else { // 更新
+			System.out.println("update");
 			generalPointServices.update(getModel());
 		}
-		return "adminlist";
+		this.model = null;	//TODO:这里有一个问题，如果不至空，其他toinput请求也会获取到model的值。 -ltc 2014/06/03
+		return "tolist";
 	}
 
 	// 粗知识点管理列表
@@ -42,13 +48,14 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 	public String delete() {
 		this.entities = null;
 		generalPointServices.deleteLogic(getModel());
-		return "adminlist";
+		return "tolist";
 	}
 
 	public void setSessions() {
 		List<Dictionary> dicImportance = null;
 		List<Dictionary> dicComplexity = null;
 		List<Dictionary> dicType = null;
+		//TODO:这个地方要改哦
 		try {
 			// dicImportance =
 			// dictionaryServices.findLabels(Integer.valueOf(getText("FieldImportance.fieldCode")));
@@ -79,24 +86,6 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 			this.model = new GeneralPoint();
 		}
 		return this.model;
-	}
-
-	public String getLabel(String field, int code) {
-		int fieldCode = 0;
-		// TODO:这个要改哦
-		if(field.equals("importance"))
-			fieldCode = 3;
-		else if(field.equals("complexity"))
-			fieldCode = 4;
-		Dictionary resutlDictionary = null;
-		try {
-			resutlDictionary =  dictionaryServices.findDictionary(fieldCode, code);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "系统错误";
-		}
-		return "fuck";
 	}
 
 	public GeneralPointServices getGeneralPointServices() {

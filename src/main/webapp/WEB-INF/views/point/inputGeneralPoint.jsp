@@ -12,6 +12,9 @@
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <title>Insert title here</title>
+<meta http-equiv="Expires" CONTENT="0">
+<meta http-equiv="Cache-Control" CONTENT="no-cache">
+<meta http-equiv="Pragma" CONTENT="no-cache">
 </head>
 <body>
 	<div class="container">
@@ -57,34 +60,30 @@
 				<div class="col-md-7 col-md-offset-1" id="main">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">大知识点添加</h3>
+							<h3 class="panel-title">大知识点<s:if test="model.id == null">添加</s:if><s:elseif test="model.id != null">修改</s:elseif></h3>
 						</div>
 
 						<form method="post" action="subinputGPoint.action">
+							<input type="hidden" name="model.id" value="${model.id }" >
 							<div class="panel-body" id="form" style="padding: 16px;">
 								<div class="row">
 									<div class="col-md-2">知识点名：</div>
 									<div class="col-md-6">
-										<input type="text" class="form-control" name="model.pointName">
+										<input type="text" class="form-control" name="model.pointName" value="${model.pointName }">
 									</div>
 								</div>
 								<div class="row" style="margin-top: 12px;">
 									<div class="col-md-2">所属体系：</div>
 									<div class="col-md-6">
 										<div class="btn-group">
-											<select class="form-control" name="model.pointType">
-												<s:iterator var="type" value="#session.pointType ">
-													<option value="<s:property value="#type.code" />"><s:property
-															value="#type.label" /></option>
-												</s:iterator>
-											</select>
+											 <s:select cssClass="form-control" name="model.pointType" list="#session.pointType" listKey="code" listValue="label"></s:select>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-2">学习顺序：</div>
 									<div class="col-md-6">
-										<input type="text" class="form-control" name="model.orderNum">
+										<input type="text" class="form-control" name="model.orderNum" value="${model.orderNum }">
 									</div>
 								</div>
 								<div class="row" style="margin-top: 12px;">
@@ -98,20 +97,11 @@
 								<h4>我的评论：</h4>
 								<div class="row" style="margin-bottom: 30px;">
 									<div class="col-md-3 col-md-offset-2">
-										难度值： <select class="form-control" name="model.complexity">
-											<s:iterator var="type" value="#session.pointComplexity ">
-												<option value="<s:property value="#type.code" />"><s:property
-														value="#type.label" /></option>
-											</s:iterator>
-										</select>
+										难度值： <s:select cssClass="form-control" name="model.complexity" list="#session.pointComplexity" listKey="code" listValue="label"></s:select>
+										
 									</div>
 									<div class="col-md-3">
-										重要性： <select class="form-control" name="model.importance">
-											<s:iterator var="type" value="#session.pointImportance">
-												<option value="<s:property value="#type.code" />"><s:property
-														value="#type.label" /></option>
-											</s:iterator>
-										</select>
+										重要性： <s:select cssClass="form-control" name="model.importance" list="#session.pointImportance" listKey="code" listValue="label"></s:select>
 									</div>
 								</div>
 

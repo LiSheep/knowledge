@@ -12,6 +12,7 @@
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <title>Insert title here</title>
+
 </head>
 <body>
 	<div class="container">
@@ -87,20 +88,10 @@
 								<h4>我的评论：</h4>
 								<div class="row" style="margin-bottom: 30px;">
 									<div class="col-md-3 col-md-offset-2">
-										难度值： <select class="form-control" name="model.complexity">
-											<s:iterator var="type" value="#session.pointComplexity ">
-												<option value="<s:property value="#type.code" />"><s:property
-														value="#type.label" /></option>
-											</s:iterator>
-										</select>
+										难度值：  <s:select cssClass="form-control" name="model.complexity" list="#session.pointComplexity" listKey="code" listValue="label"></s:select>
 									</div>
 									<div class="col-md-3">
-										重要性： <select class="form-control" name="model.importance">
-											<s:iterator var="type" value="#session.pointImportance">
-												<option value="<s:property value="#type.code" />"><s:property
-														value="#type.label" /></option>
-											</s:iterator>
-										</select>
+										重要性：  <s:select cssClass="form-control" name="model.importance" list="#session.pointImportance" listKey="code" listValue="label"></s:select>
 									</div>
 								</div>
 

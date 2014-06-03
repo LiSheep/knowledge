@@ -22,7 +22,7 @@ public class AspectLogin implements MethodBeforeAdvice, AfterReturningAdvice, Th
 	public void before(Method arg0, Object[] arg1, Object arg2)
 			throws NoLoginException {
 		if (null == userServices.findUserSession()) {
-			System.out.println("aop before method");
+//			System.out.println("aop before method");
 			//TODO
 		}
 		
@@ -35,7 +35,7 @@ public class AspectLogin implements MethodBeforeAdvice, AfterReturningAdvice, Th
 	}
 	
 	public void afterThrowing(Exception ex) {
-		System.out.println("after throwing");
+//		System.out.println("after throwing");
 	}
 	
 	private UserServices userServices;

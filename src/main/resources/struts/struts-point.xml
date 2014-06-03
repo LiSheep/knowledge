@@ -3,11 +3,11 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="gpoint" namespace="/" extends="struts-knowledgeh">
+	<package name="gpoint" namespace="/" extends="struts-knowledge">
 		<action name="*GPoint" class="generalPointAction" method="{1}">
 			<result name="toinput">/WEB-INF/views/point/inputGeneralPoint.jsp</result>
 			<result name="adminlist">/WEB-INF/views/point/adminListGeneralPoint.jsp</result>
-			<result name="subinput" type="redirect">adminlistGPoint.action</result>
+			<result name="tolist" type="redirect">adminListGPoint.action</result>
 		</action>
 	</package>
 	

@@ -6,8 +6,8 @@ public class GeneralPoint extends KnowledgeEntity {
 	String pointName;
 	int pointType;
 	int orderNum;
-	int importance;
-	int complexity;
+	int importance;	//3
+	int complexity;	//4
 	
 	public String getPointName() {
 		return pointName;

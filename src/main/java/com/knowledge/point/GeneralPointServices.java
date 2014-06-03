@@ -56,14 +56,12 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 
 	@Override
 	public int deleteLogic(GeneralPoint t) {
-		// TODO Auto-generated method stub
-		return 0;
+		return generalPointDao.deleteLogic(t);
 	}
 	
 	@Override
 	public GeneralPoint findEntityById(Object id) {
-		String sql = "SELECT ";
-		return null;
+		return generalPointDao.readEntityById(id);
 	}
 	
 	@Override

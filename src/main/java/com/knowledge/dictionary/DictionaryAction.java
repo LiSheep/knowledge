@@ -1,7 +1,5 @@
 package com.knowledge.dictionary;
 
-import java.io.UnsupportedEncodingException;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -17,13 +15,17 @@ public class DictionaryAction extends ActionSupport implements ModelDriven<Dicti
 	 */
 	private Dictionary model;
 	
-	public String add() throws UnsupportedEncodingException {
-		int tmp = dictionaryServices.add(getModel());
-		
-		if (1 != tmp) {
-			return "redirect";
-		} else {
-			return SUCCESS;
+	public String add() {
+		try {
+			int tmp = dictionaryServices.add(getModel());
+			
+			if (1 != tmp) {
+				return "redirect";
+			} else {
+				return SUCCESS;
+			}
+		} catch (Exception e) {
+			return "nologin";
 		}
 	}
 

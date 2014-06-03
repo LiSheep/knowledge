@@ -14,13 +14,20 @@
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <title>Insert title here</title>
 <script type="text/javascript">
-	function deleteEntity() {
-		$("#listform").attr("action", "deleteGPoint.action");
-		$("#listform").submit();
+	function deleteEntity(id) {
+		document.getElementById("listform").key.value = id;
+		document.getElementById("listform").action = "toinputGPoint.action";
+		document.getElementById("listform").submit();
 	}
-	function updateEntity() {
-		$("#listform").attr("action", "inputGPoint.action");
-		$("#listform").submit();
+	function updateEntity(id) {
+		document.getElementById("listform").key.value = id;
+		document.getElementById("listform").action = "toinputGPoint.action";
+		document.getElementById("listform").submit();
+	}
+	function addEntity() {
+		document.getElementById("listform").key.value = "";
+		document.getElementById("listform").action = "toinputGPoint.action";
+		document.getElementById("listform").submit();
 	}
 </script>
 </head>
@@ -86,17 +93,18 @@
 										<tr>
 											<td><s:property value="#L.index+1" /></td>
 											<td><a href="#"><s:property value="pointName" /></a></td>
-											<td><s:property
-													value="getLabel('complexity', complexity)" /></td>
-											<td><s:property
-													value="getLabel('importance', importance)" /></td>
-											<td><a href="#">编辑</a>/<a href="#"
-												onclick="deleteEntity('<s:property value="id"/>')">删除</a></td>
+											<td><s:property value="dictionaryServices.findDictionary(4, complexity).getLabel()" /></td>
+											<td><s:property value="dictionaryServices.findDictionary(3, importance).getLabel()" /></td>
+											<td><a href="#" onclick="addEntity()">添加</a>
+											<td><a href="#" onclick="updateEntity('<s:property value="id"/>')">编辑</a>
+											/
+											<a href="#" onclick="deleteEntity('<s:property value="id"/>')">删除</a></td>
 										</tr>
 									</s:iterator>
 								</table>
+								<input id="key" type="hidden" name="key" />
 							</form>
-							<input id="entityId" type="hidden" name="model.id" />
+							
 							<page:page url="/adminListGPoint.action" page="${page }" />
 						</div>
 					</div>

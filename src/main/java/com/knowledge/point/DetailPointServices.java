@@ -57,8 +57,7 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	
 	@Override
 	public int deleteLogic(DetailPoint t) {
-		// TODO Auto-generated method stub
-		return 0;
+		return detailPointDao.deleteLogic(t);
 	}
 	
 	@Override

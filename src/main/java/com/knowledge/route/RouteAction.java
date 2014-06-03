@@ -47,6 +47,14 @@ public class RouteAction extends ActionSupport {
 		return "add";
 	}
 	
+	public String noLogin() {
+		return "nologin";
+	}
+	
+	public String userRegister() {
+		return "register";
+	}
+	
 	public DictionaryServices getDictionaryServices() {
 		return dictionaryServices;
 	}

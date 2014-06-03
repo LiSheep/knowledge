@@ -2,10 +2,7 @@ package com.knowledge.point;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
@@ -38,6 +35,11 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 	public void list(Page<GeneralPoint> page){
 		String sql = "SELECT id, pointName, pointType, orderNum, complexity, importance from knowledge_point_general";
 		this.query4Page(sql, new GeneralPointMapper(), page, 0);
+	}
+	
+	public GeneralPoint readEntityById(Object id){
+		String sql = "SELECT id, pointName, pointType, complexity, importance, orderNum FROM knowledge_point_general WHERE id=? AND delflag = 0";
+		return jdbcTemplate.queryForObject(sql, new GeneralPointMapper(), id);
 	}
 
 	// get & set method

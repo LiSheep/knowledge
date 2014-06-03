@@ -23,7 +23,7 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 		return model;
 	}
 
-	public String input(){
+	public String toinput(){
 		setSessions();
 		if(getModel().getGeneralKey() != null){
 			GeneralPoint generalPoint = generalPointServices.findEntityById(getModel().getGeneralKey());
@@ -31,7 +31,7 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 				getModel().setGeneralPoint(generalPoint);
 			}
 		}
-		return "add";
+		return "toinput";
 	}
 
 	public String add(){
