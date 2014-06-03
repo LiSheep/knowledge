@@ -15,9 +15,6 @@ public abstract class KnowledgeAction<T extends KnowledgeEntity> extends ActionS
 	protected List<T> entities;
 	protected Page<T> page;
 	
-	@Override
-	public abstract T getModel();
-	
 	public List<T> getEntities(){
 		this.entities = getPage().getResult();
 		return this.entities;

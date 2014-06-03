@@ -16,6 +16,7 @@ public abstract class KnowledgeDao<T extends KnowledgeEntity> {
 	public abstract int create(T t);
 	public abstract int deleteEntity(T t);
 	public abstract int updateEntity(T t);
+	//TODO readEntity(User t)
 	/*
 	 * query one Object
 	 * @param mapper : Object rowmapper
