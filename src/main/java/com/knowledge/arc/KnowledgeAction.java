@@ -14,9 +14,6 @@ public abstract class KnowledgeAction<T extends KnowledgeEntity> extends ActionS
 	protected T model;
 	protected List<T> entities;
 	
-	@Override
-	public abstract T getModel();
-	
 	public List<T> getEntities(){
 		if(this.entities == null){
 			this.entities = new ArrayList<T>();

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="struts" namespace="/" extends="struts-default">
+	<interceptors>  
+              
+            <interceptor name="loginInterceptor" class="com.knowledge.interceptor.LoginInterceptor"/>
+             <interceptor name="roleInterceptor" class="com.knowledge.interceptor.RoleInterceptor"/>    
+              
+            <interceptor-stack name="b2cplatPrivInterceptor">  
+                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="roleInterceptor">
+                	<param name="includeMethods">add,delete,update</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack"/>  
+            </interceptor-stack>  
+              
+        </interceptors>  
+          
+        <default-interceptor-ref name="b2cplatPrivInterceptor"/>  
+          
+		<global-results>
+			<result name="nologin">/WEB-INF/views/user/login.jsp</result>
+			<result name="permission">/WEB-INF/views/message/permission.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping exception="noLoginException"
+				result="nologin" />
+		</global-exception-mappings>
+	</package>
+</struts>

@@ -4,9 +4,10 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 
-	<package name="struts" namespace="/" extends="struts-default">
+	<package name="user" namespace="/" extends="struts-default">
 		<action name="*UserAction" class="userAction" method="{1}">
 			<result name="success">/WEB-INF/views/user/success.jsp</result>
+			<result name="input">/WEB-INF/views/user/register.jsp</result>
 		</action>
 	</package>
 	
@@ -15,5 +16,6 @@
 	<include file="struts/struts-node.xml"></include>
 	<include file="struts/struts-comment.xml"></include>
 	<include file="struts/struts-point.xml"></include>
+	<include file="struts/struts-plugin.xml"></include>
 	
 </struts>

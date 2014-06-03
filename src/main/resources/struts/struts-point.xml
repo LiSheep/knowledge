@@ -3,7 +3,7 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="gpoint" namespace="/" extends="struts-default">
+	<package name="gpoint" namespace="/" extends="struts">
 		<action name="*GPoint" class="generalPointAction" method="{1}">
 			<result name="add">/WEB-INF/views/point/addGeneralPoint.jsp</result>
 			<result name="adminlist">/WEB-INF/views/point/adminListGeneralPoint.jsp</result>
