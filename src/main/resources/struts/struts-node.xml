@@ -3,7 +3,7 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="node" namespace="/" extends="struts-default">
+	<package name="node" namespace="/" extends="struts-knowledge">
 		<action name="*NodeAction" class="nodeAction" method="{1}">
 			<result name="add">/WEB-INF/views/node/knowNodeManage.jsp</result>
 			<result name="redirect" type="redirect">addNodeRouteAction.action</result>

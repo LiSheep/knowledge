@@ -3,11 +3,12 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="route" namespace="/" extends="struts-default">
+	<package name="route" namespace="/" extends="struts-knowledge">
 		<action name="*Route" class="routeAction" method="{1}">
 			<result name="dic">/WEB-INF/views/dictionary/dicManage.jsp</result>
 			<result name="success">/WEB-INF/views/node/knowNodeManage.jsp</result>
 			<result name="add">/WEB-INF/views/node/knowNodeAdd.jsp</result>
+			<result name="register">/WEB-INF/views/user/register.jsp</result>
 		</action>
 	</package>
 </struts>

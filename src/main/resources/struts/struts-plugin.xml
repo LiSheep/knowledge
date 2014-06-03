@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 
-	<package name="struts" namespace="/" extends="struts-default">
+	<package name="struts-knowledge" namespace="/" extends="struts-default">
 	<interceptors>  
               
             <interceptor name="loginInterceptor" class="com.knowledge.interceptor.LoginInterceptor"/>
