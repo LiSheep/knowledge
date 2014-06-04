@@ -15,9 +15,9 @@ public class CommentDao extends KnowledgeDao<Comment> {
 
 	@Override
 	public int create(Comment t) {
-		String sql = "INSERT INTO knowledge_point_comment(id, complexity, importance, comment, note, updateTime) "
+		String sql = "INSERT INTO knowledge_point_comment(id, complexity, importance, comment, note) "
 				+ "VALUES(?, ?, ?, ?, ?, ?)";
-		Object[] args = { t.getId(), t.getComplexity(), t.getImportance(), t.getComment(), t.getNote(), t.getUpdateTime()};
+		Object[] args = { t.getId(), t.getComplexity(), t.getImportance(), t.getComment(), t.getNote()};
 		return jdbcTemplate.update(sql, args);
 	}
 

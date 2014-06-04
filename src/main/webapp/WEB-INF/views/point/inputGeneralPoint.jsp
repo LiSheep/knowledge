@@ -89,7 +89,7 @@
 								<div class="row" style="margin-top: 12px;">
 									<div class="col-md-2">描述：</div>
 									<div class="col-md-6">
-										<textarea class="form-control" rows="3"></textarea>
+										<textarea class="form-control" rows="3" name="model.pointDescrible">${model.pointDescrible }</textarea>
 									</div>
 								</div>
 								<hr style="margin-top: 12px; margin-bottom: 12px;" />
@@ -121,5 +121,6 @@
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

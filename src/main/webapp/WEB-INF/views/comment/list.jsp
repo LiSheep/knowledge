@@ -83,7 +83,7 @@
 									</h3>
 								</div>
 								<div class="col-md-9">
-									<div class="well">具体描述</div>
+									<div class="well"><s:property value="model.generalPoint.pointDescrible"/></div>
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 30px;">
@@ -122,7 +122,7 @@
 														value="dictionaryServices.findDictionary(3, importance).getLabel()" />
 												</div>
 												<div id="comment-op" class="col-md-4 col-md-offset-1">
-													<span id="comment-time">19:17</span>
+													<span id="comment-time"><s:date format="yyyy-MM-dd HH:mm:ss" name="updateTime"/> </span>
 													<a>查看他的笔记<span class="caret"></span></a>
 												</div>
 											</div>

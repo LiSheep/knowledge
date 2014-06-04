@@ -4,6 +4,7 @@ import com.knowledge.arc.KnowledgeEntity;
 
 public class GeneralPoint extends KnowledgeEntity {
 	String pointName;
+	String pointDescrible;
 	int pointType;
 	int orderNum;
 	int importance;	//3
@@ -38,6 +39,12 @@ public class GeneralPoint extends KnowledgeEntity {
 	}
 	public void setComplexity(int complexity) {
 		this.complexity = complexity;
+	}
+	public String getPointDescrible() {
+		return pointDescrible;
+	}
+	public void setPointDescrible(String pointDescrible) {
+		this.pointDescrible = pointDescrible;
 	}
 	@Override
 	public String getTableName() {
