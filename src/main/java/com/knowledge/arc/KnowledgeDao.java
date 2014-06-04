@@ -16,6 +16,9 @@ public abstract class KnowledgeDao<T extends KnowledgeEntity> {
 	public abstract int create(T t);
 	public abstract int deleteEntity(T t);
 	public abstract int updateEntity(T t);
+	public abstract T readEntityById(Object id);
+	
+	
 	//TODO readEntity(User t)
 	/*
 	 * query one Object
