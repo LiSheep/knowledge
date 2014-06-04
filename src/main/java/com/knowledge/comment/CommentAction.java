@@ -17,14 +17,13 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	public CommentAction(){
 		super();
 	}
-	public String list(){
-		this.entities = commentServices.list();
+	
+	//显示General Point的list
+	public String listGPoint(){
+		commentServices.listByGeneralPointId(getPage(), getKey());
 		return "list";
 	}
 
-	private List<Dictionary> importanceDict;
-	private List<Dictionary> complexityDict;
-	
 	public String input(){
 		setSessions();
 		return "input";
@@ -52,47 +51,6 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		this.dictionaryServices = dictionaryServices;
 	}
 
-	
-	public List<Dictionary> getImportanceDict() {
-		//知识点重要程度-> dictionary:fieldCode=3
-		//TODO:配置文件 
-		try {
-			importanceDict = dictionaryServices.findLabels(3);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return importanceDict;
-	}
-
-	public List<Dictionary> getComplexityDict() {
-		//知识点难易程度-> dictionary:fieldCode=4
-		try {
-			complexityDict = dictionaryServices.findLabels(4);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return complexityDict;
-	}
-	
-	public String getLabel(String field, int code) {
-		int fieldCode = 0;
-		// TODO:这个要改哦
-		if(field  == "importance")
-			fieldCode = 3;
-		else if(field == "complexity")
-			fieldCode = 4;
-		
-		try {
-			return dictionaryServices.findDictionary(fieldCode, code)
-					.getLabel();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "系统错误";
-		}
-	}
 	
 	@Override
 	public Comment getModel() {

@@ -114,7 +114,6 @@
 								</table>
 								<input id="key" type="hidden" name="key" />
 							</form>
-							
 							<page:page url="/adminListGPoint.action" page="${page }" />
 						</div>
 					</div>

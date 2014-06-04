@@ -6,8 +6,8 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="page" uri="/pagerTag"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,47 +101,44 @@
 										class="glyphicon glyphicon-star-empty"></span><span
 										class="glyphicon glyphicon-star-empty"></span>
 								</div>
+								<div class="col-md-2 col-md-offset-1">
+							  		<button type="button" class="btn btn-success" style="float: right;">学习该知识点</button>
+						 		</div>
 							</div>
 							<!--    他人评论内容         -->
-							
 							<div id="comment">
-							<s:iterator value="entities">
-								<div class="panel panel-default" style="margin-top: 10px;">
-									<div id="commet-item" class="row">
-										<div class="panel-body">
-											<div id="avater" class="col-md-2">
-												<p><s:property value="user.username" /></p>
+								<s:iterator value="entities">
+									<div class="panel panel-default" style="margin-top: 10px;">
+										<div id="commet-item" class="row">
+											<div class="panel-body">
+												<div id="avater" class="col-md-2">
+													<p><s:property value="user.username" /></p>
+												</div>
+												<div class="col-md-10">
+													<p><s:property value="comment" /></p>
+												</div>
 											</div>
-											<div class="col-md-10">
-												<p><s:property value="comment" /></p>
+										</div>
+										<div class="panel-footer">
+											<div class="row">
+												<div id="importance/difficulty" class="col-md-7">
+													难度值：
+													<s:property
+														value="dictionaryServices.findDictionary(4, complexity).getLabel()" />
+													重要性:
+													<s:property
+														value="dictionaryServices.findDictionary(3, importance).getLabel()" />
+												</div>
+												<div id="comment-op" class="col-md-4 col-md-offset-1">
+													<span id="comment-time">19:17</span>
+													<a>查看他的笔记<span class="caret"></span></a>
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="panel-footer">
-										<div class="row">
-											<div id="importance/difficulty" class="col-md-8">
-											难度值：<s:property value=""/>
-											重要性: <s:property value="getLabel('importance', importance)"/>
-											</div>
-											<div id="comment-op" class="col-md-2 col-md-offset-1">
-												<span id="comment-time">19:17</span> <a href="#">回复</a>
-											</div>
-										</div>
-									</div>
-								</div>
 								</s:iterator>
 							</div>
-							<div id="pager" style="margin-left: 180px;">
-								<ul class="pagination">
-									<li><a href="#">&laquo;</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
-							</div>
+							<page:page url="/listGPointComment.action" page="${page }" />
 							<hr style="margin-top: 0px;" />
 						</div>
 					</div>

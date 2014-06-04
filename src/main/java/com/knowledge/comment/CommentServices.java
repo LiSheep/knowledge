@@ -33,12 +33,18 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 		t.setId(UUID.randomUUID().toString());
 		return commentDao.create(t);
 	}
-	
-	public List<Comment> list(){
-		
-		return commentDao.list();
-	}
 
+	@Override
+	public List<Comment> list(Page<Comment> page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public List<Comment> listByGeneralPointId(Page<Comment> page, Object gId){
+		commentDao.listByGeneralPointId(page, gId);
+		return null;
+	}
+	
 	@Override
 	public int remove(Comment t) {
 		// TODO Auto-generated method stub
@@ -69,12 +75,6 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 		return null;
 	}
 	
-	@Override
-	public List<Comment> list(Page<Comment> page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	//get & set method
 	public CommentDao getCommentDao() {
 		return commentDao;
@@ -91,4 +91,5 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
 	}
+
 }

@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
+import com.knowledge.page.Page;
 import com.knowledge.user.User;
 
 public class CommentDao extends KnowledgeDao<Comment> {
@@ -38,11 +39,12 @@ public class CommentDao extends KnowledgeDao<Comment> {
 		return null;
 	}
 
-	//TODO:还没写分页哦
-	public List<Comment> list() {
+	public List<Comment> listByGeneralPointId(Page<Comment> page, Object gId) {
 		String sql = "SELECT co.id AS id, co.complexity, co.importance,co.`comment`, co.note, co.updateTime, u.id AS userKey, u.username "
-				+ "FROM knowledge_point_comment AS co, knowledge_user AS u WHERE u.id = co.userKey AND u.delflag != 1";
-		return jdbcTemplate.query(sql, new CommentMapper());
+				+ "FROM knowledge_point_comment AS co, knowledge_user AS u WHERE u.id = co.userKey AND u.delflag = 0";
+//		Object []args = {gId };
+		this.query4Page(sql, new CommentMapper(), page, null, 0);
+		return page.getResult();
 	}
 
 	public JdbcTemplate getJdbcTemplate() {
