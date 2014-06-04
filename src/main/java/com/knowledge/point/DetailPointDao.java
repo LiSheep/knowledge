@@ -16,7 +16,7 @@ public class DetailPointDao extends KnowledgeDao<DetailPoint> {
 	public int create(DetailPoint t) {
 		String sql = "INSERT INTO knowledge_point_detail(id, pointName, importance, complexity, generalKey) VALUES(?, ?, ?, ?, ?)";
 		Object[] args = { t.getId(), t.getPointName(), t.getImportance(),
-				t.getComplexity(), t.getGeneralKey() };
+				t.getComplexity(), t.getGeneralPoint().getId() };
 		return jdbcTemplate.update(sql, args);
 	}
 
@@ -27,13 +27,20 @@ public class DetailPointDao extends KnowledgeDao<DetailPoint> {
 	}
 
 	@Override
+	public DetailPoint readEntityById(Object id) {
+		String sql = "SELECT d.id AS dId, d.pointName AS dPointName, d.complexity, d.importance, g.id AS gId, g.pointName AS gPointName FROM knowledge_point_detail AS d, knowledge_point_general AS g WHERE g.id = d.generalKey AND d.delflag = 0 AND g.delflag = 0 AND d.id = ?";
+		return jdbcTemplate.queryForObject(sql, new DetailPointRowMapperOnlyGeneralName(), id);
+	}
+	
+	@Override
 	public int updateEntity(DetailPoint t) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "UPDATE " + t.getTableName() + " SET pointName = ?, importance = ?, complexity = ? WHERE id = ?";
+		Object []args = {t.getPointName(), t.getImportance(), t.complexity, t.getId() };
+		return jdbcTemplate.update(sql, args);
 	}
 
 	public List<DetailPoint> readEntitiesByGeneralPointId(Page<DetailPoint> page, Object generalPointId) {
-		String sql = "SELECT d.id AS dId, d.pointName AS dPointName, d.importance, d.complexity, d.generalKey AS gId, g.pointName AS gPointName FROM knowledge_point_detail AS d , knowledge_point_general AS g WHERE d.generalKey = g.id AND d.delfalg = 0 AND g.delflag = 0 AND g.id = ?";
+		String sql = "SELECT d.id AS dId, d.pointName AS dPointName, d.importance, d.complexity, d.generalKey AS gId, g.pointName AS gPointName FROM knowledge_point_detail AS d , knowledge_point_general AS g WHERE g.id = ? AND d.delflag = 0 AND g.delflag = 0 AND d.generalKey = g.id ";
 		Object []args = { generalPointId }; 
 		this.query4Page(sql, new DetailPointRowMapperOnlyGeneralName(), page, args, 0);
 		return page.getResult();
@@ -58,11 +65,10 @@ public class DetailPointDao extends KnowledgeDao<DetailPoint> {
 			model.setComplexity(rs.getInt("complexity"));
 			model.setImportance(rs.getInt("importance"));
 
-			model.setGeneralKey(rs.getString("gId"));
+//			model.setGeneralKey(rs.getString("gId"));
+			model.getGeneralPoint().setId(rs.getString("gId"));
 			model.getGeneralPoint().setPointName(rs.getString("gPointName"));
 			return model;
 		}
-
 	}
-
 }

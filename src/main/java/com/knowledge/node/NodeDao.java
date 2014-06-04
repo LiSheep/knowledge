@@ -33,4 +33,10 @@ public class NodeDao extends KnowledgeDao<NodeCarsness> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public NodeCarsness readEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

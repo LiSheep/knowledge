@@ -58,6 +58,12 @@ public class DictionaryDao extends KnowledgeDao<Dictionary>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public Dictionary readEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
 //map a row to a Dictionary, and return one Dictionary List

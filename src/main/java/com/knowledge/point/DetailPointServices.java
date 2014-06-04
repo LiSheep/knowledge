@@ -28,8 +28,7 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 		if (t.getPointName() == null || t.getImportance() <= 0
 				|| t.getImportance() > maxImportanceCode
 				|| t.getComplexity() <= 0
-				|| t.getComplexity() > maxComplexityCode
-				|| t.getGeneralKey() == null) {
+				|| t.getComplexity() > maxComplexityCode) {
 			return 0;
 		}
 		t.setId(UUID.randomUUID().toString());
@@ -51,8 +50,7 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	
 	@Override
 	public int update(DetailPoint t) {
-		// TODO Auto-generated method stub
-		return 0;
+		return detailPointDao.updateEntity(t);
 	}
 	
 	@Override
@@ -62,8 +60,7 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	
 	@Override
 	public DetailPoint findEntityById(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		return detailPointDao.readEntityById(id);
 	}
 	
 	@Override

@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	function deleteEntity(id) {
 		document.getElementById("listform").key.value = id;
-		document.getElementById("listform").action = "toinputGPoint.action";
+		document.getElementById("listform").action = "deleteGPoint.action";
 		document.getElementById("listform").submit();
 	}
 	function updateEntity(id) {

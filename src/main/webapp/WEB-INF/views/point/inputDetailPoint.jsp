@@ -61,8 +61,9 @@
 							<h3 class="panel-title">细知识点<s:if test="model.id == null">添加</s:if><s:elseif test="model.id != null">修改</s:elseif></h3>
 						</div>
 
-						<form method="post" action="addDPoint.action">
-							<input type="hidden" name="model.generalKey" />
+						<form method="post" action="subinputDPoint.action">
+							<input type="hidden" name="key" value="${model.generalPoint.id }">
+							<input type="hidden" name="model.generalPoint.id" value="${model.generalPoint.id }" />
 							<div class="panel-body" id="form" style="padding: 16px;">
 								<div class="row">
 									<div class="col-md-2">所属知识点：</div>
@@ -73,7 +74,7 @@
 								<div class="row">
 									<div class="col-md-2">知识点名：</div>
 									<div class="col-md-6">
-										<input type="text" class="form-control" name="model.pointName">
+										<input type="text" class="form-control" name="model.pointName" value="${model.pointName }">
 									</div>
 								</div>
 								

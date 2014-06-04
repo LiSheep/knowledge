@@ -26,14 +26,15 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 
 	@Override
 	public int updateEntity(GeneralPoint t) {
-		String sql = "UPDATE  knowledge_point_general SET pointName=?, pointType=?, orderNum=?, importance=?, complexity=? WHERE id=?";
+		String sql = "UPDATE  knowledge_point_general SET pointName=?, pointType=?, orderNum=?, importance=?, complexity=? WHERE id=? ";
 		Object[] args = { t.getPointName(), t.getPointType(), t.getOrderNum(),
 				t.getImportance(), t.getComplexity(), t.getId() };
 		return jdbcTemplate.update(sql, args);
 	}
 	
 	public void list(Page<GeneralPoint> page){
-		String sql = "SELECT id, pointName, pointType, orderNum, complexity, importance from knowledge_point_general";
+		String sql = "SELECT id, pointName, pointType, orderNum, complexity, importance from knowledge_point_general WHERE delflag = 0";
+		page.setOrderBy("orderNum");
 		this.query4Page(sql, new GeneralPointMapper(), page, null, 0);
 	}
 	

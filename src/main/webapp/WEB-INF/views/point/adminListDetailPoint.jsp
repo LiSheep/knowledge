@@ -13,6 +13,24 @@
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <title>Insert title here</title>
+<script type="text/javascript">
+function deleteEntity(id) {
+	document.getElementById("listform").key.value = id;
+	document.getElementById("listform").action = "deleteDPoint.action";
+	document.getElementById("listform").submit();
+}
+function updateEntity(id) {
+	document.getElementById("listform").key.value = id;
+	document.getElementById("listform").action = "updateInputDPoint.action";
+	document.getElementById("listform").method = "post";
+	document.getElementById("listform").submit();
+}
+function addEntity() {
+	document.getElementById("listform").key.value = '<s:property value="model.generalPoint.id"/>';
+	document.getElementById("listform").action = "addInputDPoint.action";
+	document.getElementById("listform").submit();
+}
+</script>
 </head>
 <body>
 	<div class="container">
@@ -60,10 +78,10 @@
 				<div class="col-md-7 col-md-offset-1" id="main">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">知识点管理</h3>
+							<h3 class="panel-title"><s:property value="model.generalPoint.PointName"/> 细知识点管理</h3>
 						</div>
 						<div class="panel-body">
-						<a href="#" onclick="addEntity()">添加一个新的细知识点</a>
+						<a href="#" onclick="addEntity()"> 添加一个新的细知识点</a>
 							<form method="post" id="listform">
 								<table class="table table-hover">
 									<thead>

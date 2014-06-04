@@ -31,6 +31,12 @@ public class CommentDao extends KnowledgeDao<Comment> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public Comment readEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	//TODO:还没写分页哦
 	public List<Comment> list() {
@@ -67,4 +73,5 @@ public class CommentDao extends KnowledgeDao<Comment> {
 			return model;
 		}
 	}
+
 }
