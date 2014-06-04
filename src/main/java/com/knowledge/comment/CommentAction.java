@@ -6,12 +6,15 @@ import java.util.concurrent.ExecutionException;
 import com.knowledge.arc.KnowledgeAction;
 import com.knowledge.dictionary.Dictionary;
 import com.knowledge.dictionary.DictionaryServices;
+import com.knowledge.point.GeneralPoint;
+import com.knowledge.point.GeneralPointServices;
 import com.opensymphony.xwork2.ActionContext;
 
 public class CommentAction extends KnowledgeAction<Comment>{
 
 	private static final long serialVersionUID = 8588855865774891306L;
 	private CommentServices commentServices;
+	private GeneralPointServices generalPointServices;
 	private DictionaryServices dictionaryServices;
 	
 	public CommentAction(){
@@ -20,6 +23,7 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	
 	//显示General Point的list
 	public String listGPoint(){
+		getModel().setGeneralPoint(generalPointServices.findEntityById(getKey()));
 		commentServices.listByGeneralPointId(getPage(), getKey());
 		return "list";
 	}
@@ -58,6 +62,14 @@ public class CommentAction extends KnowledgeAction<Comment>{
 			model = new Comment();
 		}
 		return model;
+	}
+	
+	public GeneralPointServices getGeneralPointServices() {
+		return generalPointServices;
+	}
+
+	public void setGeneralPointServices(GeneralPointServices generalPointServices) {
+		this.generalPointServices = generalPointServices;
 	}
 
 	public void setSessions() {

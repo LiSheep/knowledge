@@ -17,5 +17,6 @@
 	<bean id="commentAction" class="com.knowledge.comment.CommentAction">
 		<property name="commentServices" ref="commentServices"></property>
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
+		<property name="generalPointServices" ref="generalPointServices"></property>
 	</bean>
 </beans>

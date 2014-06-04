@@ -40,10 +40,9 @@ public class CommentDao extends KnowledgeDao<Comment> {
 	}
 
 	public List<Comment> listByGeneralPointId(Page<Comment> page, Object gId) {
-		String sql = "SELECT co.id AS id, co.complexity, co.importance,co.`comment`, co.note, co.updateTime, u.id AS userKey, u.username "
-				+ "FROM knowledge_point_comment AS co, knowledge_user AS u WHERE u.id = co.userKey AND u.delflag = 0";
-//		Object []args = {gId };
-		this.query4Page(sql, new CommentMapper(), page, null, 0);
+		String sql = "SELECT co.id AS uid, co.complexity, co.importance,co.`comment`, co.note, co.updateTime, u.id AS userKey, u.username, g.id AS gId FROM knowledge_point_comment AS co, knowledge_user AS u, knowledge_point_general AS g WHERE u.delflag = 0 AND g.delflag = 0 AND g.Id = ? AND co.generalKey = g.id AND u.id = co.userKey";
+		Object []args = {gId };
+		this.query4Page(sql, new CommentMapper(), page, args, 0);
 		return page.getResult();
 	}
 
@@ -59,7 +58,7 @@ public class CommentDao extends KnowledgeDao<Comment> {
 		@Override
 		public Comment mapRow(ResultSet rs, int num) throws SQLException {
 			Comment model = new Comment();
-			model.setId(rs.getString("id"));
+			model.setId(rs.getString("uid"));
 			model.setComplexity(rs.getInt("complexity"));
 			model.setImportance(rs.getInt("importance"));
 			model.setComment(rs.getString("comment"));
@@ -67,11 +66,11 @@ public class CommentDao extends KnowledgeDao<Comment> {
 			model.setUpdateTime(rs.getTimestamp("updateTime"));
 
 			// user
-			User user = new User();
-			user.setId(rs.getString("userKey"));
-			user.setUsername(rs.getString("username"));
-
-			model.setUser(user);
+			model.getUser().setId(rs.getString("userKey"));
+			model.getUser().setUsername(rs.getString("username"));
+			
+			//general point
+			model.getGeneralPoint().setId(rs.getString("gId"));
 			return model;
 		}
 	}

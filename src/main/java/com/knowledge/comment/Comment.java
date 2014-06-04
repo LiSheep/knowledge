@@ -1,9 +1,10 @@
 package com.knowledge.comment;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import com.knowledge.arc.KnowledgeEntity;
+import com.knowledge.point.DetailPoint;
+import com.knowledge.point.GeneralPoint;
 import com.knowledge.user.User;
 
 public class Comment extends KnowledgeEntity {
@@ -16,8 +17,29 @@ public class Comment extends KnowledgeEntity {
 
 	private User user;
 	
+	private GeneralPoint generalPoint;
+	private DetailPoint detailPoint;
+	
+	public GeneralPoint getGeneralPoint() {
+		if(generalPoint == null)
+			generalPoint = new GeneralPoint();
+		return generalPoint;
+	}
+	public void setGeneralPoint(GeneralPoint generalPoint) {
+		this.generalPoint = generalPoint;
+	}
+	public DetailPoint getDetailPoint() {
+		if(detailPoint == null)
+			detailPoint = new DetailPoint();
+		return detailPoint;
+	}
+	public void setDetailPoint(DetailPoint detailPoint) {
+		this.detailPoint = detailPoint;
+	}
 	public User getUser() {
-		return user;
+		if(user == null)
+			user = new User();
+		return this.user;
 	}
 	public void setUser(User user) {
 		this.user = user;

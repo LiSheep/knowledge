@@ -79,7 +79,7 @@
 							<div class="row">
 								<div class="col-md-2">
 									<h3>
-										<a>html/dom</a>
+										<a><s:property value="model.generalPoint.pointName"/>/<s:property value="dictionaryServices.findDictionary(2, model.generalPoint.pointType).getLabel()"/></a>
 									</h3>
 								</div>
 								<div class="col-md-9">
@@ -88,18 +88,10 @@
 							</div>
 							<div class="row" style="margin-bottom: 30px;">
 								<div class="col-md-3 col-md-offset-2">
-									难度值：<span class="glyphicon glyphicon-star"></span><span
-										class="glyphicon glyphicon-star"></span><span
-										class="glyphicon glyphicon-star"></span><span
-										class="glyphicon glyphicon-star-empty"></span><span
-										class="glyphicon glyphicon-star-empty"></span>
+									难度值：<s:property value="dictionaryServices.findDictionary(4, model.generalPoint.complexity).getLabel()"/>
 								</div>
 								<div class="col-md-3">
-									重要性：<span class="glyphicon glyphicon-star"></span><span
-										class="glyphicon glyphicon-star"></span><span
-										class="glyphicon glyphicon-star"></span><span
-										class="glyphicon glyphicon-star-empty"></span><span
-										class="glyphicon glyphicon-star-empty"></span>
+									重要性：<s:property value="dictionaryServices.findDictionary(3, model.generalPoint.importance).getLabel()"/>
 								</div>
 								<div class="col-md-2 col-md-offset-1">
 							  		<button type="button" class="btn btn-success" style="float: right;">学习该知识点</button>
