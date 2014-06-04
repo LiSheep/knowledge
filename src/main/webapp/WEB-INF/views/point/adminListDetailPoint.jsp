@@ -13,35 +13,12 @@
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <title>Insert title here</title>
-<script type="text/javascript">
-	function deleteEntity(id) {
-		document.getElementById("listform").key.value = id;
-		document.getElementById("listform").action = "toinputGPoint.action";
-		document.getElementById("listform").submit();
-	}
-	function updateEntity(id) {
-		document.getElementById("listform").key.value = id;
-		document.getElementById("listform").action = "toinputGPoint.action";
-		document.getElementById("listform").method = "post";
-		document.getElementById("listform").submit();
-	}
-	function addEntity() {
-		document.getElementById("listform").key.value = "";
-		document.getElementById("listform").action = "toinputGPoint.action";
-		document.getElementById("listform").submit();
-	}
-	function listDPoint(id) {
-		document.getElementById("listform").key.value = id;
-		document.getElementById("listform").action = "adminListDPoint.action";
-		document.getElementById("listform").method = "post";
-		document.getElementById("listform").submit();
-	}
-</script>
 </head>
 <body>
 	<div class="container">
 		<div id="header">
 			<jsp:include page="/WEB-INF/views/common/user-header.jsp"></jsp:include>
+			
 			<div class="row" id="search">
 				<div class="col-md-3 col-md-offset-8">
 					<span class="glyphicon glyphicon-search"></span>
@@ -68,6 +45,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div id="contant">
 			<div class="row">
 				<div class="col-md-3">
@@ -84,9 +62,8 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">知识点管理</h3>
 						</div>
-						
 						<div class="panel-body">
-						<a href="#" onclick="addEntity()">添加一个新的粗知识点</a>
+						<a href="#" onclick="addEntity()">添加一个新的细知识点</a>
 							<form method="post" id="listform">
 								<table class="table table-hover">
 									<thead>
@@ -104,9 +81,7 @@
 											<td><a href="#"><s:property value="pointName" /></a></td>
 											<td><s:property value="dictionaryServices.findDictionary(4, complexity).getLabel()" /></td>
 											<td><s:property value="dictionaryServices.findDictionary(3, importance).getLabel()" /></td>
-											<td><a href="#" onclick="listDPoint('<s:property value="id"/>')">查看细知识点</a>
-											/
-											<a href="#" onclick="updateEntity('<s:property value="id"/>')">编辑</a>
+											<td><a href="#" onclick="updateEntity('<s:property value="id"/>')">编辑</a>
 											/
 											<a href="#" onclick="deleteEntity('<s:property value="id"/>')">删除</a></td>
 										</tr>
@@ -115,7 +90,7 @@
 								<input id="key" type="hidden" name="key" />
 							</form>
 							
-							<page:page url="/adminListGPoint.action" page="${page }" />
+							<page:page url="/adminListDPoint.action" page="${page }" />
 						</div>
 					</div>
 					<!--   panel end  -->
@@ -124,5 +99,6 @@
 		</div>
 		<!--  contant end  -->
 	</div>
+
 </body>
 </html>

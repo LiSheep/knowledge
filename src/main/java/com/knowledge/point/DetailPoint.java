@@ -36,6 +36,8 @@ public class DetailPoint extends KnowledgeEntity {
 		this.generalKey = generalKey;
 	}
 	public GeneralPoint getGeneralPoint() {
+		if(generalPoint == null)
+			generalPoint = new GeneralPoint();
 		return generalPoint;
 	}
 	public void setGeneralPoint(GeneralPoint generalPoint) {

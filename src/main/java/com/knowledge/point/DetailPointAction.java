@@ -25,21 +25,36 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 
 	public String toinput(){
 		setSessions();
-		if(getModel().getGeneralKey() != null){
-			GeneralPoint generalPoint = generalPointServices.findEntityById(getModel().getGeneralKey());
-			if(generalPoint != null){
-				getModel().setGeneralPoint(generalPoint);
+		String keyString = getKey();
+		if ( keyString == null || !keyString.equals("")){ // 更新界面需要的值
+			DetailPoint detailPoint = detailPointServices.findEntityById(keyString);
+			if(detailPoint != null){
+				return "toinput";	//只有找到entity才是更新
 			}
 		}
+		this.model = null;
 		return "toinput";
+		
+	}
+	
+	// 提交更改，以有没有Id值判断是插入还是修改
+		public String subinput() {
+			if (getModel().getId() == null || getModel().getId().equals("")) { // 插入
+				detailPointServices.add(getModel());
+			} else { // 更新
+				detailPointServices.update(getModel());
+			}
+			this.model = null;	//TODO:这里有一个问题，如果不至空，其他toinput请求也会获取到model的值。 -ltc 2014/06/03
+			return "tolist";
+		}
+	
+	public String adminList(){
+		if(getKey() == null ||getKey().equals(""))
+			return "togenerallist";
+		detailPointServices.listByGeneralPointId(getPage(), getKey());
+		return "adminlist";
 	}
 
-	public String add(){
-		setSessions();
-		getModel().setGeneralKey("b493e7b8-8368-42df-8850-50dfe36edffe");
-		detailPointServices.add(getModel());
-		return "add";
-	}
 	public void setSessions() {
 		List<Dictionary> dicImportance = null;
 		List<Dictionary> dicComplexity = null;

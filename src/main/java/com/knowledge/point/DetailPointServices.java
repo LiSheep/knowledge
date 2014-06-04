@@ -68,8 +68,12 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	
 	@Override
 	public List<DetailPoint> list(Page<DetailPoint> page) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	//分页显示细知识点
+	public List<DetailPoint> listByGeneralPointId(Page<DetailPoint> page, Object generalPointId){
+		return detailPointDao.readEntitiesByGeneralPointId(page, generalPointId);
 	}
 
 	// get & set method
