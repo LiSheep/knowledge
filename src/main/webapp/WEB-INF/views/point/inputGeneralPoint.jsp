@@ -15,6 +15,18 @@
 <meta http-equiv="Expires" CONTENT="0">
 <meta http-equiv="Cache-Control" CONTENT="no-cache">
 <meta http-equiv="Pragma" CONTENT="no-cache">
+<script type="text/javascript">
+	(function() {
+		$(function() {
+			return new Simditor({
+				textarea : $('#edit'),
+				placeholder : '',
+				mark : true
+			});
+		});
+
+	}).call(this);
+</script>
 </head>
 <body>
 	<div class="container">
@@ -87,9 +99,15 @@
 									</div>
 								</div>
 								<div class="row" style="margin-top: 12px;">
-									<div class="col-md-2">描述：</div>
+									<div class="col-md-2">简短描述：</div>
 									<div class="col-md-6">
 										<textarea class="form-control" rows="3" name="model.pointDescrible">${model.pointDescrible }</textarea>
+									</div>
+								</div>
+								<div class="row" style="margin-top: 12px;">
+									<div class="col-md-2">详细描述：</div>
+									<div class="col-md-6">
+										<textarea class="form-control" id="edit" rows="3" name="pointDetail">${model.pointDetail }</textarea>
 									</div>
 								</div>
 								<hr style="margin-top: 12px; margin-bottom: 12px;" />

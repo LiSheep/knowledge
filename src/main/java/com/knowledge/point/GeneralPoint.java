@@ -5,6 +5,7 @@ import com.knowledge.arc.KnowledgeEntity;
 public class GeneralPoint extends KnowledgeEntity {
 	String pointName;
 	String pointDescrible;
+	String pointDetail;
 	int pointType;
 	int orderNum;
 	int importance;	//3
@@ -24,6 +25,12 @@ public class GeneralPoint extends KnowledgeEntity {
 	}
 	public int getOrderNum() {
 		return orderNum;
+	}
+	public String getPointDetail() {
+		return pointDetail;
+	}
+	public void setPointDetail(String pointDetail) {
+		this.pointDetail = pointDetail;
 	}
 	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
