@@ -11,7 +11,9 @@
              <interceptor name="roleInterceptor" class="com.knowledge.interceptor.RoleInterceptor"/>    
               
             <interceptor-stack name="b2cplatPrivInterceptor">  
-                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="loginInterceptor">
+                	<param name="excludeMethods">userRegister</param>
+                </interceptor-ref>
                 <interceptor-ref name="roleInterceptor">
                 	<param name="includeMethods">add,delete,update</param>
                 </interceptor-ref>

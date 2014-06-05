@@ -6,7 +6,7 @@
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
 	<package name="user" namespace="/" extends="struts-default">
 		<action name="*UserAction" class="userAction" method="{1}">
-			<result name="success">/WEB-INF/views/user/success.jsp</result>
+			<result name="success">/WEB-INF/views/index.jsp</result>
 			<result name="input">/WEB-INF/views/user/register.jsp</result>
 		</action>
 	</package>
@@ -17,5 +17,6 @@
 	<include file="struts/struts-comment.xml"></include>
 	<include file="struts/struts-point.xml"></include>
 	<include file="struts/struts-plugin.xml"></include>
+	<include file="struts/struts-json.xml"></include>
 	
 </struts>

@@ -18,5 +18,8 @@
 	
 	<bean id="userAction" class="com.knowledge.user.UserAction">
 		<property name="userServices" ref="userServices"></property>
+		<property name="timelineServices" ref="timelineServices"></property>
+		<property name="timelineAssetServices" ref="timelineAssetServices"></property>
+		<property name="timelineDateServices" ref="timelineDateServices"></property>
 	</bean>
 </beans>

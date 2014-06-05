@@ -48,7 +48,7 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 		generalPointServices.deleteLogic(getModel());
 		return "tolist";
 	}
-
+	
 	public void setSessions() {
 		List<Dictionary> dicImportance = null;
 		List<Dictionary> dicComplexity = null;
@@ -102,5 +102,4 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
 	}
-
 }

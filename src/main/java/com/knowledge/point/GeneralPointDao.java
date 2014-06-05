@@ -2,10 +2,13 @@ package com.knowledge.point;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
+import com.knowledge.json.Charts;
 import com.knowledge.page.Page;
 
 public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
@@ -42,6 +45,20 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 		String sql = "SELECT id, pointName, pointDescrible, pointDetail, pointType, complexity, importance, orderNum FROM knowledge_point_general WHERE id=? AND delflag = 0";
 		return jdbcTemplate.queryForObject(sql, new GeneralPointMapper(), id);
 	}
+	
+	/*
+	 * @author LiuNaidi
+	 * @Param General Point Type
+	 * @return all the General Points of type
+	 * 
+	 * 通过知识体系查看该知识体系下的所有知识点
+	 */
+	public List<GeneralPoint> readEntityByType(Object type) {
+		String sql = "SELECT id, pointName, pointDescrible, pointDetail, pointType, orderNum, importance, complexity FROM knowledge_point_general WHERE pointType= ?";
+		Object[] args = {type};
+		
+		return jdbcTemplate.query(sql, new GeneralPointMapper(), args);
+	}
 
 	// get & set method
 	public JdbcTemplate getJdbcTemplate() {
@@ -70,7 +87,47 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 			model.setImportance(rs.getInt("importance"));
 			return model;
 		}
+	}
 
+	public List<Charts> readJsonByComplexityType(Object type) {
+		String sql = "SELECT id, pointName, orderNum, importance, complexity FROM knowledge_point_general WHERE pointType= ?";
+		Object[] args = {type};
+		
+		return jdbcTemplate.query(sql, new GeneralPointJsonComplexityMapper(), args);
+	}
+	public List<Charts> readJsonByImportanceType(Object type) {
+		String sql = "SELECT id, pointName, orderNum, importance, complexity FROM knowledge_point_general WHERE pointType= ?";
+		Object[] args = {type};
+		
+		return jdbcTemplate.query(sql, new GeneralPointJsonImportanceMapper(), args);
+	}
+}
 
+class GeneralPointJsonComplexityMapper implements RowMapper<Charts> {
+
+	@Override
+	public Charts mapRow(ResultSet rs, int rowNum)
+			throws SQLException {
+		
+		Charts model = new Charts();
+		model.setId(rs.getString("id"));
+		model.setX(rs.getInt("orderNum") + "." + rs.getString("pointName"));
+		//Y轴的大小为重要程度+难易程度
+		model.setY(rs.getInt("complexity"));
+		return model;
+	}
+}
+class GeneralPointJsonImportanceMapper implements RowMapper<Charts> {
+
+	@Override
+	public Charts mapRow(ResultSet rs, int rowNum)
+			throws SQLException {
+		
+		Charts model = new Charts();
+		model.setId(rs.getString("id"));
+		model.setX(rs.getInt("orderNum") + "." + rs.getString("pointName"));
+		//Y轴的大小为重要程度+难易程度
+		model.setY(rs.getInt("importance"));
+		return model;
 	}
 }

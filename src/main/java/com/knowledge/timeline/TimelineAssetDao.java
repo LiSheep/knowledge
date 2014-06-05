@@ -35,6 +35,12 @@ public class TimelineAssetDao extends KnowledgeDao<TimelineAsset> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public TimelineAsset readEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
 class TimelineAssetRowMapper implements RowMapper<TimelineAsset> {

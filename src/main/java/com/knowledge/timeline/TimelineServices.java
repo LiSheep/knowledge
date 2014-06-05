@@ -9,8 +9,9 @@ public class TimelineServices implements KnowledgeServices<Timeline> {
 
 	@Override
 	public int add(Timeline t) {
-		// TODO Auto-generated method stub
-		return 0;
+		t.setType("default");
+		
+		return timelineDao.create(t);
 	}
 
 	@Override
@@ -28,7 +29,7 @@ public class TimelineServices implements KnowledgeServices<Timeline> {
 	//根据userId查询出与这个用户相关的Timeline
 	public Timeline findEntityById(String id) {
 		Timeline timeline = timelineDao.readByUser(id);
-		timeline.setDate(new TimelineDateDao().readByHeadlineKey(timeline.getId()));
+		timeline.setDate(timelineDateDao.readByHeadlineKey(timeline.getId()));
 		
 		return timeline;
 	}
@@ -53,6 +54,16 @@ public class TimelineServices implements KnowledgeServices<Timeline> {
 
 	public void setTimelineDao(TimelineDao timelineDao) {
 		this.timelineDao = timelineDao;
+	}
+	
+	private TimelineDateDao timelineDateDao;
+
+	public TimelineDateDao getTimelineDateDao() {
+		return timelineDateDao;
+	}
+
+	public void setTimelineDateDao(TimelineDateDao timelineDateDao) {
+		this.timelineDateDao = timelineDateDao;
 	}
 
 	@Override

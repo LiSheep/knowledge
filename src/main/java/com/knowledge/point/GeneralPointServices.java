@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutionException;
 
 import com.knowledge.arc.KnowledgeServices;
 import com.knowledge.dictionary.DictionaryServices;
+import com.knowledge.json.Charts;
 import com.knowledge.page.Page;
 
 public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
@@ -63,6 +64,25 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 	public GeneralPoint findEntityById(Object id) {
 		return generalPointDao.readEntityById(id);
 	}
+	/*
+	 * @author LiuNaidi
+	 * @Param General Point Type
+	 * @return all the General Points of type
+	 * 
+	 * 通过知识体系查看该知识体系下的所有知识点
+	 */
+	public List<GeneralPoint> findEntityByType(Object type) {
+		
+		return generalPointDao.readEntityByType(type);
+	}
+	public List<Charts> findJsonByComplexityType(Object type) {
+		
+		return generalPointDao.readJsonByComplexityType(type);
+	}
+	public List<Charts> findJsonByImportanceType(Object type) {
+			
+			return generalPointDao.readJsonByImportanceType(type);
+		}
 	
 	@Override
 	public List<GeneralPoint> list(Page<GeneralPoint> page) {
