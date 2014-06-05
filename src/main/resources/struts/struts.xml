@@ -17,5 +17,6 @@
 	<include file="struts/struts-comment.xml"></include>
 	<include file="struts/struts-point.xml"></include>
 	<include file="struts/struts-plugin.xml"></include>
+	<include file="struts/struts-json.xml"></include>
 	
 </struts>

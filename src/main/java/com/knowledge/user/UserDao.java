@@ -53,6 +53,12 @@ public class UserDao extends KnowledgeDao<User> {
 		
 		return jdbcTemplate.update(sql, args);
 	}
+
+	@Override
+	public User readEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
 class UserRowMapper implements RowMapper<User> {

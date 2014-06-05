@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutionException;
 import com.knowledge.arc.KnowledgeAction;
 import com.knowledge.dictionary.Dictionary;
 import com.knowledge.dictionary.DictionaryServices;
-import com.knowledge.point.GeneralPoint;
 import com.knowledge.point.GeneralPointServices;
 import com.opensymphony.xwork2.ActionContext;
 

@@ -1,6 +1,7 @@
 package com.knowledge.common;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,5 +24,10 @@ public class ObjectToJson<T extends KnowledgeEntity> {
 		Type entityType = new TypeToken<T>() {}.getType();
 		
 		return gson.toJson(t, entityType);
+	}
+	
+	public String convertListToJson(List<T> t) {
+		
+		return gson.toJson(t);
 	}
 }

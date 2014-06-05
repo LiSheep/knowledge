@@ -47,6 +47,12 @@ public class TimelineDateDao extends KnowledgeDao<TimelineDate> {
 	public void setTimelineAssetDao(TimelineAssetDao timelineAssetDao) {
 		this.timelineAssetDao = timelineAssetDao;
 	}
+
+	@Override
+	public TimelineDate readEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
 class TimelineDateRowMapper implements RowMapper<TimelineDate> {

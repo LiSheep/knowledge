@@ -33,6 +33,8 @@ public class UserAction extends KnowledgeAction<User> {
 		if (null != user) {
 			ActionContext.getContext().getSession().put("user", user);
 			
+			readTimeline(user.getId());
+			
 			return SUCCESS;
 		}
 			

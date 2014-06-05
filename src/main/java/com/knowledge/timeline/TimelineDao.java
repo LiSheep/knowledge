@@ -35,6 +35,12 @@ public class TimelineDao extends KnowledgeDao<Timeline> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public Timeline readEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
 class TimelineRowMapper implements RowMapper<Timeline> {

@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
 import com.knowledge.page.Page;
-import com.knowledge.user.User;
 
 public class CommentDao extends KnowledgeDao<Comment> {
 
