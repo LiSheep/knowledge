@@ -9,9 +9,9 @@
 	text-align: center;
 
 }
-#header{
-	margin-top: 16px;
-}
+#main{margin-left: 60px;}
+
+#header{margin-top: 16px;}
 
 #btn-define{
 	border:1px solid lightgray;
@@ -27,3 +27,4 @@ ul li {
 	list-style-type: none;
 	list-style-position: inside;
 }
+textarea {resize: none;}

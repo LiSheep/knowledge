@@ -30,7 +30,6 @@ public class PageTag<T extends KnowledgeEntity> extends TagSupport {
 		this.page = page;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public int doStartTag() throws JspException {
 		try {

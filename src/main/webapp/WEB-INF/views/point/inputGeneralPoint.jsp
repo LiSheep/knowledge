@@ -33,7 +33,7 @@
 		<div id="header">
 			<jsp:include page="/WEB-INF/views/common/user-header.jsp"></jsp:include>
 			<div class="row" id="search">
-				<div class="col-md-3 col-md-offset-8">
+				<div class="col-md-3 col-md-offset-9">
 					<span class="glyphicon glyphicon-search"></span>
 					<div class="btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle"
@@ -69,7 +69,7 @@
 						<li id="side-nav"><a>...</a></li>
 					</ul>
 				</div>
-				<div class="col-md-7 col-md-offset-1" id="main">
+				<div class="col-md-8" id="main">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h3 class="panel-title">大知识点<s:if test="model.id == null">添加</s:if><s:elseif test="model.id != null">修改</s:elseif></h3>
@@ -80,33 +80,33 @@
 							<div class="panel-body" id="form" style="padding: 16px;">
 								<div class="row">
 									<div class="col-md-2">知识点名：</div>
-									<div class="col-md-6">
+									<div class="col-md-9">
 										<input type="text" class="form-control" name="model.pointName" value="${model.pointName }">
 									</div>
 								</div>
 								<div class="row" style="margin-top: 12px;">
 									<div class="col-md-2">所属体系：</div>
-									<div class="col-md-6">
+									<div class="col-md-9">
 										<div class="btn-group">
 											 <s:select cssClass="form-control" name="model.pointType" list="#session.pointType" listKey="code" listValue="label"></s:select>
 										</div>
 									</div>
 								</div>
-								<div class="row">
+								<div class="row" style="margin-top: 12px;">
 									<div class="col-md-2">学习顺序：</div>
-									<div class="col-md-6">
+									<div class="col-md-9">
 										<input type="text" class="form-control" name="model.orderNum" value="${model.orderNum }">
 									</div>
 								</div>
 								<div class="row" style="margin-top: 12px;">
 									<div class="col-md-2">简短描述：</div>
-									<div class="col-md-6">
+									<div class="col-md-9">
 										<textarea class="form-control" rows="3" name="model.pointDescrible">${model.pointDescrible }</textarea>
 									</div>
 								</div>
 								<div class="row" style="margin-top: 12px;">
 									<div class="col-md-2">详细描述：</div>
-									<div class="col-md-6">
+									<div class="col-md-9">
 										<textarea class="form-control" id="edit" rows="3" name="pointDetail">${model.pointDetail }</textarea>
 									</div>
 								</div>
@@ -124,10 +124,10 @@
 								</div>
 
 								<div class="row" style="margin-top: 12px;">
-									<div class="col-md-2 col-md-offset-2">
+									<div class="col-md-3 col-md-offset-3">
 										<button type="submit" class="btn btn-primary">提交</button>
 									</div>
-									<div class="col-md-2 ">
+									<div class="col-md3 ">
 										<button type="button" class="btn btn-primary">取消</button>
 									</div>
 								</div>

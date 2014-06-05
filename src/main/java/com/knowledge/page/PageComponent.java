@@ -57,37 +57,37 @@ public class PageComponent<T extends KnowledgeEntity> {
 		StringBuffer buffer = new StringBuffer("<div class=\"row\" style=\"margin-top: 5px\">");
 		buffer.append("<form id=\"pageForm\" method=\"post\">");
 		if (page.getTotalCount() <= 0) {
-			buffer.append("<div class=\"col-sm-2\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">没有数据</button></div>");
+			buffer.append("<div class=\"col-sm-4\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">没有数据</button></div>");
 		} else {
-			buffer.append("<div class=\"col-sm-3\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">每页").append(page.getPageSize()).append("/").append(page.getTotalCount()).append("条记录  第").append(page.getPageNum() + 1).append("/").append(page.getTotalPage()).append("页</button></div>");
+			buffer.append("<div class=\"col-sm-4\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\">每页").append(page.getPageSize()).append("/").append(page.getTotalCount()).append("条记录  第").append(page.getPageNum() + 1).append("/").append(page.getTotalPage()).append("页</button></div>");
 		}
 		
 		if (page.hasNext() && page.hasPre()) {
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(0);").append("\">首页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getPrePage()).append(");").append("\">上一页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getNextPage()).append(");").append("\">下一页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getTotalPage() - 1).append(");").append("\">末页</button></div>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(0);").append("\">首页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getPrePage()).append(");").append("\">上一页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getNextPage()).append(");").append("\">下一页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getTotalPage() - 1).append(");").append("\">末页</button>");
 		} else if (page.hasNext()) {
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">首页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">上一页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getNextPage()).append(");").append("\">下一页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getTotalPage() - 1).append(");").append("\">末页</button></div>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">首页</button></div>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">上一页</button></div>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getNextPage()).append(");").append("\">下一页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getTotalPage() - 1).append(");").append("\">末页</button>");
 		} else if (page.hasPre()){
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(0);").append("\">首页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getPrePage()).append(");").append("\">上一页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">下一页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">末页</button></div>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(0);").append("\">首页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getPrePage()).append(");").append("\">上一页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">下一页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">末页</button>");
 		} else {
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">首页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">上一页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">下一页</button></div>");
-			buffer.append("<div class=\"col-sm-1\"><button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">末页</button></div>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">首页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">上一页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">下一页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">末页</button>");
 		}
 		buffer.append("<div class=\"col-sm-3\"><div class=\"row\"><div class=\"form-group\">");
 		buffer.append("<div class=\"col-sm-5\">");
 		buffer.append("<input type=\"text\" class=\"form-control\" id=\'gopage\' />");
 		buffer.append("</div>");
-		buffer.append("<div class=\"col-sm-1\">");
+		buffer.append("<div class=\"col-sm-6\">");
 		buffer.append("<button type=\"button\" class=\"btn btn-default\"").append(" onclick=\"get").append(this.pageName).append("(document.getElementById(\'gopage\').value);\"").append(">跳转</button>");
 		buffer.append("</div>");
 		buffer.append("</div></div></div>");
@@ -95,6 +95,7 @@ public class PageComponent<T extends KnowledgeEntity> {
 		buffer.append("<input type=\"hidden\" id=\"pageNo\"").append(" name=\"").append(this.pageNoName).append("\" value=\"").append(page.getPageNum()).append("\"/>");
 		buffer.append("</form>");
 		buffer.append("</div>");
+		
 		buffer.append("<script type=\"text/javascript\" charset=\"utf-8\">");
 		buffer.append("function get").append(this.pageName).append("(page) {");
 		buffer.append("document.getElementById(\"pageForm\").pageNo").append(".value=page; ");
@@ -102,7 +103,7 @@ public class PageComponent<T extends KnowledgeEntity> {
 		buffer.append("document.getElementById(\"pageForm\").action='").append(this.url).append("';");
 		buffer.append("document.getElementById(\"pageForm\").submit();");
 		buffer.append("}</script>");
-		 	
 		return buffer.toString();
+		
 	}
 }

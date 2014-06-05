@@ -107,8 +107,12 @@ function addEntity() {
 								</table>
 								<input id="key" type="hidden" name="key" />
 							</form>
+							<div class="row">
+								<div class="col-md-12">
+									<page:page url="/adminListDPoint.action" page="${page }" />
+								</div>
+							</div>
 							
-							<page:page url="/adminListDPoint.action" page="${page }" />
 						</div>
 					</div>
 					<!--   panel end  -->
