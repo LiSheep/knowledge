@@ -12,8 +12,10 @@ public class TimelineDao extends KnowledgeDao<Timeline> {
 
 	@Override
 	public int create(Timeline t) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "INSERT INTO knowledge_timeline_headline (id, headline, type, text, userKey) VALUES (?, ?, ?, ?, ?)";
+		Object[] args = {t.getId(), t.getHeadline(), t.getType(), t.getText(), t.getUserKey()};
+		
+		return jdbcTemplate.update(sql, args);
 	}
 	
 	public Timeline readByUser(String userKey) {

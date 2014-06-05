@@ -2,9 +2,9 @@ package com.knowledge.interceptor;
 
 import com.knowledge.user.UserServices;
 import com.opensymphony.xwork2.ActionInvocation;
-import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
-public class LoginInterceptor extends AbstractInterceptor {
+public class LoginInterceptor extends MethodFilterInterceptor {
 	
 	/**
 	 * 连接用户是否登录
@@ -21,11 +21,12 @@ public class LoginInterceptor extends AbstractInterceptor {
 	}
 
 	@Override
-	public String intercept(ActionInvocation invocation) throws Exception {
-		if (null == userServices.findUserSession()) {
-			return "nologin";
+	protected String doIntercept(ActionInvocation invocation) throws Exception {
+		if (null != userServices.findUserSession()) {
+			
+			return invocation.invoke();
 		}
 		
-		return invocation.invoke();
+		return "nologin";
 	}
 }

@@ -13,15 +13,17 @@ public class TimelineDateDao extends KnowledgeDao<TimelineDate> {
 
 	@Override
 	public int create(TimelineDate t) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "INSERT INTO knowledge_timeline_date (id, endDate, text, headline, asset, headlineKey) VALUES (?, ?, ?, ?, ?, ?)";
+		Object[] args = {t.getId(), DataConvUtil.dataFromStringToDate(t.getEndDate()), t.getText(), t.getHeadline(), t.getAssetKey(), t.getHeadlineKey()};
+		
+		return jdbcTemplate.update(sql, args);
 	}
 	
 	public List<TimelineDate> readByHeadlineKey(String headlineKey) {
-		StringBuffer buffer = new StringBuffer("SELECT id, text, headline, startDate, type FROM knowledge_timeline_date WHERE headlineKey=?");
+		StringBuffer buffer = new StringBuffer("SELECT id, text, headline, startDate, endDate, asset FROM knowledge_timeline_date WHERE headlineKey=?");
 		Object[] args = {headlineKey};
 		
-		return jdbcTemplate.query(buffer.toString(), new TimelineDateRowMapper(), args);
+		return jdbcTemplate.query(buffer.toString(), new TimelineDateRowMapper(timelineAssetDao), args);
 	}
 
 	@Override
@@ -35,16 +37,39 @@ public class TimelineDateDao extends KnowledgeDao<TimelineDate> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	private TimelineAssetDao timelineAssetDao;
+	
+	public TimelineAssetDao getTimelineAssetDao() {
+		return timelineAssetDao;
+	}
+
+	public void setTimelineAssetDao(TimelineAssetDao timelineAssetDao) {
+		this.timelineAssetDao = timelineAssetDao;
+	}
 }
 
 class TimelineDateRowMapper implements RowMapper<TimelineDate> {
+	private TimelineAssetDao timelineAssetDao;
+	
+	public TimelineAssetDao getTimelineAssetDao() {
+		return timelineAssetDao;
+	}
+
+	public void setTimelineAssetDao(TimelineAssetDao timelineAssetDao) {
+		this.timelineAssetDao = timelineAssetDao;
+	}
+	
+	public TimelineDateRowMapper(TimelineAssetDao timelineAssetDao) {
+		this.timelineAssetDao = timelineAssetDao;
+	}
 
 	@Override
 	public TimelineDate mapRow(ResultSet rs, int rowNum) throws SQLException {
 		TimelineDate date = new TimelineDate();
 		
 		date.setId(rs.getString("id"));
-		date.setAsset(new TimelineAssetDao().readOne(rs.getString("asset")));
+		date.setAsset(timelineAssetDao.readOne(rs.getString("asset")));
 		date.setEndDate(DataConvUtil.dateFormatJson(rs.getDate("endDate")));
 		date.setStartDate(DataConvUtil.dateFormatJson(rs.getDate("startDate")));
 		date.setHeadline(rs.getString("headline"));

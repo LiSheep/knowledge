@@ -1,7 +1,6 @@
 package com.knowledge.comment;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import com.knowledge.arc.KnowledgeEntity;
 import com.knowledge.user.User;

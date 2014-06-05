@@ -8,6 +8,8 @@ public class TimelineDate extends KnowledgeEntity {
 	private String headline;
 	private String text;
 	private TimelineAsset asset;
+	private String headlineKey;
+	private String assetKey;
 	public String getStartDate() {
 		return startDate;
 	}
@@ -37,6 +39,18 @@ public class TimelineDate extends KnowledgeEntity {
 	}
 	public void setAsset(TimelineAsset asset) {
 		this.asset = asset;
+	}
+	public String getHeadlineKey() {
+		return headlineKey;
+	}
+	public void setHeadlineKey(String headlineKey) {
+		this.headlineKey = headlineKey;
+	}
+	public String getAssetKey() {
+		return assetKey;
+	}
+	public void setAssetKey(String assetKey) {
+		this.assetKey = assetKey;
 	}
 	@Override
 	public String getTableName() {

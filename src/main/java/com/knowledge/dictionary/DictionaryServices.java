@@ -31,7 +31,7 @@ public class DictionaryServices implements KnowledgeServices<Dictionary> {
 				public Dictionary load(Dictionary key) throws Exception {
 					int fieldCode = key.getFieldCode();
 					int code = key.getCode();
-					Dictionary dictionary = dictionaryDao.readByFieldCode_Code(fieldCode, code);
+					Dictionary dictionary = dictionaryDao.readByFieldCodeCode(fieldCode, code);
 					return dictionary;
 				}
 			});

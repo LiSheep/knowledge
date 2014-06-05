@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- dao -->
+	<bean id="timelineDao" class="com.knowledge.timeline.TimelineDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	<bean id="timelineAssetDao" class="com.knowledge.timeline.TimelineAssetDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	<bean id="timelineDateDao" class="com.knowledge.timeline.TimelineDateDao">
+		<property name="timelineAssetDao" ref="timelineAssetDao"></property>
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	
+	<!-- services -->
+	<bean id="timelineServices" class="com.knowledge.timeline.TimelineServices">
+		<property name="timelineDao" ref="timelineDao"></property>
+		<property name="timelineDateDao" ref="timelineDateDao"></property>
+	</bean>
+	<bean id="timelineAssetServices" class="com.knowledge.timeline.TimelineAssetServices">
+		<property name="timelineAssetDao" ref="timelineAssetDao"></property>
+	</bean>
+	<bean id="timelineDateServices" class="com.knowledge.timeline.TimelineDateServices">
+		<property name="timelineDateDao" ref="timelineDateDao"></property>
+	</bean>
+</beans>
