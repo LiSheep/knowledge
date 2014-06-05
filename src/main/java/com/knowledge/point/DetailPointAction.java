@@ -22,24 +22,55 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 		}
 		return model;
 	}
-
-	public String toinput(){
+	
+	public String addInput(){
 		setSessions();
-		if(getModel().getGeneralKey() != null){
-			GeneralPoint generalPoint = generalPointServices.findEntityById(getModel().getGeneralKey());
-			if(generalPoint != null){
-				getModel().setGeneralPoint(generalPoint);
-			}
-		}
+		String generalId = getKey();
+		GeneralPoint generalPoint = generalPointServices.findEntityById(generalId);
+		if(generalPoint == null)
+			return "tolist";	//增加未获取到general point
+		this.model.setGeneralPoint(generalPoint);
 		return "toinput";
 	}
-
-	public String add(){
+	
+	public String updateInput(){
 		setSessions();
-		getModel().setGeneralKey("b493e7b8-8368-42df-8850-50dfe36edffe");
-		detailPointServices.add(getModel());
-		return "add";
+		String detailId = getKey();
+		if ( detailId != null && !detailId.equals("")){ // 更新界面需要的值
+			DetailPoint detailPoint = detailPointServices.findEntityById(detailId);
+			if(detailPoint != null){
+				this.model = detailPoint;
+				return "toinput";	//只有找到entity才是更新
+			}
+		}
+		return "tolist";	//不是更新则重定向回list
 	}
+
+	// 提交更改，以有没有Id值判断是插入还是修改
+	public String subinput() {
+		if (getModel().getId() == null || getModel().getId().equals("")) { // 插入
+			detailPointServices.add(getModel());
+		} else { // 更新
+			detailPointServices.update(getModel());
+		}
+		this.model = null; // TODO:这里有一个问题，如果不至空，其他toinput请求也会获取到model的值。 -ltc  2014/06/03
+		return "tolist";
+	}
+
+	public String adminList(){
+		if(getKey() == null || getKey().equals(""))
+			return "togenerallist";
+		detailPointServices.listByGeneralPointId(getPage(), getKey());
+		getModel().setGeneralPoint(generalPointServices.findEntityById(getKey()));
+		return "adminlist";
+	}
+
+	public String delete(){
+		this.model.setId(getKey());
+		detailPointServices.deleteLogic(getModel());
+		return "tolist";
+	}
+	
 	public void setSessions() {
 		List<Dictionary> dicImportance = null;
 		List<Dictionary> dicComplexity = null;

@@ -28,10 +28,8 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 	// 提交更改，以有没有Id值判断是插入还是修改
 	public String subinput() {
 		if (getModel().getId() == null || getModel().getId().equals("")) { // 插入
-			System.out.println("add");
 			generalPointServices.add(getModel());
 		} else { // 更新
-			System.out.println("update");
 			generalPointServices.update(getModel());
 		}
 		this.model = null;	//TODO:这里有一个问题，如果不至空，其他toinput请求也会获取到model的值。 -ltc 2014/06/03
@@ -46,7 +44,7 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 
 	// 删除粗知识点
 	public String delete() {
-		this.entities = null;
+		this.model.setId(getKey());
 		generalPointServices.deleteLogic(getModel());
 		return "tolist";
 	}

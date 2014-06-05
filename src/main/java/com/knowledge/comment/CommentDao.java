@@ -8,15 +8,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.knowledge.arc.KnowledgeDao;
+import com.knowledge.page.Page;
 import com.knowledge.user.User;
 
 public class CommentDao extends KnowledgeDao<Comment> {
 
 	@Override
 	public int create(Comment t) {
-		String sql = "INSERT INTO knowledge_point_comment(id, complexity, importance, comment, note, updateTime) "
+		String sql = "INSERT INTO knowledge_point_comment(id, complexity, importance, comment, note) "
 				+ "VALUES(?, ?, ?, ?, ?, ?)";
-		Object[] args = { t.getId(), t.getComplexity(), t.getImportance(), t.getComment(), t.getNote(), t.getUpdateTime()};
+		Object[] args = { t.getId(), t.getComplexity(), t.getImportance(), t.getComment(), t.getNote()};
 		return jdbcTemplate.update(sql, args);
 	}
 
@@ -31,12 +32,18 @@ public class CommentDao extends KnowledgeDao<Comment> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public Comment readEntityById(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	//TODO:还没写分页哦
-	public List<Comment> list() {
-		String sql = "SELECT co.id AS id, co.complexity, co.importance,co.`comment`, co.note, co.updateTime, u.id AS userKey, u.username "
-				+ "FROM knowledge_point_comment AS co, knowledge_user AS u WHERE u.id = co.userKey AND u.delflag != 1";
-		return jdbcTemplate.query(sql, new CommentMapper());
+	public List<Comment> listByGeneralPointId(Page<Comment> page, Object gId) {
+		String sql = "SELECT co.id AS uid, co.complexity, co.importance,co.`comment`, co.note, co.updateTime, u.id AS userKey, u.username, g.id AS gId FROM knowledge_point_comment AS co, knowledge_user AS u, knowledge_point_general AS g WHERE u.delflag = 0 AND g.delflag = 0 AND g.Id = ? AND co.generalKey = g.id AND u.id = co.userKey";
+		Object []args = {gId };
+		this.query4Page(sql, new CommentMapper(), page, args, 0);
+		return page.getResult();
 	}
 
 	public JdbcTemplate getJdbcTemplate() {
@@ -51,7 +58,7 @@ public class CommentDao extends KnowledgeDao<Comment> {
 		@Override
 		public Comment mapRow(ResultSet rs, int num) throws SQLException {
 			Comment model = new Comment();
-			model.setId(rs.getString("id"));
+			model.setId(rs.getString("uid"));
 			model.setComplexity(rs.getInt("complexity"));
 			model.setImportance(rs.getInt("importance"));
 			model.setComment(rs.getString("comment"));
@@ -59,12 +66,13 @@ public class CommentDao extends KnowledgeDao<Comment> {
 			model.setUpdateTime(rs.getTimestamp("updateTime"));
 
 			// user
-			User user = new User();
-			user.setId(rs.getString("userKey"));
-			user.setUsername(rs.getString("username"));
-
-			model.setUser(user);
+			model.getUser().setId(rs.getString("userKey"));
+			model.getUser().setUsername(rs.getString("username"));
+			
+			//general point
+			model.getGeneralPoint().setId(rs.getString("gId"));
 			return model;
 		}
 	}
+
 }

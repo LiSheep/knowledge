@@ -28,8 +28,7 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 		if (t.getPointName() == null || t.getImportance() <= 0
 				|| t.getImportance() > maxImportanceCode
 				|| t.getComplexity() <= 0
-				|| t.getComplexity() > maxComplexityCode
-				|| t.getGeneralKey() == null) {
+				|| t.getComplexity() > maxComplexityCode) {
 			return 0;
 		}
 		t.setId(UUID.randomUUID().toString());
@@ -37,6 +36,12 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 		return detailPointDao.create(t);
 	}
 
+	@Override
+	public List<DetailPoint> list(Page<DetailPoint> page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public int remove(DetailPoint t) {
 		// TODO Auto-generated method stub
@@ -51,8 +56,7 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	
 	@Override
 	public int update(DetailPoint t) {
-		// TODO Auto-generated method stub
-		return 0;
+		return detailPointDao.updateEntity(t);
 	}
 	
 	@Override
@@ -62,14 +66,12 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	
 	@Override
 	public DetailPoint findEntityById(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		return detailPointDao.readEntityById(id);
 	}
-	
-	@Override
-	public List<DetailPoint> list(Page<DetailPoint> page) {
-		// TODO Auto-generated method stub
-		return null;
+
+	//分页显示细知识点
+	public List<DetailPoint> listByGeneralPointId(Page<DetailPoint> page, Object generalPointId){
+		return detailPointDao.readEntitiesByGeneralPointId(page, generalPointId);
 	}
 
 	// get & set method

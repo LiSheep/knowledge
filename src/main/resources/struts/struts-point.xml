@@ -14,6 +14,9 @@
 	<package name="dpoint" namespace="/" extends="struts-knowledge">
 		<action name="*DPoint" class="detailPointAction" method="{1}">
 			<result name="toinput">/WEB-INF/views/point/inputDetailPoint.jsp</result>
+			<result name="togenerallist" type="redirect">adminListGPoint.action</result>
+			<result name="adminlist">/WEB-INF/views/point/adminListDetailPoint.jsp</result>
+			<result name="tolist" type="redirect">adminListDPoint.action</result>
 		</action>
 	</package>
 </struts>

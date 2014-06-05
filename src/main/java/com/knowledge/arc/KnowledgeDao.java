@@ -16,6 +16,9 @@ public abstract class KnowledgeDao<T extends KnowledgeEntity> {
 	public abstract int create(T t);
 	public abstract int deleteEntity(T t);
 	public abstract int updateEntity(T t);
+	public abstract T readEntityById(Object id);
+	
+	
 	//TODO readEntity(User t)
 	/*
 	 * query one Object
@@ -28,20 +31,20 @@ public abstract class KnowledgeDao<T extends KnowledgeEntity> {
 	}
 	
 	//查询记录个数
-	public int query4TotalCount(String sql) {
+	public int query4TotalCount(String sql, Object[]args) {
 		String buffer = "SELECT count(1) as count FROM (" + sql + " ) AS T1";
-		return jdbcTemplate.queryForInt(buffer);
+		return jdbcTemplate.queryForInt(buffer, args);
 	}
 	
 	//分页
-	public void query4Page(String sql, RowMapper<T> mapper, Page<T> page, int num) {
-		page.setTotalCount(query4TotalCount(sql));
+	public void query4Page(String sql, RowMapper<T> mapper, Page<T> page, Object[]args, int num) {
+		page.setTotalCount(query4TotalCount(sql, args));
 		StringBuffer buffer = new StringBuffer(sql);
 		int startCursor = page.getPageNum() * page.getPageSize();
 		int endCursor = page.getPageSize();
 		
 		buffer.append(" ORDER BY ").append(page.getOrderBy()).append(" LIMIT ").append(startCursor).append(", ").append(endCursor);
-		page.setResult(jdbcTemplate.query(buffer.toString(), mapper));
+		page.setResult(jdbcTemplate.query(buffer.toString(), mapper, args));
 	}
 	
 	// get & set method

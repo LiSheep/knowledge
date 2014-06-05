@@ -6,25 +6,28 @@ import java.util.concurrent.ExecutionException;
 import com.knowledge.arc.KnowledgeAction;
 import com.knowledge.dictionary.Dictionary;
 import com.knowledge.dictionary.DictionaryServices;
+import com.knowledge.point.GeneralPoint;
+import com.knowledge.point.GeneralPointServices;
 import com.opensymphony.xwork2.ActionContext;
 
 public class CommentAction extends KnowledgeAction<Comment>{
 
 	private static final long serialVersionUID = 8588855865774891306L;
 	private CommentServices commentServices;
+	private GeneralPointServices generalPointServices;
 	private DictionaryServices dictionaryServices;
 	
 	public CommentAction(){
 		super();
 	}
-	public String list(){
-		this.entities = commentServices.list();
+	
+	//显示General Point的list
+	public String listGPoint(){
+		getModel().setGeneralPoint(generalPointServices.findEntityById(getKey()));
+		commentServices.listByGeneralPointId(getPage(), getKey());
 		return "list";
 	}
 
-	private List<Dictionary> importanceDict;
-	private List<Dictionary> complexityDict;
-	
 	public String input(){
 		setSessions();
 		return "input";
@@ -53,53 +56,20 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	}
 
 	
-	public List<Dictionary> getImportanceDict() {
-		//知识点重要程度-> dictionary:fieldCode=3
-		//TODO:配置文件 
-		try {
-			importanceDict = dictionaryServices.findLabels(3);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return importanceDict;
-	}
-
-	public List<Dictionary> getComplexityDict() {
-		//知识点难易程度-> dictionary:fieldCode=4
-		try {
-			complexityDict = dictionaryServices.findLabels(4);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return complexityDict;
-	}
-	
-	public String getLabel(String field, int code) {
-		int fieldCode = 0;
-		// TODO:这个要改哦
-		if(field  == "importance")
-			fieldCode = 3;
-		else if(field == "complexity")
-			fieldCode = 4;
-		
-		try {
-			return dictionaryServices.findDictionary(fieldCode, code)
-					.getLabel();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "系统错误";
-		}
-	}
-	
 	@Override
 	public Comment getModel() {
 		if (null == model) {
 			model = new Comment();
 		}
 		return model;
+	}
+	
+	public GeneralPointServices getGeneralPointServices() {
+		return generalPointServices;
+	}
+
+	public void setGeneralPointServices(GeneralPointServices generalPointServices) {
+		this.generalPointServices = generalPointServices;
 	}
 
 	public void setSessions() {
