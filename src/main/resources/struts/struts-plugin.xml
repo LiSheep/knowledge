@@ -27,6 +27,7 @@
 		<global-results>
 			<result name="nologin">/WEB-INF/views/user/login.jsp</result>
 			<result name="permission">/WEB-INF/views/message/permission.jsp</result>
+			<result name="error">/WEB-INF/views/error.jsp</result>
 		</global-results>
 		
 		<global-exception-mappings>
