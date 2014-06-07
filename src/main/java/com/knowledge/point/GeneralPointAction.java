@@ -19,8 +19,6 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 		String keyString = getKey();
 		if ( keyString == null || !keyString.equals("")){ // 更新界面需要的值
 			this.model = generalPointServices.findEntityById(keyString);
-		}else {
-			this.model = null;
 		}
 		return "toinput";
 	}
@@ -32,7 +30,7 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 		} else { // 更新
 			generalPointServices.update(getModel());
 		}
-		this.model = null;	//TODO:这里有一个问题，如果不至空，其他toinput请求也会获取到model的值。 -ltc 2014/06/03
+//		this.model = null;	//TODO:这里有一个问题，如果不至空，其他toinput请求也会获取到model的值。 -ltc 2014/06/03
 		return "tolist";
 	}
 

@@ -53,13 +53,13 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 		} else { // 更新
 			detailPointServices.update(getModel());
 		}
-		this.model = null; // TODO:这里有一个问题，如果不至空，其他toinput请求也会获取到model的值。 -ltc  2014/06/03
 		return "tolist";
 	}
 
 	public String adminList(){
 		if(getKey() == null || getKey().equals(""))
 			return "togenerallist";
+		getPage().setPageSize(100);	//细知识数量不能过多，因此不必分页。
 		detailPointServices.listByGeneralPointId(getPage(), getKey());
 		getModel().setGeneralPoint(generalPointServices.findEntityById(getKey()));
 		return "adminlist";
@@ -70,6 +70,7 @@ public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 		detailPointServices.deleteLogic(getModel());
 		return "tolist";
 	}
+	
 	
 	public void setSessions() {
 		List<Dictionary> dicImportance = null;

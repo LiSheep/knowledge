@@ -15,7 +15,7 @@
 		<property name="generalPointDao" ref="generalPointDao"></property>
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
 	</bean>
-	<bean id="generalPointAction" class="com.knowledge.point.GeneralPointAction">
+	<bean id="generalPointAction" class="com.knowledge.point.GeneralPointAction" scope="prototype">
 		<property name="generalPointServices" ref="generalPointServices"></property>
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
 	</bean>
@@ -28,7 +28,7 @@
 		<property name="detailPointDao" ref="detailPointDao"></property>
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
 	</bean>
-	<bean id="detailPointAction" class="com.knowledge.point.DetailPointAction">
+	<bean id="detailPointAction" class="com.knowledge.point.DetailPointAction" scope="prototype">
 		<property name="detailPointServices" ref="detailPointServices"></property>
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
 		<property name="generalPointServices" ref="generalPointServices"></property>

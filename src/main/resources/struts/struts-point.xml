@@ -16,7 +16,11 @@
 			<result name="toinput">/WEB-INF/views/point/inputDetailPoint.jsp</result>
 			<result name="togenerallist" type="redirect">adminListGPoint.action</result>
 			<result name="adminlist">/WEB-INF/views/point/adminListDetailPoint.jsp</result>
-			<result name="tolist" type="redirect">adminListDPoint.action</result>
+			<result name="tolist" type="redirectAction">
+				<param name="actionName">adminListDPoint</param>
+				<param name="namespace">/</param>
+				<param name="key">${model.generalPoint.id}</param>
+			</result>
 		</action>
 	</package>
 </struts>

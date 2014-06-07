@@ -83,6 +83,7 @@ function addEntity() {
 						<div class="panel-body">
 						<a href="#" onclick="addEntity()"> 添加一个新的细知识点</a>
 							<form method="post" id="listform">
+								<input type="hidden" name="model.generalPoint.id" value="${model.generalPoint.id }">
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -107,12 +108,6 @@ function addEntity() {
 								</table>
 								<input id="key" type="hidden" name="key" />
 							</form>
-							<div class="row">
-								<div class="col-md-12">
-									<page:page url="/adminListDPoint.action" page="${page }" />
-								</div>
-							</div>
-							
 						</div>
 					</div>
 					<!--   panel end  -->

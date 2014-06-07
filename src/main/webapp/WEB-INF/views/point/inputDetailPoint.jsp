@@ -63,6 +63,7 @@
 
 						<form method="post" action="subinputDPoint.action">
 							<input type="hidden" name="key" value="${model.generalPoint.id }">
+							<input type="hidden" name="model.id" value="${model.id }">
 							<input type="hidden" name="model.generalPoint.id" value="${model.generalPoint.id }" />
 							<div class="panel-body" id="form" style="padding: 16px;">
 								<div class="row">

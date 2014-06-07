@@ -100,7 +100,7 @@
 							<!--    他人评论内容         -->
 							<div id="comment">
 								<s:iterator value="entities">
-									<div class="panel panel-default" style="margin-top: 10px;">
+									<div class="panel panel-default">
 										<div id="commet-item" class="row">
 											<div class="panel-body">
 												<div id="avater" class="col-md-2">
