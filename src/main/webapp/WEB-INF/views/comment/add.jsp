@@ -12,7 +12,6 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
-<script type="text/javascript" src="<%=basePath%>know/js/simditor.js"></script>
 <title>评论列表</title>
 </head>
 <body>

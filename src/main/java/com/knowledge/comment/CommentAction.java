@@ -6,7 +6,9 @@ import java.util.concurrent.ExecutionException;
 import com.knowledge.arc.KnowledgeAction;
 import com.knowledge.dictionary.Dictionary;
 import com.knowledge.dictionary.DictionaryServices;
+import com.knowledge.point.GeneralPoint;
 import com.knowledge.point.GeneralPointServices;
+import com.knowledge.user.User;
 import com.opensymphony.xwork2.ActionContext;
 
 public class CommentAction extends KnowledgeAction<Comment>{
@@ -22,7 +24,10 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	
 	//显示General Point的list
 	public String listGPoint(){
-		getModel().setGeneralPoint(generalPointServices.findEntityById(getKey()));
+		GeneralPoint gPoint = generalPointServices.findEntityById(getKey());		//key为generalPoint
+		if(gPoint == null)
+			return "tomain";
+		getModel().setGeneralPoint(gPoint);
 		commentServices.listByGeneralPointId(getPage(), getKey());
 		return "list";
 	}
@@ -35,6 +40,39 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	public String add(){	//TODO:还需要添加防止重复提交功能
 		commentServices.add(getModel());
 		return "list";
+	}
+	
+	//提交学习笔记表单 
+	public String subLearn(){
+//		GeneralPoint gPoint = generalPointServices.findEntityById(getModel().getGeneralPoint().getId());
+//		if(gPoint == null){
+//			return "tolist";
+//		}
+//		getModel().setGeneralPoint(gPoint);
+		getModel().setUser((User)ActionContext.getContext().getSession().get("user"));
+		
+		if(getModel().getId() == null || getModel().getId().equals("") ){
+			commentServices.add(getModel());
+		}
+		else {
+			commentServices.updateNote(getModel());
+		}
+		//设置key，用于toLearn();
+		this.key = getModel().getGeneralPoint().getId();
+		return toLearn();
+	}
+	
+	public String tofinishLearn(){
+		
+		
+		return "";
+	}
+	
+	public String toLearn(){
+		User user = (User)ActionContext.getContext().getSession().get("user");
+		this.model = commentServices.findEntityByGPointIdAndUserId(getKey(), user.getId());	
+		getModel().setUser((User)ActionContext.getContext().getSession().get("user"));
+		return "note";
 	}
 	
 	//get & set method
@@ -53,7 +91,6 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
 	}
-
 	
 	@Override
 	public Comment getModel() {

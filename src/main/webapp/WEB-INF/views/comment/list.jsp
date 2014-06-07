@@ -13,6 +13,11 @@
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <title>评论列表</title>
+<script type="text/javascript">
+	function toLearn(){
+		document.getElementById("commentForm").submit();
+	}
+</script>
 </head>
 <body>
 	<div class="container">
@@ -74,6 +79,8 @@
 					</div>
 				</div>
 				<div class="col-md-7 col-md-offset-1" id="main">
+				<form id="commentForm" action="detailGPoint.action" method="post">
+					<input type="hidden" name="key" value="${model.generalPoint.id }">
 					<div id="comment-cotainer">
 						<div class="panel-body" id="form" style="padding: 16px;">
 							<div class="row">
@@ -94,7 +101,7 @@
 									重要性：<s:property value="dictionaryServices.findDictionary(3, model.generalPoint.importance).getLabel()"/>
 								</div>
 								<div class="col-md-2 col-md-offset-1">
-							  		<button type="button" class="btn btn-success" style="float: right;">学习该知识点</button>
+							  		<button type="button" class="btn btn-success" style="float: right;" onclick="toLearn();">学习该知识点</button>
 						 		</div>
 							</div>
 							<!--    他人评论内容         -->
@@ -130,10 +137,11 @@
 									</div>
 								</s:iterator>
 							</div>
-							<page:page url="/listGPointComment.action" page="${page }" />
+							<page:page url="/listGPointComment.action?key=${model.generalPoint.id }" page="${page }" />
 							<hr style="margin-top: 0px;" />
 						</div>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>

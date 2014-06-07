@@ -39,6 +39,12 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 		generalPointServices.list(getPage());
 		return "adminlist";
 	}
+	
+	//知识点详细显示
+	public String detail(){
+		this.model = generalPointServices.findEntityById(getKey());
+		return "detail";
+	}
 
 	// 删除粗知识点
 	public String delete() {

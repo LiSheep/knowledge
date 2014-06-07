@@ -25,3 +25,4 @@
 	<script type="text/javascript" src="<%=basePath%>plguin/xcharts/d3.js" ></script>
 	<script type="text/javascript" src="<%=basePath%>plguin/xcharts/rainbow.min.js" ></script>
 	<script type="text/javascript" src="<%=basePath%>plguin/xcharts/xcharts.js" ></script>
+	

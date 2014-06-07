@@ -3,7 +3,6 @@ package com.knowledge.comment;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 import com.knowledge.arc.KnowledgeServices;
 import com.knowledge.dictionary.DictionaryServices;
@@ -16,20 +15,19 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	@Override
 	public int add(Comment t) {
 
-		int maxImportanceCode = 0, maxComplexityCode = 0;
-		try {
-			maxImportanceCode = dictionaryServices.findMaxCodeByFieldCode(3);
-			maxComplexityCode = dictionaryServices.findMaxCodeByFieldCode(4);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if(t.getComment() == null || t.getNote() == null ||
-				t.getImportance() <= 0 || t.getImportance() > maxImportanceCode||
-				t.getComplexity() <= 0 || t.getComplexity() > maxComplexityCode){
-			return 0;
-		}
+//		int maxImportanceCode = 0, maxComplexityCode = 0;
+//		try {
+//			maxImportanceCode = dictionaryServices.findMaxCodeByFieldCode(3);
+//			maxComplexityCode = dictionaryServices.findMaxCodeByFieldCode(4);
+//		} catch (ExecutionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(t.getImportance() <= 0 || t.getImportance() > maxImportanceCode||
+//				t.getComplexity() <= 0 || t.getComplexity() > maxComplexityCode){
+//			return 0;
+//		}
 		t.setId(UUID.randomUUID().toString());
 		return commentDao.create(t);
 	}
@@ -57,10 +55,24 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 		return null;
 	}
 	
+	public Comment findEntityByGPointIdAndUserId(Object gid, Object uid){
+		return commentDao.readEntityByGPointIdAndUserId(gid, uid);
+	}
+	
 	@Override
 	public int update(Comment t) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	//只更新笔记
+	public int updateNote(Comment t) {
+		return commentDao.updateNote(t);
+	}
+	
+	//只更新评论
+	public int updateComment(Comment t){
+		return commentDao.updateComment(t);
 	}
 	
 	@Override

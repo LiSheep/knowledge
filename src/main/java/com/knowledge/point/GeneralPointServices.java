@@ -64,6 +64,7 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 	public GeneralPoint findEntityById(Object id) {
 		return generalPointDao.readEntityById(id);
 	}
+	
 	/*
 	 * @author LiuNaidi
 	 * @Param General Point Type

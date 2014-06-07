@@ -8,6 +8,7 @@
 			<result name="toinput">/WEB-INF/views/point/inputGeneralPoint.jsp</result>
 			<result name="adminlist">/WEB-INF/views/point/adminListGeneralPoint.jsp</result>
 			<result name="tolist" type="redirect">adminListGPoint.action</result>
+			<result name="detail">/WEB-INF/views/point/detailGeneralPoint.jsp</result>
 		</action>
 	</package>
 	

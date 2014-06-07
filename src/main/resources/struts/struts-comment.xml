@@ -7,6 +7,13 @@
 		<action name="*Comment" class="commentAction" method="{1}">
 			<result name="list">/WEB-INF/views/comment/list.jsp</result>
 			<result name="add">/WEB-INF/views/comment/add.jsp</result>
+			<result name="note">/WEB-INF/views/comment/inputnote.jsp</result>
+			
+			
+			<result name="tolist" type="redirectAction">
+				<param name="actionName">listGPointComment</param>
+				<param name="key">${key}</param>
+			</result>
 		</action>
 	</package>
 </struts>
