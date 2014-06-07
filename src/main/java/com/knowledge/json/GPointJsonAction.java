@@ -23,7 +23,6 @@ public class GPointJsonAction extends KnowledgeAction<GeneralPoint>{
 		int type = getModel().getPointType();
 		points = generalPointServices.findJsonByComplexityType(type);
 		json = toJson.convertListToJson(points);
-		System.out.println(json);
 		try {
 			ServletActionContext.getResponse().getWriter().write(json);
 			ServletActionContext.getResponse().getWriter().flush();
@@ -39,7 +38,6 @@ public class GPointJsonAction extends KnowledgeAction<GeneralPoint>{
 		int type = getModel().getPointType();
 		points = generalPointServices.findJsonByImportanceType(type);
 		json = toJson.convertListToJson(points);
-		System.out.println(json);
 		try {
 			ServletActionContext.getResponse().getWriter().write(json);
 			ServletActionContext.getResponse().getWriter().flush();
