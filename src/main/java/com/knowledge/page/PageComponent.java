@@ -71,8 +71,8 @@ public class PageComponent<T extends KnowledgeEntity> {
 			buffer.append("</div>");
 		} else if (page.hasNext()) {
 			buffer.append("<div class=\"col-sm-6\">");
-			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">首页</button></div>");
-			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">上一页</button></div>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">首页</button>");
+			buffer.append("<button type=\"button\" class=\"btn btn-default\" disabled=\"disabled\"").append(">上一页</button>");
 			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getNextPage()).append(");").append("\">下一页</button>");
 			buffer.append("<button type=\"button\" class=\"btn btn-default\" id=\"").append(this.pageName).append("\" ").append(" onclick=\"get").append(this.pageName).append("(").append(page.getTotalPage() - 1).append(");").append("\">末页</button>");
 			buffer.append("</div>");
@@ -93,10 +93,10 @@ public class PageComponent<T extends KnowledgeEntity> {
 		}
 		buffer.append("<div class=\"col-sm-2\"><div class=\"row\"><div class=\"form-group\">");
 		buffer.append("<div class=\"col-sm-5\">");
-		buffer.append("<input type=\"text\" class=\"form-control\" id=\'gopage\' />");
+//		buffer.append("<input type=\"text\" class=\"form-control\" id=\'gopage\' />");
 		buffer.append("</div>");
 		buffer.append("<div class=\"col-sm-6\">");
-		buffer.append("<button type=\"button\" class=\"btn btn-default\"").append(" onclick=\"get").append(this.pageName).append("(document.getElementById(\'gopage\').value);\"").append(">跳转</button>");
+//		buffer.append("<button type=\"button\" class=\"btn btn-default\"").append(" onclick=\"get").append(this.pageName).append("(document.getElementById(\'gopage\').value);\"").append(">跳转</button>");
 		buffer.append("</div>");
 		buffer.append("</div></div></div>");
 		buffer.append("<input type=\"hidden\" id=\"totalCount\"").append(" name=\"").append(this.totalCountName).append("\" value=\"").append(page.getTotalCount()).append("\"/>");

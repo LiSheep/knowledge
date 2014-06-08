@@ -7,7 +7,7 @@ import com.knowledge.arc.KnowledgeEntity;
 
 public class Page<T extends KnowledgeEntity> {
 	private int totalCount = 0;
-	private int pageSize = 3;
+	private int pageSize = 10;
 	private int totalPage = 1;
 	private int pageNum = 0;
 	private String orderBy;
