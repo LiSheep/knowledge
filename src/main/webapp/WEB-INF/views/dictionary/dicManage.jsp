@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 </head>
-<body>
+<body style="margin-top: 10px">
 	<form class="form-horizontal" role="form" action="addDictionaryAction.action" method="post">
 	  <div class="form-group">
 	    <label for="inputFiledName" class="col-sm-2 control-label">fieldName</label>

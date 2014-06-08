@@ -12,6 +12,35 @@
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <title>Insert title here</title>
+<script type="text/javascript">
+//不同选项卡的关联
+$( document ).ready(function() {
+	$("#net").click(function () {
+		requestJson(4);
+		
+	});
+	$("#java").click(function () {
+		requestJson(1);
+		
+	});
+	$("#linux").click(function () {
+		requestJson(2);
+		
+	});
+	$("#ui").click(function () {
+		requestJson(6);
+		
+	});
+	$("#c").click(function () {
+		requestJson(7);
+		
+	});
+	$("#database").click(function () {
+		requestJson(5);
+		
+	});
+});
+</script>
 </head>
 <body>
 	<div class="container" style="margin-top: 5px;">
@@ -24,9 +53,9 @@
 				</div>
 				<div class="col-md-6 col-md-offset-1">
 					<ul class="nav nav-pills nav-justified">
-						<li class="active"><a href="#">首页</a></li>
+						<li class="active"><a href="<%=basePath %>loginUserAction.action">首页</a></li>
 						<li><a href="#">知识点</a></li>
-						<li><a href="#">登录/注册</a></li>
+						<li><a>您好 : <b><s:property value="#session.user.username"/></b></a></li>
 					</ul>
 				</div>
 			</div>
@@ -34,13 +63,13 @@
 		<div id="contant" style="margin-top: 10px;">
 			<div class="row">
 				<div class="col-md-3">
-					<ul class="nav nav-pills nav-stacked">
-						<li class="active" id="side-nav"><a href="#">知识体系</a></li>
-						<li id="side-nav"><a>java</a></li>
-						<li id="side-nav"><a>.net</a></li>
-						<li id="side-nav"><a>UI</a></li>
-						<li id="side-nav"><a>...</a></li>
-						<li id="side-nav"><a>...</a></li>
+					<ul class="nav nav-pills nav-stacked" id="knowledgeSystem">
+						<li class="active" id="side-nav"><a id="java">java</a></li>
+						<li id="side-nav"><a id="net">.net</a></li>
+						<li id="side-nav"><a id="ui">UI</a></li>
+						<li id="side-nav"><a id="linux">Linux</a></li>
+						<li id="side-nav"><a id="c">Linux</a></li>
+						<li id="side-nav"><a id="database">Linux</a></li>
 					</ul>
 				</div>
 				<div class="col-md-7 col-md-offset-1" id="main">
@@ -49,6 +78,31 @@
 							<figure id="mainChart" style="height: 320px; width: 700px;"></figure>
 						</div>
 						<script type="text/javascript">
+						function requestJson(num) {
+							var json = {
+								"xScale" : "ordinal",
+								"yScale" : "linear",
+								"type" : "line-dotted",
+								"comp" : [],
+								"main" : []
+							};
+							
+							if (typeof num == undefined)
+								num = 1;
+
+							reqImportance(function(err, data) {
+
+								json.main[0] = data;
+
+								reqComplexity(function(err, data) {
+									json.main[1] = data;
+
+									new xChart('line-dotted', json, '#mainChart', opts);
+								}, num);
+
+							}, num);
+						}
+						
 							var tt = document.createElement('div'), leftOffset = -(~~$(
 									'html').css('padding-left').replace('px',
 									'') + ~~$('body').css('margin-left')
@@ -73,36 +127,15 @@
 									  window.location.href = "<%=basePath%>listGPointComment.action?key=" + d.id;
 								}
 							};
-							var myChart;
-							var json;
-							(function requestJson() {
-								json = {
-									"xScale" : "ordinal",
-									"yScale" : "linear",
-									"type" : "line-dotted",
-									"comp" : [],
-									"main" : []
-								};
+							
+							requestJson(1);
 
-								reqImportance(function(err, data) {
-
-									json.main[0] = data;
-
-									reqComplexity(function(err, data) {
-										json.main[1] = data;
-
-										myChart = new xChart('line-dotted', json, '#mainChart', opts);
-									});
-
-								});
-							})();
-
-							function reqImportance(cb) {
+							function reqImportance(cb, num) {
 								$.ajax({
 									url : "listByTypeImportanceJson.action",
 									type : "post",
 									data : {
-										"model.pointType" : 1
+										"model.pointType" : num
 									},
 									success : function(data) {
 										var json = {
@@ -114,12 +147,12 @@
 									}
 								});
 							}
-							function reqComplexity(cb) {
+							function reqComplexity(cb, num) {
 								$.ajax({
 									url : "listByTypeCompelxityJson.action",
 									type : "post",
 									data : {
-										"model.pointType" : 1
+										"model.pointType" : num
 									},
 									success : function(data) {
 										var json = {
