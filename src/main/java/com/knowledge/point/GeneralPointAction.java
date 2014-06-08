@@ -8,6 +8,10 @@ import com.knowledge.dictionary.Dictionary;
 import com.knowledge.dictionary.DictionaryServices;
 import com.opensymphony.xwork2.ActionContext;
 
+/*
+ * GeneralPoint Action
+ * ltc: 2014/06/08
+ */
 public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 
 	private static final long serialVersionUID = -4973793253208227806L;

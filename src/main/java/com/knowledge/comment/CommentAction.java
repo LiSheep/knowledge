@@ -12,6 +12,9 @@ import com.knowledge.user.User;
 import com.knowledge.user.UserServices;
 import com.opensymphony.xwork2.ActionContext;
 
+/*
+ * Comment Action: 2014/06/08
+ */
 public class CommentAction extends KnowledgeAction<Comment>{
 
 	private static final long serialVersionUID = 8588855865774891306L;

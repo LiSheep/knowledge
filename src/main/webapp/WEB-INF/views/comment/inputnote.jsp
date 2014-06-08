@@ -67,7 +67,13 @@
 			</div>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-8">
-					<button class="btn btn-primary btn-lg" onclick="sublearn();">保存</button>
+					<button id="btn-save" class="btn btn-primary btn-lg" onclick="sublearn();">保存</button>
+					<script type="text/javascript">
+						$("#btn-save").popover({
+							placement: "left",
+							content:"保存成功"
+						});
+					</script>
 				</div>
 				<div class="col-md-1">
 					<button class="btn btn-warning btn-lg" data-toggle="modal"
