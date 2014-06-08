@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -43,7 +44,13 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 	
 	public GeneralPoint readEntityById(Object id){
 		String sql = "SELECT id, pointName, pointDescrible, pointDetail, pointType, complexity, importance, orderNum FROM knowledge_point_general WHERE id=? AND delflag = 0";
-		return jdbcTemplate.queryForObject(sql, new GeneralPointMapper(), id);
+		GeneralPoint entity = null;
+		try {
+			entity = jdbcTemplate.queryForObject(sql, new GeneralPointMapper(), id);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+		return entity;
 	}
 	
 	/*

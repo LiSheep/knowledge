@@ -12,8 +12,14 @@
 			
 			<result name="tolist" type="redirectAction">
 				<param name="actionName">listGPointComment</param>
-				<param name="key">${key}</param>
+				<param name="key">${model.generalPoint.id}</param>	<!-- key: gpointid -->
 			</result>
+			<result name="tolearn" type="redirectAction">
+				<param name="actionName">toLearnComment</param>
+				<param name="key">${model.generalPoint.id}</param>
+			</result>
+			<result name="tofinish">/WEB-INF/views/comment/tofinish.jsp</result>
+			<result name="shownote">/WEB-INF/views/comment/shownote.jsp</result>
 		</action>
 	</package>
 </struts>

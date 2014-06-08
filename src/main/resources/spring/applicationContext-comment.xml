@@ -18,5 +18,6 @@
 		<property name="commentServices" ref="commentServices"></property>
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
 		<property name="generalPointServices" ref="generalPointServices"></property>
+		<property name="userServices" ref="userServices"></property>
 	</bean>
 </beans>

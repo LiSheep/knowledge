@@ -43,61 +43,11 @@
 				</div>
 				<hr />
 				<div id="note" style="margin-bottom: 26px;">
-					<h4>我的学习笔记：</h4>
-
-					<form id="commentForm" action="subLearnComment.action" method="post">
-						<input type="hidden" name="model.id" value="${model.id }">
-						<input type="hidden" name="model.generalPoint.id" value="${model.generalPoint.id }">
-						<textarea id="edit" name="model.note">${model.note }</textarea>
-					</form>
-					<script type="text/javascript">
-						(function() {
-						  $(function() {
-						    return new Simditor({
-						      textarea: $('#edit'),
-						      placeholder: '',
-						      mark:true
-						    });
-						  });
-				
-						}).call(this);
-				
-						</script>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-1 col-md-offset-8">
-					<button class="btn btn-primary btn-lg" onclick="sublearn();">保存</button>
-				</div>
-				<div class="col-md-1">
-					<button class="btn btn-warning btn-lg" data-toggle="modal"
-						data-target="#completeNote" onclick="finishlearn()">完成</button>
-				</div>
-				<div class="col-md-1">
-					<button class="btn btn-default btn-lg">取消</button>
+					<h4>${model.user.userName } 的学习笔记：</h4>
+					<div>${model.note }</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- Modal -->
-	<div class="modal fade" id="completeNote" tabindex="-1" role="dialog"
-		aria-labelledby="deleteLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="deleteLabel">Warning!</h4>
-				</div>
-				<div class="modal-body">确定完成意味着结束本知识点学习，完成学习？</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">继续学习</button>
-					<button type="button" class="btn btn-primary" onclick="sublearn();">确定完成</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Modal end -->
 </body>
 </html>

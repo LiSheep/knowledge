@@ -56,8 +56,8 @@ public class UserDao extends KnowledgeDao<User> {
 
 	@Override
 	public User readEntityById(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT username, id, userpass, role, regTime FROM knowledge_user WHERE id = ?";
+		return jdbcTemplate.queryForObject(sql, new UserRowMapper(), id);
 	}
 }
 

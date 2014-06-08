@@ -43,8 +43,7 @@ public class UserServices implements KnowledgeServices<User> {
 
 	@Override
 	public User findEntityById(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.readEntityById(id);
 	}
 
 	@Override
