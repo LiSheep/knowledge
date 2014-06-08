@@ -1,16 +1,26 @@
 package com.knowledge.point;
 
+import java.util.List;
+
 import com.knowledge.arc.KnowledgeEntity;
 
 public class GeneralPoint extends KnowledgeEntity {
-	String pointName;
-	String pointDescrible;
-	String pointDetail;
-	int pointType;
-	int orderNum;
-	int importance;	//3
-	int complexity;	//4
+	private String pointName;
+	private String pointDescrible;
+	private String pointDetail;
+	private int pointType;
+	private int orderNum;
+	private int importance;	//3
+	private int complexity;	//4
 	
+	private List<DetailPoint> detailPoints;
+	
+	public List<DetailPoint> getDetailPoints() {
+		return detailPoints;
+	}
+	public void setDetailPoints(List<DetailPoint> detailPoints) {
+		this.detailPoints = detailPoints;
+	}
 	public String getPointName() {
 		return pointName;
 	}
