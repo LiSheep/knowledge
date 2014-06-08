@@ -12,6 +12,9 @@ import com.knowledge.user.User;
 import com.knowledge.user.UserServices;
 import com.opensymphony.xwork2.ActionContext;
 
+/*
+ * Comment Action: 2014/06/08
+ */
 public class CommentAction extends KnowledgeAction<Comment>{
 
 	private static final long serialVersionUID = 8588855865774891306L;
@@ -65,7 +68,7 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	
 	//学习笔记单击完成后，进入评论页面
 	public String finishLearn(){
-		setSessions();	//TODO:如果函数改了，记得改这哦
+		setSessions();	//TODO:如果函数改了，记得改这哦	ltc:2014/06/07
 		
 		User user = (User)ActionContext.getContext().getSession().get("user");
 		getModel().setUser(user);
@@ -87,12 +90,14 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	
 	public String showNote(){
 		String commentId = getKey();	//comment id
+		//TODO;	感觉将key强制定为该action的id， 其他的则全部用model传值会好点。		-ltc: 2014/06/08
 		if(commentId == null || commentId.equals("")){
 			return "error";
 		}
 		this.model = commentServices.findEntityById(getKey());
 		if(this.model == null)
 			return "error";
+		getModel().setUser((User)ActionContext.getContext().getSession().get("user"));
 		return "shownote";
 	}
 	

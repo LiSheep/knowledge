@@ -17,17 +17,17 @@
 			<ul class="nav nav-pills nav-justified">
 				<li><a href="#">首页</a></li>
 				<li><a href="#">知识点</a></li>
-				<li class="active"><a href="#">管理</a></li>
 				<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">个人信息
 						<b class="caret"></b>
 				</a>
+				<!-- 
 					<ul class="dropdown-menu">
 						<li><a href="#">Action</a></li>
 						<li><a href="#">Another action</a></li>
 						<li><a href="#">Something else here</a></li>
 						<li class="divider"></li>
 						<li><a href="#">Separated link</a></li>
-					</ul></li>
+					</ul></li> -->
 			</ul>
 		</div>
 	</div>

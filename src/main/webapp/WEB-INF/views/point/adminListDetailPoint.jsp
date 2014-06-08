@@ -36,35 +36,8 @@ function addEntity() {
 	<div class="container">
 		<div id="header">
 			<jsp:include page="/WEB-INF/views/common/user-header.jsp"></jsp:include>
-			
-			<div class="row" id="search">
-				<div class="col-md-3 col-md-offset-8">
-					<span class="glyphicon glyphicon-search"></span>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle"
-							data-toggle="dropdown">
-							知识体系<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Dropdown link</a></li>
-							<li><a href="#">Dropdown link</a></li>
-						</ul>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle"
-							data-toggle="dropdown">
-							时间段<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Dropdown link</a></li>
-							<li><a href="#">Dropdown link</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
 		</div>
-		
-		<div id="contant">
+		<div id="contant" style="margin-top:30px;">
 			<div class="row">
 				<div class="col-md-3">
 					<ul class="nav nav-pills nav-stacked">

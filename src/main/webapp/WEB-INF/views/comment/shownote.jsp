@@ -14,17 +14,6 @@
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <script type="text/javascript"
 	src="<%=basePath%>plguin/simditor/scripts/js/simditor-markdown.js"></script>
-<script type="text/javascript">
-	function sublearn(){
-		document.getElementById("commentForm").action = "subLearnComment.action";
-		document.getElementById("commentForm").submit();
-	}
-	
-	function finishlearn(){
-		document.getElementById("commentForm").action = "tofinishLearnComment.action";
-		document.getElementById("commentForm").submit();
-	}
-</script>
 </head>
 <body>
 	<div class="container">
@@ -34,16 +23,16 @@
 				<div id="describe">
 					<div class="panel-body" id="form">
 						<div class="row">
-							<h3>
+							<h2>
 								<a><s:property value="model.generalPoint.pointName" />/
 								<s:property value="dictionaryServices.findDictionary(2, model.generalPoint.pointType).getLabel()" /></a>
-							</h3>
+							</h2>
 						</div>
 					</div>
 				</div>
 				<hr />
-				<div id="note" style="margin-bottom: 26px;">
-					<h4>${model.user.userName } 的学习笔记：</h4>
+				<h3>${model.user.username } 的学习笔记：</h3>
+				<div id="note" style="margin-top: 50px; padding: 12px;border-radius:9px; border: 1.5px solid #428BCA; box-shadow:2px 2px 4px #2D687F; ">
 					<div>${model.note }</div>
 				</div>
 			</div>

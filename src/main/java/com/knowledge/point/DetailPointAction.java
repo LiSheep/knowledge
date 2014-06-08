@@ -8,6 +8,10 @@ import com.knowledge.dictionary.Dictionary;
 import com.knowledge.dictionary.DictionaryServices;
 import com.opensymphony.xwork2.ActionContext;
 
+/*
+ * DetailPoint Action
+ * ltc 2014/06/08
+ */
 public class DetailPointAction extends KnowledgeAction<DetailPoint>{
 
 	private static final long serialVersionUID = 8423136847466976304L;
