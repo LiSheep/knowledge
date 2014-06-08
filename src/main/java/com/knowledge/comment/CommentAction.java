@@ -9,6 +9,7 @@ import com.knowledge.dictionary.DictionaryServices;
 import com.knowledge.point.GeneralPoint;
 import com.knowledge.point.GeneralPointServices;
 import com.knowledge.user.User;
+import com.knowledge.user.UserServices;
 import com.opensymphony.xwork2.ActionContext;
 
 public class CommentAction extends KnowledgeAction<Comment>{
@@ -17,6 +18,7 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	private CommentServices commentServices;
 	private GeneralPointServices generalPointServices;
 	private DictionaryServices dictionaryServices;
+	private UserServices userServices;
 	
 	public CommentAction(){
 		super();
@@ -49,7 +51,8 @@ public class CommentAction extends KnowledgeAction<Comment>{
 //			return "tolist";
 //		}
 //		getModel().setGeneralPoint(gPoint);
-		getModel().setUser((User)ActionContext.getContext().getSession().get("user"));
+		User user = (User)ActionContext.getContext().getSession().get("user");
+		getModel().setUser(user);
 		
 		if(getModel().getId() == null || getModel().getId().equals("") ){
 			commentServices.add(getModel());
@@ -57,21 +60,49 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		else {
 			commentServices.updateNote(getModel());
 		}
-		//设置key，用于toLearn();
-		this.key = getModel().getGeneralPoint().getId();
-		return toLearn();
+		return "tolearn";
 	}
 	
-	public String tofinishLearn(){
+	//学习笔记单击完成后，进入评论页面
+	public String finishLearn(){
+		setSessions();	//TODO:如果函数改了，记得改这哦
 		
+		User user = (User)ActionContext.getContext().getSession().get("user");
+		getModel().setUser(user);
+		commentServices.updateNote(getModel());	//保存更改
 		
-		return "";
+		this.model = commentServices.findEntityById(getModel().getId());
+		if(this.model == null){
+			return "error";
+		}
+		return "tofinish";
+	}
+	
+	public String submit(){
+		if(commentServices.updateComment(getModel()) == 0){
+			return "error";
+		}
+		return "tolist";
+	}
+	
+	public String showNote(){
+		String commentId = getKey();	//comment id
+		if(commentId == null || commentId.equals("")){
+			return "error";
+		}
+		this.model = commentServices.findEntityById(getKey());
+		if(this.model == null)
+			return "error";
+		return "shownote";
 	}
 	
 	public String toLearn(){
 		User user = (User)ActionContext.getContext().getSession().get("user");
-		this.model = commentServices.findEntityByGPointIdAndUserId(getKey(), user.getId());	
+		this.model = commentServices.findEntityByGPointIdAndUserId(getKey(), user.getId());	//key为general point
+		
+		getModel().setGeneralPoint(generalPointServices.findEntityById(getKey()));
 		getModel().setUser((User)ActionContext.getContext().getSession().get("user"));
+		//TODO: sql 语句用太多啦。到时候再改吧。。。 -ltc 2014-06-07
 		return "note";
 	}
 	
@@ -106,6 +137,14 @@ public class CommentAction extends KnowledgeAction<Comment>{
 
 	public void setGeneralPointServices(GeneralPointServices generalPointServices) {
 		this.generalPointServices = generalPointServices;
+	}
+
+	public UserServices getUserServices() {
+		return userServices;
+	}
+
+	public void setUserServices(UserServices userServices) {
+		this.userServices = userServices;
 	}
 
 	public void setSessions() {

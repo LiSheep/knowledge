@@ -21,7 +21,7 @@
 	}
 	
 	function finishlearn(){
-		document.getElementById("commentForm").action = "tofinishLearnComment.action";
+		document.getElementById("commentForm").action = "finishLearnComment.action";
 		document.getElementById("commentForm").submit();
 	}
 </script>
@@ -71,7 +71,7 @@
 				</div>
 				<div class="col-md-1">
 					<button class="btn btn-warning btn-lg" data-toggle="modal"
-						data-target="#completeNote" onclick="finishlearn()">完成</button>
+						data-target="#completeNote">完成</button>
 				</div>
 				<div class="col-md-1">
 					<button class="btn btn-default btn-lg">取消</button>
@@ -93,7 +93,7 @@
 				<div class="modal-body">确定完成意味着结束本知识点学习，完成学习？</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">继续学习</button>
-					<button type="button" class="btn btn-primary" onclick="sublearn();">确定完成</button>
+					<button type="button" class="btn btn-primary" onclick="finishlearn();">确定完成</button>
 				</div>
 			</div>
 		</div>

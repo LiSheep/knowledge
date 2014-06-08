@@ -72,6 +72,9 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 	
 	//只更新评论
 	public int updateComment(Comment t){
+		if(t.getComment() == null || t.getComment().equals("")){
+			return 0;
+		}
 		return commentDao.updateComment(t);
 	}
 	
@@ -83,8 +86,7 @@ public class CommentServices  implements KnowledgeServices<Comment>  {
 
 	@Override
 	public Comment findEntityById(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		return commentDao.readEntityById(id);
 	}
 	
 	//get & set method
