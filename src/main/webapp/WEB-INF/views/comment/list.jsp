@@ -24,6 +24,7 @@
 		<jsp:include page="/WEB-INF/views/common/user-header.jsp"></jsp:include>
 		<div id="contant" style="margin-top: 26px;">
 			<div class="row">
+			<!--
 				<div class="col-md-3">
 					<div class="panel-group" id="accordion" style="padding-top:60px">
 						<div class="panel panel-default" id="side-nav">
@@ -77,7 +78,8 @@
 
 					</div>
 				</div>
-				<div class="col-md-7 col-md-offset-1" id="main">
+				  -->
+				<div class="col-md-11 col-md-offset-1" id="main">
 					<form id="commentForm" action="detailGPoint.action" method="post">
 						<input type="hidden" name="key" value="${model.generalPoint.id }">
 						<div id="comment-cotainer">
@@ -92,12 +94,12 @@
 								</div>
 							</div>
 							<div class="row" style="margin-bottom: 30px;">
-								<div class="col-md-3 col-md-offset-2">
+								<div class="col-md-3 col-md-offset-1 well" >
 									难度值：
 									<s:property
 										value="dictionaryServices.findDictionary(4, model.generalPoint.complexity).getLabel()" />
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-3 well">
 									重要性：
 									<s:property
 										value="dictionaryServices.findDictionary(3, model.generalPoint.importance).getLabel()" />

@@ -1,13 +1,20 @@
 package com.knowledge.comment;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.knowledge.arc.KnowledgeAction;
+import com.knowledge.common.ObjectToJson;
 import com.knowledge.dictionary.Dictionary;
 import com.knowledge.dictionary.DictionaryServices;
 import com.knowledge.point.GeneralPoint;
@@ -96,8 +103,10 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		if(this.model == null){
 			return "error";
 		}
-//		if(getModel().getComment() == null || getModel().getComment().equals(""))	//评论为空才添加timline，因为那说明他第一次完成了知识点
-//			addTimeline();	
+		if(getModel().getComment() == null || getModel().getComment().equals("")){	//评论为空才添加timline，因为那说明他第一次完成了知识点
+			addTimeline();	
+			readTimeline(user.getId());
+		}
 		return "tofinish";
 	}
 	
@@ -132,30 +141,51 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	}
 	
 	private void addTimeline() {
-		Timeline t = new Timeline();
 		User user = (User)ActionContext.getContext().getSession().get("user");
-		t.setHeadline(user.getUsername() + " 完成了新知识点");
+		Timeline t = new Timeline();
+		t.setHeadline(user.getUsername() + " 在今天注册了");
 		t.setId(UUID.randomUUID().toString());
-		t.setText("<h1>完成了一个新知识点</h1>");
+		t.setText("<h1>欢迎来到XX学习平台</h1>");
 		t.setUserKey(getModel().getId());
 		
 		TimelineDate date = new TimelineDate();
 		date.setId(UUID.randomUUID().toString());
-		date.setHeadline(user.getUsername() + " 喵了个咪");
+		date.setHeadline(user.getUsername() + " begin to learn each other");
 		date.setHeadlineKey(t.getId());
-		date.setText("喵喵喵！");
-		date.setEndDate(new Date().toString());
+		date.setText("The first page for your learn that you are joined !");
+		date.setEndDate("2200-00-00");
 		date.setAssetKey(UUID.randomUUID().toString());
 		
 		TimelineAsset asset = new TimelineAsset();
 		asset.setId(date.getAssetKey());
 		asset.setCaption("a learning way -> learn by web");
 		asset.setCredit("good website");
-		asset.setMedia(ServletActionContext.getRequest().getContextPath() + "showNoteComment?key=" + getModel().getId());
+		//http://localhost:8080/know url
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String url = request.getScheme() + "://"
+				+ request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath() + "/" + "showNoteComment?key=" + getModel().getId();
+		asset.setMedia(url);
 		
 		timelineServices.add(t);
 		timelineDateServices.add(date);
 		timelineAssetServices.add(asset);
+	}
+	
+	/*
+	 * 根据用户的id查询与该用户相关的知识点,并把时间轴相关的信息写入以用户id命名的.json文件
+	 */
+	private void readTimeline(String id) {
+		Timeline timeline = timelineServices.findEntityById(id);
+		ObjectToJson<Timeline> toJson = new ObjectToJson<Timeline>();
+		String path = ServletActionContext.getServletContext().getRealPath("/json") + "/" + getModel().getId() + ".json";
+		
+		try {
+			IOUtils.write("{ \"timeline\" : " + toJson.convertObjectToJson(timeline) + "}", new FileOutputStream(new File(path)));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//get & set method

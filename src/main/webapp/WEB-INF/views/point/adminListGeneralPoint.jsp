@@ -109,11 +109,13 @@ hr {
 									<ul style="margin-left: -30px;">
 										<li><h4><a href="adminListGPoint.action?key=1">Java</a></h4></li>
 										<hr />
-										<li><h4><a href="adminListGPoint.action?key=7">.Net</a></h4></li>
+										<li><h4><a href="adminListGPoint.action?key=7">C语音</a></h4></li>
 										<hr />
 										<li><h4><a href="adminListGPoint.action?key=2">Linux</a></h4></li>
 										<hr />
 										<li><h4><a href="adminListGPoint.action?key=5">数据库</a></h4></li>
+										<hr />
+										<li><h4><a href="adminListGPoint.action?key=4">.Net</a></h4></li>
 									</ul>
 								</div>
 							</div>

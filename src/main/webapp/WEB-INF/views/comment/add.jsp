@@ -46,16 +46,7 @@
 		</div>
 		具体描述
 		<div class="row">
-			<div class="col-md-3">
-				<ul class="nav nav-pills nav-stacked">
-					<li class="active" id="side-nav"><a href="#">知识点/粗知识点</a></li>
-					<li id="side-nav"><a href="#">查看/编辑/删除</a></li>
-					<li id="side-nav"><a href="#">添加</a></li>
-					<li id="side-nav"><a>...</a></li>
-					<li id="side-nav"><a>...</a></li>
-				</ul>
-			</div>
-			<div class="col-md-7 col-md-offset-1" id="main">
+			<div class="col-md-11" id="main">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">知识点体系/粗知识点</h3>

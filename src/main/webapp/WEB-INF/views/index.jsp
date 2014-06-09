@@ -61,7 +61,7 @@ $( document ).ready(function() {
 						<li id="side-nav"><a id="net">.net</a></li>
 						<!-- <li id="side-nav"><a id="ui">UI</a></li> -->
 						<li id="side-nav"><a id="linux">Linux</a></li>
-						<li id="side-nav"><a id="c">C</a></li>
+						<li id="side-nav"><a id="c">C语音</a></li>
 						<li id="side-nav"><a id="database">数据库</a></li>
 					</ul>
 				</div>
