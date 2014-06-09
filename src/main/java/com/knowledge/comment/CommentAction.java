@@ -83,7 +83,7 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		insertOrUpdateComment();
 		return "tolearn";
 	}
-	
+	 
 	//学习笔记单击完成后，进入评论页面
 	public String finishLearn(){
 		setSessions();	//TODO:如果函数改了，记得改这哦	ltc:2014/06/07
