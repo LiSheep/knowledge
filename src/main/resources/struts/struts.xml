@@ -18,5 +18,5 @@
 	<include file="struts/struts-point.xml"></include>
 	<include file="struts/struts-plugin.xml"></include>
 	<include file="struts/struts-json.xml"></include>
-	
+	<include file="struts/struts-compute.xml"></include>
 </struts>
