@@ -36,6 +36,15 @@
 		document.getElementById("listform").method = "post";
 		document.getElementById("listform").submit();
 	}
+	
+	$( document ).ready(function() {
+		$("#compute").click(function () {
+			$.ajax({
+				url : "ComAndImportCompute.action",
+				type : "post"
+				});
+		});
+	});
 </script>
 </head>
 <body>
@@ -48,10 +57,8 @@
 				<div class="col-md-3">
 					<ul class="nav nav-pills nav-stacked">
 						<li class="active" id="side-nav"><a href="#">知识点管理</a></li>
-						<li id="side-nav"><a href="#">查看/编辑/删除</a></li>
-						<li id="side-nav"><a href="#">添加</a></li>
-						<li id="side-nav"><a>...</a></li>
-						<li id="side-nav"><a>...</a></li>
+						<li id="side-nav"><a onclick="addEntity()">添加</a></li>
+						<li id="side-nav"><a id="compute">计算</a></li>
 					</ul>
 				</div>
 				<div class="col-md-7 col-md-offset-1" id="main">
@@ -61,7 +68,7 @@
 						</div>
 						
 						<div class="panel-body">
-						<a href="#" onclick="addEntity()">添加一个新的粗知识点</a>
+						<!-- <a href="#" onclick="addEntity()">添加一个新的粗知识点</a> -->
 							<form method="post" id="listform">
 								<table class="table table-hover">
 									<thead>

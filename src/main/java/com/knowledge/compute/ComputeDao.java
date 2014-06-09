@@ -47,8 +47,14 @@ public class ComputeDao extends KnowledgeDao<Compute> {
 	public Compute readNewComplexityAndImportance(String generalKey) {
 		String sql = "SELECT ceil(avg(complexity)) AS complexity, ceil(avg(importance)) AS importance FROM knowledge_point_comment WHERE generalKey = ? GROUP BY generalKey";
 		Object[] args = {generalKey};
+		try {
+			return jdbcTemplate.queryForObject(sql, new ComputeRowMapper(), args);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			//TODO
+		}
 		
-		return jdbcTemplate.queryForObject(sql, new ComputeRowMapper(), args);
+		return null;
 	}
 }
 

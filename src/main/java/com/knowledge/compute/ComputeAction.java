@@ -9,7 +9,7 @@ public class ComputeAction extends KnowledgeAction<Compute> {
 	 */
 	private static final long serialVersionUID = 2127606941201251302L;
 
-	public String compute() {
+	public String ComAndImport() {
 		computeServices.compute();
 		
 		return SUCCESS;

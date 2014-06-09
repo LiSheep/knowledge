@@ -68,8 +68,8 @@ $( document ).ready(function() {
 						<li id="side-nav"><a id="net">.net</a></li>
 						<li id="side-nav"><a id="ui">UI</a></li>
 						<li id="side-nav"><a id="linux">Linux</a></li>
-						<li id="side-nav"><a id="c">Linux</a></li>
-						<li id="side-nav"><a id="database">Linux</a></li>
+						<li id="side-nav"><a id="c">C</a></li>
+						<li id="side-nav"><a id="database">Database</a></li>
 					</ul>
 				</div>
 				<div class="col-md-7 col-md-offset-1" id="main">
