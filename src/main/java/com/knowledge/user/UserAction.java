@@ -3,8 +3,9 @@ package com.knowledge.user;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.struts2.ServletActionContext;
@@ -95,14 +96,19 @@ public class UserAction extends KnowledgeAction<User> {
 		date.setHeadline(getModel().getUsername() + " begin to learn each other");
 		date.setHeadlineKey(t.getId());
 		date.setText("The first page for your learn that you are joined !");
-		date.setEndDate(new Date().toString());
+		date.setEndDate("2200-00-00");
 		date.setAssetKey(UUID.randomUUID().toString());
 		
 		TimelineAsset asset = new TimelineAsset();
 		asset.setId(date.getAssetKey());
 		asset.setCaption("a learning way -> learn by web");
 		asset.setCredit("good website");
-		asset.setMedia(ServletActionContext.getRequest().getContextPath());
+		//http://localhost:8080/know url
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String url = request.getScheme() + "://"
+				+ request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath() + "/";
+		asset.setMedia(url);
 		
 		timelineServices.add(t);
 		timelineDateServices.add(date);
