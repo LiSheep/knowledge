@@ -15,7 +15,7 @@
 		<property name="dictionaryDao" ref="dictionaryDao"></property>
 	</bean>
 	
-	<bean id="dictionaryAction" class="com.knowledge.dictionary.DictionaryAction">
+	<bean id="dictionaryAction" class="com.knowledge.dictionary.DictionaryAction" scope="prototype">
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
 	</bean>
 </beans>

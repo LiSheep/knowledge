@@ -16,7 +16,7 @@
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
 	</bean>
 	
-	<bean id="userAction" class="com.knowledge.user.UserAction">
+	<bean id="userAction" class="com.knowledge.user.UserAction" scope="prototype">
 		<property name="userServices" ref="userServices"></property>
 		<property name="timelineServices" ref="timelineServices"></property>
 		<property name="timelineAssetServices" ref="timelineAssetServices"></property>
