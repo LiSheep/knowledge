@@ -64,10 +64,10 @@
 		<div id="contant" class="row">
 			<div class="row">
 				<div class="col-md-11 col-md-offset-1" id="main" style="padding: 20px;">
-					<h3><b><a>${model.pointName }</a></b></h3>
+					<h2><b><a>${model.pointName }</a></b></h2>
 				<div class="row" id="knowpointhead" style="margin-bottom: 16px;">
-					<div class="col-md-9" style="padding-left: 36px;">
-						<a>${model.pointDescrible }</a>
+					<div class="col-md-12" style="margin-top:20px; padding-left: 36px;">
+						<a class="well">${model.pointDescrible }</a>
 					</div>
 				</div>
 				<div class="well">${model.pointDetail }</div>
@@ -80,7 +80,7 @@
 					<div class="col-md-3">
 						重要性：
 						<s:property
-							value="dictionaryServices.findDictionary(4, model.importance).getLabel()" />
+							value="dictionaryServices.findDictionary(3, model.importance).getLabel()" />
 					</div>
 					<div class="col-md-2">
 						<button type="button" class="btn btn-success"

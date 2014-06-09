@@ -92,6 +92,12 @@ public class GeneralPointServices  implements KnowledgeServices<GeneralPoint> {
 		//TODO:不需要返回值，在框架里GetEntities直接返回page.getResult().但是，如果需要不分页的list则 不能用entities。
 		//具体请看KnowledgeAction的getEntities -ltc 01.06.2014
 	}
+	
+	//根据pointtype 进行分页list
+	public List<GeneralPoint> listByPointType(int pointType, Page<GeneralPoint> page){
+		generalPointDao.listByPointType(pointType, page);
+		return null;
+	}
 
 	
 	// get & set method

@@ -32,44 +32,10 @@
 	<div class="container">
 		<div id="header">
 			<jsp:include page="/WEB-INF/views/common/user-header.jsp"></jsp:include>
-			<div class="row" id="search">
-				<div class="col-md-3 col-md-offset-9">
-					<span class="glyphicon glyphicon-search"></span>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle"
-							data-toggle="dropdown">
-							知识体系 <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Dropdown link</a></li>
-							<li><a href="#">Dropdown link</a></li>
-						</ul>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle"
-							data-toggle="dropdown">
-							时间段 <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Dropdown link</a></li>
-							<li><a href="#">Dropdown link</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
 		</div>
-		<div id="contant">
+		<div id="contant" style="margin-top:30px">
 			<div class="row">
-				<div class="col-md-3">
-					<ul class="nav nav-pills nav-stacked">
-						<li class="active" id="side-nav"><a href="#">知识点管理</a></li>
-						<li id="side-nav"><a href="#">查看/编辑/删除</a></li>
-						<li id="side-nav"><a href="#">添加</a></li>
-						<li id="side-nav"><a>...</a></li>
-						<li id="side-nav"><a>...</a></li>
-					</ul>
-				</div>
-				<div class="col-md-8" id="main">
+				<div class="col-md-12" id="main">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h3 class="panel-title">大知识点<s:if test="model.id == null">添加</s:if><s:elseif test="model.id != null">修改</s:elseif></h3>

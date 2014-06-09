@@ -26,3 +26,5 @@
 	<script type="text/javascript" src="<%=basePath%>plguin/xcharts/rainbow.min.js" ></script>
 	<script type="text/javascript" src="<%=basePath%>plguin/xcharts/xcharts.js" ></script>
 	
+	<script type="text/javascript" src="<%=basePath%>plguin/know/js/common.js" ></script>
+	
