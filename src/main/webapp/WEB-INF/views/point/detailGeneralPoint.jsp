@@ -12,11 +12,50 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
+<script type="text/javascript" src="<%=basePath%>plguin/tag/tagcanvas.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
 	function tolearn(id){
 		window.location.href="toLearnComment.action?key=" + id;
 	}
+	window.onload = function() {
+        try {
+          TagCanvas.Start('myCanvas','tags',{
+            textColour: '#ff0000',
+            outlineColour: 'green',
+            reverse: true,
+            depth: 0.8,
+            maxSpeed: 0.05,
+            weight: true,
+            weightMode: "both"
+          });
+          var gradient = {
+			 0:   'red',
+			 0.5: 'orange',
+			 1:   'rgba(0,0,0,0.1)'
+			};
+		TagCanvas.weightGradient = gradient;
+		TagCanvas.interval = 20;
+		TagCanvas.textFont = 'Impact,Arial Black,sans-serif';
+		TagCanvas.textColour = '#00f';
+		TagCanvas.textHeight = 25;
+		TagCanvas.outlineThickness = 5;
+		TagCanvas.minBrightness = 0.1;
+		TagCanvas.depth = 0.92;
+		TagCanvas.pulsateTo = 0.2;
+		TagCanvas.pulsateTime = 0.75;
+		TagCanvas.initial = [0.1,-0.1];
+		TagCanvas.decel = 0.98;
+		TagCanvas.reverse = true;
+		TagCanvas.hideTags = false;
+		TagCanvas.shadow = '#ccf';
+		TagCanvas.shadowBlur = 3;
+		TagCanvas.weightFrom = 'data-weight';
+        } catch(e) {
+          // something went wrong, hide the canvas container
+          document.getElementById('myCanvasContainer').style.display = 'none';
+        }
+      };
 </script>
 </head>
 <body>
@@ -53,19 +92,14 @@
 					<!--  tagCloud  -->
 					<h4>具体细知识点</h4>
 					<div class="row" id="myCanvasContainer"></div>
-
+					<canvas width="500" height="300" id="myCanvas">
+				        <p>你的浏览器不支持该功能，请使用chrome或firefox浏览器！</p>
+				     </canvas>
 					<div id="tags">
 						<ul>
-							<li><a href="http://www.google.com" target="_blank"
-								data-weight="17" style="font-size: 3.16ex">Google</a></li>
-							<li><a href="/fish" data-weight="35"
-								style="font-size: 2.16ex">Fish</a></li>
-							<li><a href="/chips" data-weight="12"
-								style="font-size: 1.16ex">Chips</a></li>
-							<li><a href="/salt" data-weight="10"
-								style="font-size: 5.16ex">Salt</a></li>
-							<li><a href="/vinegar" data-weight="16"
-								style="font-size: 6.33ex">Vinegar</a></li>
+							<s:iterator value="model.detailPoints">
+								<li><a href="#" data-weight='${complexity + importance }' style='font-size:${importance}ex;'><s:property value="pointName" /></a></li>
+							</s:iterator>
 						</ul>
 					</div>
 				</div>

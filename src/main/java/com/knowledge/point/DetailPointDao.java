@@ -45,6 +45,12 @@ public class DetailPointDao extends KnowledgeDao<DetailPoint> {
 		this.query4Page(sql, new DetailPointRowMapperOnlyGeneralName(), page, args, 0);
 		return page.getResult();
 	}
+	
+	public List<DetailPoint> readEntitiesByGeneralPointId(Object generalPointId){
+		String sql = "SELECT d.id AS dId, d.pointName AS dPointName, d.importance, d.complexity, d.generalKey AS gId, g.pointName AS gPointName FROM knowledge_point_detail AS d , knowledge_point_general AS g WHERE g.id = ? AND d.delflag = 0 AND g.delflag = 0 AND d.generalKey = g.id ";
+		Object []args = { generalPointId }; 
+		return jdbcTemplate.query(sql, new DetailPointRowMapperOnlyGeneralName(), args);
+	}
 
 	// get & set method
 	public JdbcTemplate getJdbcTemplate() {

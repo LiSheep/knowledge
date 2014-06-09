@@ -73,7 +73,11 @@ public class DetailPointServices implements KnowledgeServices<DetailPoint> {
 	public List<DetailPoint> listByGeneralPointId(Page<DetailPoint> page, Object generalPointId){
 		return detailPointDao.readEntitiesByGeneralPointId(page, generalPointId);
 	}
-
+	
+	public List<DetailPoint> listByGeneralPointId(Object generalPointId){
+		return detailPointDao.readEntitiesByGeneralPointId(generalPointId);
+	}
+	
 	// get & set method
 	public DetailPointDao getDetailPointDao() {
 		return detailPointDao;

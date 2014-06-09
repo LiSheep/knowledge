@@ -16,6 +16,7 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 
 	private static final long serialVersionUID = -4973793253208227806L;
 	private GeneralPointServices generalPointServices;
+	private DetailPointServices detailPointServices;
 	private DictionaryServices dictionaryServices;
 
 	public String toinput() {
@@ -47,6 +48,10 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 	//知识点详细显示
 	public String detail(){
 		this.model = generalPointServices.findEntityById(getKey());
+		if(this.model == null)
+			return "error";
+		
+		getModel().setDetailPoints(detailPointServices.listByGeneralPointId(getModel().getId()));
 		return "detail";
 	}
 
@@ -109,5 +114,13 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 
 	public void setDictionaryServices(DictionaryServices dictionaryServices) {
 		this.dictionaryServices = dictionaryServices;
+	}
+
+	public DetailPointServices getDetailPointServices() {
+		return detailPointServices;
+	}
+
+	public void setDetailPointServices(DetailPointServices detailPointServices) {
+		this.detailPointServices = detailPointServices;
 	}
 }

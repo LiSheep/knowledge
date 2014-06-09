@@ -18,6 +18,7 @@
 	<bean id="generalPointAction" class="com.knowledge.point.GeneralPointAction" scope="prototype">
 		<property name="generalPointServices" ref="generalPointServices"></property>
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
+		<property name="detailPointServices" ref="detailPointServices"></property>
 	</bean>
 	
 	<!-- 细知识点 -->
