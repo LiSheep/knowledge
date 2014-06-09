@@ -189,11 +189,5 @@
 			<artifactId>gson</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		<!-- struts json support -->
-		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-json-plugin</artifactId>
-			<version>2.3.16.3</version>
-		</dependency>
 	</dependencies>
 </project>

@@ -55,10 +55,14 @@ public class ComputeServices implements KnowledgeServices<Compute> {
 		
 		for (GeneralPoint generalPoint : generalPoints) {
 			Compute compute = computeDao.readNewComplexityAndImportance(generalPoint.getId());
-			if ( null == compute)
+			if ( null == compute) {
+				
+				generalPoints.remove(compute);
+				
 				continue;
-			else
+			} else {
 				computeDao.updateEntity(compute);
+			}
 		}
 	}
 	
