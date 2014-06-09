@@ -19,5 +19,10 @@
 		<property name="dictionaryServices" ref="dictionaryServices"></property>
 		<property name="generalPointServices" ref="generalPointServices"></property>
 		<property name="userServices" ref="userServices"></property>
+		
+		<!-- timeline -->
+		<property name="timelineServices" ref="timelineServices"></property>
+		<property name="timelineAssetServices" ref="timelineAssetServices"></property>
+		<property name="timelineDateServices" ref="timelineDateServices"></property>
 	</bean>
 </beans>

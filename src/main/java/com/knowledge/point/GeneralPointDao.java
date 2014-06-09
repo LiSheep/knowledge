@@ -42,6 +42,13 @@ public class GeneralPointDao extends KnowledgeDao<GeneralPoint> {
 		this.query4Page(sql, new GeneralPointMapper(), page, null, 0);
 	}
 	
+	public void listByPointType(int pointType, Page<GeneralPoint> page){
+		String sql = "SELECT id, pointName, pointDescrible, pointDetail, pointType, orderNum, complexity, importance from knowledge_point_general WHERE delflag = 0 AND pointType = ?";
+		page.setOrderBy("orderNum");
+		Object []args = {pointType };
+		this.query4Page(sql, new GeneralPointMapper(), page, args, 0);
+	}
+	
 	public GeneralPoint readEntityById(Object id){
 		String sql = "SELECT id, pointName, pointDescrible, pointDetail, pointType, complexity, importance, orderNum FROM knowledge_point_general WHERE id=? AND delflag = 0";
 		GeneralPoint entity = null;

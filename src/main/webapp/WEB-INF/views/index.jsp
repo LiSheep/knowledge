@@ -13,39 +13,35 @@
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <title>Insert title here</title>
 <script type="text/javascript">
-function unsetActive(elem){
-	$("#knowledgeSystem li[class='active']").attr("class", "");
-	elem.parent().attr("class", "active");
-}
 //不同选项卡的关联
 $( document ).ready(function() {
 	$("#net").click(function () {
-		unsetActive($("#net"));
+		resetActive($("#knowledgeSystem li[class='active']"), $("#net"));
 		requestJson(4);
 		
 	});
 	$("#java").click(function () {
-		unsetActive($("#java"));
+		resetActive($("#knowledgeSystem li[class='active']"), $("#java"));
 		requestJson(1);
 		
 	});
 	$("#linux").click(function () {
-		unsetActive($("#linux"));
+		resetActive($("#knowledgeSystem li[class='active']"), $("#linux"));
 		requestJson(2);
 		
 	});
 	$("#ui").click(function () {
-		unsetActive($("#ui"));
+		resetActive($("#knowledgeSystem li[class='active']"), $("#ui"));
 		requestJson(6);
 		
 	});
 	$("#c").click(function () {
-		unsetActive($("#c"));
+		resetActive($("#knowledgeSystem li[class='active']"), $("#c"));
 		requestJson(7);
 		
 	});
 	$("#database").click(function () {
-		unsetActive($("#database"));
+		resetActive($("#knowledgeSystem li[class='active']"), $("#database"));
 		requestJson(5);
 		
 	});
@@ -55,22 +51,9 @@ $( document ).ready(function() {
 <body>
 	<div class="container" style="margin-top: 5px;">
 		<div id="header">
-			<div class="row">
-				<div class="col-md-3">
-					<h4>
-						LOGO <span class="label label-default">New</span>
-					</h4>
-				</div>
-				<div class="col-md-6 col-md-offset-1">
-					<ul class="nav nav-pills nav-justified">
-						<li class="active"><a href="<%=basePath %>loginUserAction.action">首页</a></li>
-						<li><a href="#">知识点</a></li>
-						<li><a>您好 : <b><s:property value="#session.user.username"/></b></a></li>
-					</ul>
-				</div>
-			</div>
+			<jsp:include page="/WEB-INF/views/common/user-header.jsp"></jsp:include>
 		</div>
-		<div id="contant" style="margin-top: 10px;">
+		<div id="contant" style="margin-top: 30px;">
 			<div class="row">
 				<div class="col-md-3">
 					<ul class="nav nav-pills nav-stacked" id="knowledgeSystem">
@@ -135,6 +118,7 @@ $( document ).ready(function() {
 								},
 								"click" : function(d, i) {
 									  window.location.href = "<%=basePath%>listGPointComment.action?key=" + d.id;
+									  
 								}
 							};
 							

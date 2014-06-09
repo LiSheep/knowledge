@@ -41,7 +41,12 @@ public class GeneralPointAction extends KnowledgeAction<GeneralPoint> {
 
 	// 粗知识点管理列表
 	public String adminList() {
-		generalPointServices.list(getPage());
+		if(getKey() == null || getKey().equals("")){
+			generalPointServices.list(getPage());
+		}else {
+			generalPointServices.listByPointType(Integer.valueOf(getKey()), getPage());
+		}
+		
 		return "adminlist";
 	}
 	

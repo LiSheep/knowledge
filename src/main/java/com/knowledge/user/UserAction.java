@@ -3,6 +3,7 @@ package com.knowledge.user;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
@@ -84,9 +85,9 @@ public class UserAction extends KnowledgeAction<User> {
 	 */
 	private void addTimeline() {
 		Timeline t = new Timeline();
-		t.setHeadline(getModel().getUsername() + " register here");
+		t.setHeadline(getModel().getUsername() + " 在今天注册了");
 		t.setId(UUID.randomUUID().toString());
-		t.setText("<h1>welcome to here! we learn each other</h1>");
+		t.setText("<h1>欢迎来到XX学习平台</h1>");
 		t.setUserKey(getModel().getId());
 		
 		TimelineDate date = new TimelineDate();
@@ -94,14 +95,14 @@ public class UserAction extends KnowledgeAction<User> {
 		date.setHeadline(getModel().getUsername() + " begin to learn each other");
 		date.setHeadlineKey(t.getId());
 		date.setText("The first page for your learn that you are joined !");
-		date.setEndDate("0000-00-00");
+		date.setEndDate(new Date().toString());
 		date.setAssetKey(UUID.randomUUID().toString());
 		
 		TimelineAsset asset = new TimelineAsset();
 		asset.setId(date.getAssetKey());
 		asset.setCaption("a learning way -> learn by web");
 		asset.setCredit("good website");
-		asset.setMedia("http://www.infoq.com/cn/");
+		asset.setMedia(ServletActionContext.getRequest().getContextPath());
 		
 		timelineServices.add(t);
 		timelineDateServices.add(date);
