@@ -8,12 +8,12 @@
 			+ path + "/";
 %> 
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="<%=basePath%>plguin/xcharts/xcharts.css" />
-	<link rel="stylesheet" href="<%=basePath%>plguin/xcharts/master.css" />
-	
 	<link rel="stylesheet" href="<%=basePath%>plguin/bootstrap/css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="<%=basePath%>plguin/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="<%=basePath%>plguin/know/style/main.css" />
+	
+	<link rel="stylesheet" href="<%=basePath%>plguin/xcharts/xcharts.css" />
+	<link rel="stylesheet" href="<%=basePath%>plguin/xcharts/master.css" />
 	
 	<link rel="stylesheet" href="<%=basePath%>plguin/simditor/styles/simditor.css" />
 	<link rel="stylesheet" href="<%=basePath%>plguin/simditor/styles/font-awesome.css" />
