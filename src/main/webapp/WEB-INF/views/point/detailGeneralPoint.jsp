@@ -13,7 +13,7 @@
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <script type="text/javascript" src="<%=basePath%>plguin/tag/tagcanvas.js"></script>
-<title>Insert title here</title>
+<title>知识学习和过程评价系统 - ${model.pointName } 详细内容</title>
 <script type="text/javascript">
 	function tolearn(id){
 		window.location.href="toLearnComment.action?key=" + id;

@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>知识学习和过程评价系统 - ${model.generalPoint.pointName }学习笔记</title>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 <script type="text/javascript"
 	src="<%=basePath%>plguin/simditor/scripts/js/simditor-markdown.js"></script>

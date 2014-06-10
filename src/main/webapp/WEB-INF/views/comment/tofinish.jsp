@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>评论添加</title>
+<title>知识学习和过程评价系统  - 知识点总结</title>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
 </head>
 <body>

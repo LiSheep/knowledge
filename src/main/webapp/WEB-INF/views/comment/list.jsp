@@ -12,7 +12,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
-<title>评论列表</title>
+<title>知识学习和过程评价系统 - ${model.generalPoint.pointName } 评论列表</title>
 <script type="text/javascript">
 	function toLearn() {
 		document.getElementById("commentForm").submit();

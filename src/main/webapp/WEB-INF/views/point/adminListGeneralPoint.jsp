@@ -12,7 +12,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>知识学习和过程评价系统</title>
 <script type="text/javascript">
 	function deleteEntity(id) {
 		document.getElementById("listform").key.value = id;
