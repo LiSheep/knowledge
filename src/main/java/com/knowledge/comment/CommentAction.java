@@ -145,16 +145,16 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		
 		TimelineDate date = new TimelineDate();
 		date.setId(UUID.randomUUID().toString());
-		date.setHeadline(user.getUsername() + " begin to learn each other");
+		date.setHeadline(user.getUsername() + " 学完了" + getModel().getGeneralPoint().getPointName());
 		date.setHeadlineKey(t.getId());
-		date.setText("The first page for your learn that you are joined !");
+		date.setText(getModel().getGeneralPoint().getPointDescrible());
 //		date.setEndDate("2200-00-00");
 		date.setAssetKey(UUID.randomUUID().toString());
 		
 		TimelineAsset asset = new TimelineAsset();
 		asset.setId(date.getAssetKey());
-		asset.setCaption("a learning way -> learn by web");
-		asset.setCredit("good website");
+		asset.setCaption("");
+		asset.setCredit("");
 		//http://localhost:8080/know url
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String url = request.getScheme() + "://"

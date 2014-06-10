@@ -23,7 +23,7 @@
 				<input type="hidden" name="model.id" value="${model.id }"> <input
 					type="hidden" name="model.generalPoint.id"
 					value="${model.generalPoint.id }">
-				<div class="col-md-11" id="main">
+				<div class="col-md-11" id="main" style="margin:30px;">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h3 class="panel-title">

@@ -96,22 +96,22 @@ public class UserAction extends KnowledgeAction<User> {
 		Timeline t = new Timeline();
 		t.setHeadline(getModel().getUsername() + " 在今天注册了");
 		t.setId(UUID.randomUUID().toString());
-		t.setText("<h1>欢迎来到XX学习平台</h1>");
+		t.setText("<h1>知识学习和过程评价系统欢迎您！</h1>");
 		t.setUserKey(getModel().getId());
 		
 		TimelineDate date = new TimelineDate();
 		date.setId(UUID.randomUUID().toString());
-		date.setHeadline(getModel().getUsername() + " begin to learn each other");
+		date.setHeadline(getModel().getUsername() + " 从今天开始学习吧！");
 		date.setHeadlineKey(t.getId());
-		date.setText("The first page for your learn that you are joined !");
+		date.setText("欢迎您体验新的学习方式!");
 //		endDate可以为NULL
 //		date.setEndDate("2200-00-00");
 		date.setAssetKey(UUID.randomUUID().toString());
 		
 		TimelineAsset asset = new TimelineAsset();
 		asset.setId(date.getAssetKey());
-		asset.setCaption("a learning way -> learn by web");
-		asset.setCredit("good website");
+		asset.setCaption("");
+		asset.setCredit("知识学习和过程评价系统");
 		//http://localhost:8080/know url
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String url = request.getScheme() + "://"
