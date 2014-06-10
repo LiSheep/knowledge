@@ -31,7 +31,10 @@ public class UserAction extends KnowledgeAction<User> {
 	
 	public String login() throws Exception {
 		User user = userServices.findEntity(getModel());
-		
+		User hadLoginUser = (User)ActionContext.getContext().getSession().get("user");
+		if(hadLoginUser != null){	//已登录
+			return SUCCESS;
+		}
 		if (null != user) {
 			ActionContext.getContext().getSession().put("user", user);
 			

@@ -20,8 +20,13 @@ public class UserDao extends KnowledgeDao<User> {
 	public User readEntity(User t) {
 		String sql = "SELECT username, id, userpass, role, regTime FROM knowledge_user WHERE username = ? AND userpass = ?";
 		Object[] args = {t.getUsername(), t.getUserpass()};
-		
-		return jdbcTemplate.queryForObject(sql, new UserRowMapper(), args);
+		User user = null;
+		try {
+			user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), args);
+		} catch (Exception e) {
+			return null;
+		}
+		return user;
 	}
 
 	@Override

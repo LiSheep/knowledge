@@ -7,7 +7,7 @@
 	<package name="user" namespace="/" extends="struts-default">
 		<action name="*UserAction" class="userAction" method="{1}">
 			<result name="success">/WEB-INF/views/index.jsp</result>
-			<result name="input">/WEB-INF/views/user/register.jsp</result>
+			<result name="input">/WEB-INF/views/user/login.jsp</result>
 		</action>
 	</package>
 	
