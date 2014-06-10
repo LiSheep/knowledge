@@ -96,7 +96,8 @@ public class UserAction extends KnowledgeAction<User> {
 		date.setHeadline(getModel().getUsername() + " begin to learn each other");
 		date.setHeadlineKey(t.getId());
 		date.setText("The first page for your learn that you are joined !");
-		date.setEndDate("2200-00-00");
+//		endDate可以为NULL
+//		date.setEndDate("2200-00-00");
 		date.setAssetKey(UUID.randomUUID().toString());
 		
 		TimelineAsset asset = new TimelineAsset();

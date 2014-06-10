@@ -13,8 +13,8 @@ public class TimelineDateDao extends KnowledgeDao<TimelineDate> {
 
 	@Override
 	public int create(TimelineDate t) {
-		String sql = "INSERT INTO knowledge_timeline_date (id, endDate, text, headline, asset, headlineKey) VALUES (?, ?, ?, ?, ?, ?)";
-		Object[] args = {t.getId(), DataConvUtil.dataFromStringToDate(t.getEndDate()), t.getText(), t.getHeadline(), t.getAssetKey(), t.getHeadlineKey()};
+		String sql = "INSERT INTO knowledge_timeline_date (id, text, headline, asset, headlineKey) VALUES (?, ?, ?, ?, ?)";
+		Object[] args = {t.getId(), t.getText(), t.getHeadline(), t.getAssetKey(), t.getHeadlineKey()};
 		
 		return jdbcTemplate.update(sql, args);
 	}
@@ -76,7 +76,12 @@ class TimelineDateRowMapper implements RowMapper<TimelineDate> {
 		
 		date.setId(rs.getString("id"));
 		date.setAsset(timelineAssetDao.readOne(rs.getString("asset")));
-		date.setEndDate(DataConvUtil.dateFormatJson(rs.getDate("endDate")));
+//		end is NULL ?
+		if (null == rs.getDate("endDate")) {
+			date.setEndDate("");
+		} else {
+			date.setEndDate(DataConvUtil.dateFormatJson(rs.getDate("endDate")));
+		}
 		date.setStartDate(DataConvUtil.dateFormatJson(rs.getDate("startDate")));
 		date.setHeadline(rs.getString("headline"));
 		date.setText(rs.getString("text"));
