@@ -3,7 +3,6 @@ package com.knowledge.comment;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -142,18 +141,14 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	
 	private void addTimeline() {
 		User user = (User)ActionContext.getContext().getSession().get("user");
-		Timeline t = new Timeline();
-		t.setHeadline(user.getUsername() + " 在今天注册了");
-		t.setId(UUID.randomUUID().toString());
-		t.setText("<h1>欢迎来到XX学习平台</h1>");
-		t.setUserKey(getModel().getId());
+		Timeline t = timelineServices.findEntityByUserKey(user.getId());
 		
 		TimelineDate date = new TimelineDate();
 		date.setId(UUID.randomUUID().toString());
 		date.setHeadline(user.getUsername() + " begin to learn each other");
 		date.setHeadlineKey(t.getId());
 		date.setText("The first page for your learn that you are joined !");
-		date.setEndDate("2200-00-00");
+//		date.setEndDate("2200-00-00");
 		date.setAssetKey(UUID.randomUUID().toString());
 		
 		TimelineAsset asset = new TimelineAsset();
@@ -164,10 +159,9 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String url = request.getScheme() + "://"
 				+ request.getServerName() + ":" + request.getServerPort()
-				+ request.getContextPath() + "/" + "showNoteComment?key=" + getModel().getId();
+				+ request.getContextPath() + "/" + "showNoteComment?key=" + user.getId();
 		asset.setMedia(url);
 		
-		timelineServices.add(t);
 		timelineDateServices.add(date);
 		timelineAssetServices.add(asset);
 	}
@@ -178,10 +172,15 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	private void readTimeline(String id) {
 		Timeline timeline = timelineServices.findEntityById(id);
 		ObjectToJson<Timeline> toJson = new ObjectToJson<Timeline>();
-		String path = ServletActionContext.getServletContext().getRealPath("/json") + "/" + getModel().getId() + ".json";
+		String path = ServletActionContext.getServletContext().getRealPath("/json") + "/" + id + ".json";
 		
 		try {
+			File tmpFile = new File(path);
+			if (tmpFile.exists() && tmpFile.isFile()) {
+				tmpFile.delete();
+			}
 			IOUtils.write("{ \"timeline\" : " + toJson.convertObjectToJson(timeline) + "}", new FileOutputStream(new File(path)));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -74,10 +74,15 @@ public class UserAction extends KnowledgeAction<User> {
 	private void readTimeline(String id) {
 		Timeline timeline = timelineServices.findEntityById(id);
 		ObjectToJson<Timeline> toJson = new ObjectToJson<Timeline>();
-		String path = ServletActionContext.getServletContext().getRealPath("/json") + "/" + getModel().getId() + ".json";
+		String path = ServletActionContext.getServletContext().getRealPath("/json") + "/" + id + ".json";
 		
 		try {
+			File tmpFile = new File(path);
+			if (tmpFile.exists() && tmpFile.isFile()) {
+				tmpFile.delete();
+			}
 			IOUtils.write("{ \"timeline\" : " + toJson.convertObjectToJson(timeline) + "}", new FileOutputStream(new File(path)));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

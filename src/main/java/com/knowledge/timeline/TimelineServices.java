@@ -33,6 +33,10 @@ public class TimelineServices implements KnowledgeServices<Timeline> {
 		
 		return timeline;
 	}
+	//后续向时间轴添加的新的点,需要先查询于该userkey相关联的时间轴
+	public Timeline findEntityByUserKey(String id) {
+		return timelineDao.readByUser(id);
+	}
 
 	@Override
 	public int update(Timeline t) {
