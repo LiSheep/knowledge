@@ -20,7 +20,9 @@ public class UserServices implements KnowledgeServices<User> {
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
-			
+		if(this.findUserByUsername(t.getUsername()) != null){	//用户已存在
+			return 0;
+		}
 		return userDao.create(t);
 	}
 	
@@ -44,6 +46,10 @@ public class UserServices implements KnowledgeServices<User> {
 	@Override
 	public User findEntityById(Object id) {
 		return userDao.readEntityById(id);
+	}
+	
+	public User findUserByUsername(String username){
+		return userDao.readEntityByName(username);
 	}
 
 	@Override

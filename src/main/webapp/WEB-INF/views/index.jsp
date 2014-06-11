@@ -14,7 +14,7 @@
 <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
 <meta HTTP-EQUIV="expires" CONTENT="0">
 <jsp:include page="/WEB-INF/views/common/include-head.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>知识学习和过程评价系统 </title>
 <script type="text/javascript">
 //不同选项卡的关联
 $( document ).ready(function() {
@@ -65,7 +65,7 @@ $( document ).ready(function() {
 						<!-- <li id="side-nav"><a id="ui">UI</a></li> -->
 						<li id="side-nav"><a id="linux">Linux</a></li>
 						<li id="side-nav"><a id="c">C语音</a></li>
-						<li id="side-nav"><a id="database">数据库</a></li>
+						<!-- <li id="side-nav"><a id="database">数据库</a></li> -->
 					</ul>
 				</div>
 				<div class="col-md-7 col-md-offset-1" id="main">
@@ -162,6 +162,13 @@ $( document ).ready(function() {
 							}
 						</script>
 					</div>
+					<!-- 添加line说明 -->
+					<div class="row">
+						<div class="col-md-2 col-md-offset-9">
+							<img src="<%=basePath%>plguin/know/image/chart.png" />
+						</div>
+					</div>
+					<!-- 添加line说明结束 -->
 				</div>
 			</div>
 			<div class="row" style="margin-top: 5px; height: 500px">
@@ -178,5 +185,6 @@ $( document ).ready(function() {
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </body>
 </html>

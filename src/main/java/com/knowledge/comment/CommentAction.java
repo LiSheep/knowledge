@@ -142,10 +142,17 @@ public class CommentAction extends KnowledgeAction<Comment>{
 	private void addTimeline() {
 		User user = (User)ActionContext.getContext().getSession().get("user");
 		Timeline t = timelineServices.findEntityByUserKey(user.getId());
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String url = request.getScheme() + "://"
+				+ request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath();
 		
 		TimelineDate date = new TimelineDate();
 		date.setId(UUID.randomUUID().toString());
-		date.setHeadline(user.getUsername() + " 学完了" + getModel().getGeneralPoint().getPointName());
+		StringBuilder urlhead = new StringBuilder(url);
+		urlhead.append("/showNoteComment.action?key=").append(getModel().getId().toString());
+		String url_str = String.format("<a href=\"%s\">你学完了%s/%s</a>", urlhead.toString(), getModel().getGeneralPoint().getPointName());
+		date.setHeadline(url_str);
 		date.setHeadlineKey(t.getId());
 		date.setText(getModel().getGeneralPoint().getPointDescrible());
 //		date.setEndDate("2200-00-00");
@@ -156,11 +163,8 @@ public class CommentAction extends KnowledgeAction<Comment>{
 		asset.setCaption("");
 		asset.setCredit("");
 		//http://localhost:8080/know url
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String url = request.getScheme() + "://"
-				+ request.getServerName() + ":" + request.getServerPort()
-				+ request.getContextPath() + "/" + "showNoteComment?key=" + user.getId();
-		asset.setMedia(url);
+		String urlimage = url + "/plguin/know/image/knowledge.jpg";
+		asset.setMedia(urlimage);
 		
 		timelineDateServices.add(date);
 		timelineAssetServices.add(asset);

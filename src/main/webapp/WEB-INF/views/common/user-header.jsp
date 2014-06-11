@@ -9,14 +9,13 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div id="header">
 	<div class="row">
-		<center class="col-md-3">
-			<h4>
-				LOGO <span class="label label-default">New</span>
-			</h4>
-		</center>
-		<div class="col-md-7 col-md-offset-1">
+		<div class="col-md-4" style="margin-top: -10px; padding-left: 30px;">
+			<img alt="" src="<%=basePath %>plguin/know/image/home-img.png">
+		</div>
+		<div class="col-md-6">
 			<ul class="nav nav-pills nav-justified">
-				<li class="active"><a id="main" href="<%=basePath %>loginUserAction.action">首页</a></li>
+				<li class="active"><a id="main"
+					href="<%=basePath %>loginUserAction.action">首页</a></li>
 				<li><a href="#" id="knowledge">知识点</a></li>
 				<li><a>您好 : <b>${session.user.username }</b></a></li>
 				<!-- 

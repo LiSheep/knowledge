@@ -3,6 +3,7 @@ package com.knowledge.user;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -24,6 +25,17 @@ public class UserDao extends KnowledgeDao<User> {
 		try {
 			user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), args);
 		} catch (Exception e) {
+			return null;
+		}
+		return user;
+	}
+	
+	public User readEntityByName(String name){
+		String sql = "SELECT username, id, userpass, role, regTime FROM knowledge_user WHERE username= ?";
+		User user = null;
+		try {
+			user = jdbcTemplate.queryForObject(sql, new UserRowMapper(), name);
+		} catch (DataAccessException e) {
 			return null;
 		}
 		return user;
